@@ -6,6 +6,7 @@
 #pragma once
 
 #include <glm/glm.hpp>
+#include <glm/gtc/quaternion.hpp>
 
 #include "API.h"
 
@@ -14,7 +15,8 @@ namespace mpc
 	class API Point
 	{
 		glm::vec3 position;
-		glm::vec4 color;
+		glm::quat rotation;
+		glm::vec3 scale;
 
 	public:
 

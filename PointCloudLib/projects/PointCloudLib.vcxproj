@@ -13,8 +13,8 @@
   <ItemGroup>
     <ClInclude Include="..\code\headers\API.h" />
     <ClInclude Include="..\code\headers\Camera.h" />
-    <ClInclude Include="..\code\headers\Color.h" />
     <ClInclude Include="..\code\headers\Point.h" />
+    <ClInclude Include="..\code\headers\Transform.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\code\sources\Camera.cpp" />

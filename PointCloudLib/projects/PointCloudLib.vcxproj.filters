@@ -21,10 +21,10 @@
     <ClInclude Include="..\code\headers\API.h">
       <Filter>headers</Filter>
     </ClInclude>
-    <ClInclude Include="..\code\headers\Color.h">
+    <ClInclude Include="..\code\headers\Camera.h">
       <Filter>headers</Filter>
     </ClInclude>
-    <ClInclude Include="..\code\headers\Camera.h">
+    <ClInclude Include="..\code\headers\Transform.h">
       <Filter>headers</Filter>
     </ClInclude>
   </ItemGroup>

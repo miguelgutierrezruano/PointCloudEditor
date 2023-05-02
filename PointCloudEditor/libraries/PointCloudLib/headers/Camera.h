@@ -5,8 +5,9 @@
 
 #pragma once
 
+#include <glm/glm.hpp>
+
 #include "API.h"
-#include <glm.hpp>
 
 using namespace glm;
 
