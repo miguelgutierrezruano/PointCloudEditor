@@ -9,8 +9,9 @@
 
 namespace mpc
 {
-	void Camera::move_camera()
+	// Probably need to erase since this is data
+	void Camera::say_hello()
 	{
-		std::cout << "Something works" << std::endl;
+		std::cout << "Hello!" << std::endl;
 	}
 }

@@ -8,6 +8,7 @@
 #include <glm/glm.hpp>
 
 #include "API.h"
+#include "Transform.h"
 
 using namespace glm;
 
@@ -15,7 +16,7 @@ namespace mpc
 {
 	class API Camera
 	{
-		vec3 position;
+		Transform transform;
 		vec3 target;
 
 		double fov;
@@ -23,8 +24,8 @@ namespace mpc
 
 	public:
 
-		const vec3& get_position() { return position; }
-		
-		void move_camera();
+		Transform& get_transform() { return transform; }
+
+		void say_hello();
 	};
 }

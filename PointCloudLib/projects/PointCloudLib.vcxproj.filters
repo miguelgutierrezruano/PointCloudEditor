@@ -27,9 +27,15 @@
     <ClInclude Include="..\code\headers\Transform.h">
       <Filter>headers</Filter>
     </ClInclude>
+    <ClInclude Include="..\code\headers\CameraController.h">
+      <Filter>headers</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\code\sources\Camera.cpp">
+      <Filter>sources</Filter>
+    </ClCompile>
+    <ClCompile Include="..\code\sources\CameraController.cpp">
       <Filter>sources</Filter>
     </ClCompile>
   </ItemGroup>

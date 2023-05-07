@@ -12,7 +12,7 @@
 
 namespace mpc
 {
-	class API Point
+	class API Transform
 	{
 		glm::vec3 position;
 		glm::quat rotation;
@@ -21,6 +21,8 @@ namespace mpc
 	public:
 
 		const glm::vec3& get_position() { return position; }
+
+		// get matrix
 
 		void set_position(float x, float y, float z)
 		{

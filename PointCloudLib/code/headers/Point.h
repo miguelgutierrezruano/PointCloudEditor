@@ -16,6 +16,8 @@ namespace mpc
 		glm::vec3 position;
 		glm::vec4 color;
 
+		// float pointSize is better set in PointCloud class
+
 	public:
 
 		const glm::vec3& get_position() { return position; }

@@ -13,11 +13,13 @@
   <ItemGroup>
     <ClInclude Include="..\code\headers\API.h" />
     <ClInclude Include="..\code\headers\Camera.h" />
+    <ClInclude Include="..\code\headers\CameraController.h" />
     <ClInclude Include="..\code\headers\Point.h" />
     <ClInclude Include="..\code\headers\Transform.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\code\sources\Camera.cpp" />
+    <ClCompile Include="..\code\sources\CameraController.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
