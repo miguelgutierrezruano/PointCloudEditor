@@ -4,6 +4,7 @@
 // 2023
 
 #pragma once
+#pragma warning( disable : 4251 )
 
 #include <glm/glm.hpp>
 #include <glm/gtc/quaternion.hpp>
