@@ -17,7 +17,7 @@ namespace mpc
 	class API Camera
 	{
 		Transform transform;
-		vec3 target;
+		//vec3 target;
 
 		double fov;
 		bool perspective;

@@ -29,6 +29,10 @@ namespace mpc
 		void bindCamera(Camera* camera);
 		void unbindCamera();
 
+		void print_camera_position();
+
+		void set_camera_position(float x, float y, float z);
+
 		// Give parameters based on screen position
 		void moveCamera(float delta);
 	};

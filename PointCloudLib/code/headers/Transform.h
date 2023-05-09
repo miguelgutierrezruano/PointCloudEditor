@@ -22,8 +22,6 @@ namespace mpc
 
 		const glm::vec3& get_position() { return position; }
 
-		// get matrix
-
 		void set_position(float x, float y, float z)
 		{
 			position = glm::vec3(x, y, z);
