@@ -1,0 +1,5 @@
+<RCC>
+    <qresource prefix="/PointCloudEditor">
+        <file>PointCloudEditor.rc</file>
+    </qresource>
+</RCC>
