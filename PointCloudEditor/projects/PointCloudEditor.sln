@@ -4,6 +4,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 VisualStudioVersion = 16.0.33130.400
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "PointCloudEditor", "PointCloudEditor.vcxproj", "{F0138436-4F55-41CE-9015-7950545AF924}"
+	ProjectSection(ProjectDependencies) = postProject
+		{B47C0D0B-E394-4297-8C94-0F30C4DE7EEB} = {B47C0D0B-E394-4297-8C94-0F30C4DE7EEB}
+	EndProjectSection
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "PointCloudLib", "..\..\PointCloudLib\projects\PointCloudLib.vcxproj", "{B47C0D0B-E394-4297-8C94-0F30C4DE7EEB}"
 EndProject
