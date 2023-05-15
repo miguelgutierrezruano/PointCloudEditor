@@ -23,12 +23,24 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\code\sources\main.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\code\sources\PointCloudEditor.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
+    <QtUic Include="..\code\PointCloudEditor.ui">
+      <Filter>Form Files</Filter>
+    </QtUic>
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="..\code\PointCloudEditor.ico">
+      <Filter>Resource Files</Filter>
+    </Image>
+  </ItemGroup>
+  <ItemGroup>
+    <QtRcc Include="..\code\PointCloudEditor.qrc">
+      <Filter>Resource Files</Filter>
+    </QtRcc>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="..\code\PointCloudEditor.rc">
+      <Filter>Resource Files</Filter>
+    </ResourceCompile>
   </ItemGroup>
   <ItemGroup>
     <QtMoc Include="..\code\headers\PointCloudEditor.h">
@@ -36,23 +48,11 @@
     </QtMoc>
   </ItemGroup>
   <ItemGroup>
-    <Image Include="..\code\qt\PointCloudEditor.ico">
-      <Filter>Resource Files</Filter>
-    </Image>
-  </ItemGroup>
-  <ItemGroup>
-    <ResourceCompile Include="..\code\qt\PointCloudEditor.rc">
-      <Filter>Resource Files</Filter>
-    </ResourceCompile>
-  </ItemGroup>
-  <ItemGroup>
-    <QtUic Include="..\code\qt\PointCloudEditor.ui">
-      <Filter>Form Files</Filter>
-    </QtUic>
-  </ItemGroup>
-  <ItemGroup>
-    <QtRcc Include="..\code\qt\PointCloudEditor.qrc">
-      <Filter>Resource Files</Filter>
-    </QtRcc>
+    <ClCompile Include="..\code\sources\main.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\code\sources\PointCloudEditor.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

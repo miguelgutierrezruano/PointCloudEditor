@@ -10,8 +10,27 @@
       <Platform>x64</Platform>
     </ProjectConfiguration>
   </ItemGroup>
+  <ItemGroup>
+    <QtUic Include="..\code\PointCloudEditor.ui" />
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="..\code\PointCloudEditor.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <QtRcc Include="..\code\PointCloudEditor.qrc" />
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="..\code\PointCloudEditor.rc" />
+  </ItemGroup>
+  <ItemGroup>
+    <QtMoc Include="..\code\headers\PointCloudEditor.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\code\sources\main.cpp" />
+    <ClCompile Include="..\code\sources\PointCloudEditor.cpp" />
+  </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectGuid>{62EA225B-3429-48CB-91EB-F95179C0D24B}</ProjectGuid>
+    <ProjectGuid>{F0138436-4F55-41CE-9015-7950545AF924}</ProjectGuid>
     <Keyword>QtVS_v304</Keyword>
     <WindowsTargetPlatformVersion Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'">10.0.19041.0</WindowsTargetPlatformVersion>
     <WindowsTargetPlatformVersion Condition="'$(Configuration)|$(Platform)' == 'Release|x64'">10.0.19041.0</WindowsTargetPlatformVersion>
@@ -31,13 +50,13 @@
     <Import Project="$(QtMsBuild)\qt_defaults.props" />
   </ImportGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'" Label="QtSettings">
-    <QtInstall>6.5.0_msvc2019_64</QtInstall>
-    <QtModules>3dcore;3danimation;3dextras;3dinput;3dlogic;3drender;core;gui;opengl;openglwidgets;widgets;xml</QtModules>
+    <QtInstall>6.2.4_msvc2019_64</QtInstall>
+    <QtModules>core;gui;opengl;openglwidgets;widgets</QtModules>
     <QtBuildConfig>debug</QtBuildConfig>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x64'" Label="QtSettings">
-    <QtInstall>6.5.0_msvc2019_64</QtInstall>
-    <QtModules>3dcore;3danimation;3dextras;3dinput;3dlogic;3drender;core;gui;opengl;openglwidgets;widgets;xml</QtModules>
+    <QtInstall>6.2.4_msvc2019_64</QtInstall>
+    <QtModules>core;gui;opengl;openglwidgets;widgets</QtModules>
     <QtBuildConfig>release</QtBuildConfig>
   </PropertyGroup>
   <Target Name="QtMsBuildNotFound" BeforeTargets="CustomBuild;ClCompile" Condition="!Exists('$(QtMsBuild)\qt.targets') or !Exists('$(QtMsBuild)\qt.props')">
@@ -92,25 +111,6 @@
       <GenerateDebugInformation>false</GenerateDebugInformation>
     </Link>
   </ItemDefinitionGroup>
-  <ItemGroup>
-    <ClCompile Include="..\code\sources\main.cpp" />
-    <ClCompile Include="..\code\sources\PointCloudEditor.cpp" />
-  </ItemGroup>
-  <ItemGroup>
-    <QtMoc Include="..\code\headers\PointCloudEditor.h" />
-  </ItemGroup>
-  <ItemGroup>
-    <Image Include="..\code\qt\PointCloudEditor.ico" />
-  </ItemGroup>
-  <ItemGroup>
-    <ResourceCompile Include="..\code\qt\PointCloudEditor.rc" />
-  </ItemGroup>
-  <ItemGroup>
-    <QtUic Include="..\code\qt\PointCloudEditor.ui" />
-  </ItemGroup>
-  <ItemGroup>
-    <QtRcc Include="..\code\qt\PointCloudEditor.qrc" />
-  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Condition="Exists('$(QtMsBuild)\qt.targets')">
     <Import Project="$(QtMsBuild)\qt.targets" />

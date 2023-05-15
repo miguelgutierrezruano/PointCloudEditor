@@ -7,4 +7,6 @@ PointCloudEditor::PointCloudEditor(QWidget *parent)
 }
 
 PointCloudEditor::~PointCloudEditor()
-{}
+{
+
+}
