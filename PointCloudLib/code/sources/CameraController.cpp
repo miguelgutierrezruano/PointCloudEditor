@@ -33,14 +33,14 @@ namespace mpc
 
 	void CameraController::print_camera_position()
 	{
-		vec3 pos = currentCamera->get_transform().get_position();
+		vec3 pos = currentCamera->transform.position;
 
 		std::cout << "Camera position: " << pos.x << ", " << pos.y << ", " << pos.z << std::endl;
 	}
 
 	void CameraController::set_camera_position(float x, float y, float z)
 	{
-		currentCamera->get_transform().set_position(x, y, z);
+		currentCamera->transform.position = vec3(x, y, z);
 	}
 
 	void CameraController::moveCamera(float delta)
@@ -51,13 +51,10 @@ namespace mpc
 			return;
 		}
 
-		Transform& cameraTransform = currentCamera->get_transform();
-		vec3 pos = cameraTransform.get_position();
+		vec3 pos = currentCamera->transform.position;
 
-		cameraTransform.set_position(pos.x, pos.y, pos.z + speed * delta);
+		currentCamera->transform.position = vec3(pos.x, pos.y, pos.z + speed * delta);
 
-		pos = cameraTransform.get_position();
-
-		std::cout << "Camera position: " <<  pos.x << ", " << pos.y << ", " << pos.z << std::endl;
+		print_camera_position();
 	}
 }

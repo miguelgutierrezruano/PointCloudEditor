@@ -16,16 +16,19 @@ namespace mpc
 {
 	class API Camera
 	{
-		Transform transform;
-		//vec3 target;
 
-		double fov;
-		bool perspective;
+		friend class CameraController;
+
+	private:
+
+		Transform transform;
+
+		float fov;
+		float near;
+		float far;
 
 	public:
 
-		Transform& get_transform() { return transform; }
-
-		void say_hello();
+		Camera();
 	};
 }

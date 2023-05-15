@@ -9,8 +9,11 @@
 
 namespace mpc
 {
-	void Camera::say_hello()
+	Camera::Camera() 
+		: 
+		transform(),
+		fov(70.f), near(0.1f), far(100.f)
 	{
-		std::cout << "Hello cruel DLL world!" << std::endl;
+
 	}
 }

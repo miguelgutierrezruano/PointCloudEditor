@@ -17,9 +17,15 @@ private:
     CameraController camController;
 
 public:
+
+    QAction* quitAction;
+
+public:
+
     PointCloudEditor(QWidget *parent = nullptr);
     ~PointCloudEditor();
 
 private:
+
     Ui::PointCloudEditorClass ui;
 };

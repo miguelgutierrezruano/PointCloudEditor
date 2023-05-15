@@ -4,10 +4,12 @@
 // 2023
 
 #pragma once
+#pragma warning( disable : 4251 )
 
 #include <glm/glm.hpp>
 
 #include "API.h"
+
 
 namespace mpc
 {
@@ -15,8 +17,6 @@ namespace mpc
 	{
 		glm::vec3 position;
 		glm::vec4 color;
-
-		// float pointSize is better set in PointCloud class
 
 	public:
 
