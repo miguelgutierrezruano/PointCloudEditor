@@ -5,6 +5,8 @@
 
 #pragma once
 
+#include <memory>
+
 #include <QtWidgets/QMainWindow>
 #include "ui_PointCloudEditor.h"
 
@@ -12,6 +14,8 @@
 #include "PointCloudRenderer.h"
 
 using namespace mpc;
+
+using std::shared_ptr;
 
 class PointCloudEditor : public QMainWindow
 {
@@ -22,6 +26,8 @@ private:
     Camera cam;
     CameraController camController;
 
+    // Here because SerializeSystem may use it too
+    shared_ptr< PointCloud > pointCloud;
     PointCloudRenderer renderer;
 
 public:

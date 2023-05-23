@@ -27,6 +27,7 @@ namespace mpc
 		}
 
 		const glm::vec3& get_position() { return position; }
+		const glm::vec4& get_color   () { return    color; }
 
 		void set_position(float x, float y, float z)
 		{

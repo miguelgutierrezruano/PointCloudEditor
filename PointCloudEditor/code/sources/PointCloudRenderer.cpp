@@ -8,8 +8,9 @@
 #include "PointCloudRenderer.h"
 
 PointCloudRenderer::PointCloudRenderer() :
-    pointCloud("")
+    view(nullptr)
 {
+
 }
 
 void PointCloudRenderer::initialize()
@@ -42,4 +43,10 @@ void PointCloudRenderer::resize(int newWidth, int newHeight)
 void PointCloudRenderer::render()
 {
     std::cout << "Renderizando con la mente" << std::endl;
+}
+
+void PointCloudRenderer::setPointCloud(std::shared_ptr<PointCloud> newPointCloud)
+{
+    pointCloud = newPointCloud;
+    view.setView(newPointCloud);
 }

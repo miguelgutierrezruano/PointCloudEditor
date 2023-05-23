@@ -11,9 +11,7 @@ namespace gli
 {
 	VertexBuffer::VertexBuffer(const void* data, unsigned int size)
 	{
-		glGenBuffers(1, &id);
-		glBindBuffer(GL_ARRAY_BUFFER, id);
-		glBufferData(GL_ARRAY_BUFFER, size, data, GL_STATIC_DRAW);
+		upload_to_gpu(data, size);
 	}
 
 	VertexBuffer::~VertexBuffer()
@@ -29,5 +27,12 @@ namespace gli
 	void VertexBuffer::unbind()
 	{
 		glBindBuffer(GL_ARRAY_BUFFER, 0);
+	}
+
+	void VertexBuffer::upload_to_gpu(const void* data, unsigned int size)
+	{
+		glGenBuffers(1, &id);
+		glBindBuffer(GL_ARRAY_BUFFER, id);
+		glBufferData(GL_ARRAY_BUFFER, size, data, GL_STATIC_DRAW);
 	}
 }

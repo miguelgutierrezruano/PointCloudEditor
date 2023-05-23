@@ -30,6 +30,8 @@ namespace mpc
 
 	public:
 
+		const vector<Point>& getPoints() const { return points; }
+
 		// Should be on controller
 		void center();
 	};

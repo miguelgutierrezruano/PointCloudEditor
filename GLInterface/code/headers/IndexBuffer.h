@@ -20,7 +20,7 @@ namespace gli
 
 	public:
 
-		IndexBuffer() { }
+		IndexBuffer() { id = 0; count = 0; }
 
 		IndexBuffer(const unsigned int* data, unsigned int bufferCount);
 	   ~IndexBuffer();
@@ -29,6 +29,8 @@ namespace gli
 
 		void bind();
 		void unbind();
+
+		void upload_to_gpu(const unsigned int* data, unsigned int bufferCount);
 
 		unsigned int GetCount() const { return count; }
 	};

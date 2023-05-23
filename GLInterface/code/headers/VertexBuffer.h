@@ -17,7 +17,7 @@ namespace gli
 
 	public:
 
-		VertexBuffer() { }
+		VertexBuffer() { id = 0; }
 
 		VertexBuffer(const void* data, unsigned int size);
 	   ~VertexBuffer();
@@ -26,6 +26,8 @@ namespace gli
 
 		void bind();
 		void unbind();
+
+		void upload_to_gpu(const void* data, unsigned int size);
 	};
 }
 

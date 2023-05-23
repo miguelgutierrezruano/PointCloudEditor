@@ -13,6 +13,12 @@ PointCloudEditor::PointCloudEditor(QWidget *parent)
 {
     ui.setupUi(this);
 
+	// Initialize OpenGL
+	//renderer.initialize();
+
+	pointCloud = std::make_shared<PointCloud>("");
+	renderer.setPointCloud(pointCloud);
+
 	camController.print_camera_position();
 
 	float target_fps = 1 / 60.f;
