@@ -20,11 +20,22 @@ namespace mpc
 
 	public:
 
+		Point(glm::vec3 position, glm::vec4 color)
+		{
+			this->position = position;
+			this->color = color;
+		}
+
 		const glm::vec3& get_position() { return position; }
 
 		void set_position(float x, float y, float z)
 		{
 			position = glm::vec3(x, y, z);
+		}
+
+		void set_position(glm::vec3 position)
+		{
+			this->position = position;
 		}
 	};
 }

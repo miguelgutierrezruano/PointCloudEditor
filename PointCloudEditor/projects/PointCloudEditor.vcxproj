@@ -26,8 +26,12 @@
     <QtMoc Include="..\code\headers\PointCloudEditor.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="..\code\PointCloudRenderer.cpp" />
     <ClCompile Include="..\code\sources\main.cpp" />
     <ClCompile Include="..\code\sources\PointCloudEditor.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\code\headers\PointCloudRenderer.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{F0138436-4F55-41CE-9015-7950545AF924}</ProjectGuid>
@@ -79,20 +83,20 @@
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
-      <AdditionalIncludeDirectories>..\code\headers;..\libraries\glm;..\..\PointCloudLib\code\headers;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\code\headers;..\libraries\glm;..\..\PointCloudLib\code\headers;..\..\GLInterface\code\headers;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <AdditionalLibraryDirectories>x64/Debug;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>PointCloudLib.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>PointCloudLib.lib;GLInterface.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <ClCompile>
-      <AdditionalIncludeDirectories>..\code\headers;..\libraries\glm;..\..\PointCloudLib\code\headers;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\code\headers;..\libraries\glm;..\..\PointCloudLib\code\headers;..\..\GLInterface\code\headers;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <AdditionalLibraryDirectories>x64/Release;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>PointCloudLib.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>PointCloudLib.lib;GLInterface.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'" Label="Configuration">

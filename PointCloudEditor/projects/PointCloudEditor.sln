@@ -6,9 +6,12 @@ MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "PointCloudEditor", "PointCloudEditor.vcxproj", "{F0138436-4F55-41CE-9015-7950545AF924}"
 	ProjectSection(ProjectDependencies) = postProject
 		{B47C0D0B-E394-4297-8C94-0F30C4DE7EEB} = {B47C0D0B-E394-4297-8C94-0F30C4DE7EEB}
+		{E0A4D935-8B36-46B2-BA8A-101C2156C119} = {E0A4D935-8B36-46B2-BA8A-101C2156C119}
 	EndProjectSection
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "PointCloudLib", "..\..\PointCloudLib\projects\PointCloudLib.vcxproj", "{B47C0D0B-E394-4297-8C94-0F30C4DE7EEB}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "GLInterface", "..\..\GLInterface\projects\GLInterface.vcxproj", "{E0A4D935-8B36-46B2-BA8A-101C2156C119}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -24,6 +27,10 @@ Global
 		{B47C0D0B-E394-4297-8C94-0F30C4DE7EEB}.Debug|x64.Build.0 = Debug|x64
 		{B47C0D0B-E394-4297-8C94-0F30C4DE7EEB}.Release|x64.ActiveCfg = Release|x64
 		{B47C0D0B-E394-4297-8C94-0F30C4DE7EEB}.Release|x64.Build.0 = Release|x64
+		{E0A4D935-8B36-46B2-BA8A-101C2156C119}.Debug|x64.ActiveCfg = Debug|x64
+		{E0A4D935-8B36-46B2-BA8A-101C2156C119}.Debug|x64.Build.0 = Debug|x64
+		{E0A4D935-8B36-46B2-BA8A-101C2156C119}.Release|x64.ActiveCfg = Release|x64
+		{E0A4D935-8B36-46B2-BA8A-101C2156C119}.Release|x64.Build.0 = Release|x64
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

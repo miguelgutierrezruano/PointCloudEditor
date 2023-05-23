@@ -13,7 +13,7 @@ using std::vector;
 
 namespace mpc
 {
-	class PointCloud
+	class API PointCloud
 	{
 
 	private:
@@ -27,5 +27,10 @@ namespace mpc
 	private:
 
 		void loadPointCloud(const char* filePath);
+
+	public:
+
+		// Should be on controller
+		void center();
 	};
 }

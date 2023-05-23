@@ -1,9 +1,15 @@
+
+// Distributed under MIT License
+// @miguelgutierrezruano
+// 2023
+
 #pragma once
 
 #include <QtWidgets/QMainWindow>
 #include "ui_PointCloudEditor.h"
 
 #include "CameraController.h"
+#include "PointCloud.h"
 
 using namespace mpc;
 
@@ -15,6 +21,8 @@ private:
 
     Camera cam;
     CameraController camController;
+
+    PointCloud pointCloud;
 
 public:
 
