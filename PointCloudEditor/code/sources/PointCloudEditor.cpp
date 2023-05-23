@@ -9,7 +9,7 @@
 
 PointCloudEditor::PointCloudEditor(QWidget *parent)
     : QMainWindow(parent),
-    camController(&cam), pointCloud("")
+    camController(&cam)
 {
     ui.setupUi(this);
 
@@ -22,7 +22,7 @@ PointCloudEditor::PointCloudEditor(QWidget *parent)
 		camController.moveCamera(target_fps);
 	}
 
-	pointCloud.center();
+	renderer.render();
 	quitAction = ui.actionExit;
 }
 

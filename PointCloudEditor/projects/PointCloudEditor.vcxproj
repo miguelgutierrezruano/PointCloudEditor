@@ -83,20 +83,20 @@
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
-      <AdditionalIncludeDirectories>..\code\headers;..\libraries\glm;..\..\PointCloudLib\code\headers;..\..\GLInterface\code\headers;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\code\headers;..\libraries\glm;..\..\PointCloudLib\code\headers;..\..\GLInterface\code\headers;..\..\GLInterface\libraries\glad-0.1.34\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
-      <AdditionalLibraryDirectories>x64/Debug;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>PointCloudLib.lib;GLInterface.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>x64/Debug;%(AdditionalLibraryDirectories);..\..\GLInterface\libraries\glad-0.1.34\lib</AdditionalLibraryDirectories>
+      <AdditionalDependencies>PointCloudLib.lib;GLInterface.lib;glad-debug.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <ClCompile>
-      <AdditionalIncludeDirectories>..\code\headers;..\libraries\glm;..\..\PointCloudLib\code\headers;..\..\GLInterface\code\headers;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\code\headers;..\libraries\glm;..\..\PointCloudLib\code\headers;..\..\GLInterface\code\headers;..\..\GLInterface\libraries\glad-0.1.34\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
-      <AdditionalLibraryDirectories>x64/Release;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>PointCloudLib.lib;GLInterface.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>x64/Release;%(AdditionalLibraryDirectories);..\..\GLInterface\libraries\glad-0.1.34\lib</AdditionalLibraryDirectories>
+      <AdditionalDependencies>PointCloudLib.lib;GLInterface.lib;glad-release.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'" Label="Configuration">

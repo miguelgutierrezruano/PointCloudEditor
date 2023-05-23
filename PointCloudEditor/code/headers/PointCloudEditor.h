@@ -9,7 +9,7 @@
 #include "ui_PointCloudEditor.h"
 
 #include "CameraController.h"
-#include "PointCloud.h"
+#include "PointCloudRenderer.h"
 
 using namespace mpc;
 
@@ -22,7 +22,7 @@ private:
     Camera cam;
     CameraController camController;
 
-    PointCloud pointCloud;
+    PointCloudRenderer renderer;
 
 public:
 
