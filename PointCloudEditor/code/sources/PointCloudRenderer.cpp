@@ -34,13 +34,15 @@ void PointCloudRenderer::initialize()
     glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 
     glClearColor(0.2f, 0.2f, 0.2f, 1.f);
+    glPointSize(10.f);
 
     shader = std::make_shared<Shader>("../code/shaders/PointCloudShader.shader");
+    setupPointCloud(nullptr);
 }
 
 void PointCloudRenderer::resize(int newWidth, int newHeight)
 {
-
+    glViewport(0, 0, newWidth, newHeight);
 }
 
 void PointCloudRenderer::render()
