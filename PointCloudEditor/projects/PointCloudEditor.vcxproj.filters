@@ -21,6 +21,9 @@
       <UniqueIdentifier>{639EADAA-A684-42e4-A9AD-28FC9BCB8F7C}</UniqueIdentifier>
       <Extensions>ts</Extensions>
     </Filter>
+    <Filter Include="Source Files\shaders">
+      <UniqueIdentifier>{58dfda40-0ffa-494e-be43-f68a8d5e60f6}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <QtUic Include="..\code\PointCloudEditor.ui">
@@ -74,5 +77,10 @@
     <ClInclude Include="..\code\headers\OpenGLWidget.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\code\shaders\PointCloudShader.shader">
+      <Filter>Source Files\shaders</Filter>
+    </None>
   </ItemGroup>
 </Project>

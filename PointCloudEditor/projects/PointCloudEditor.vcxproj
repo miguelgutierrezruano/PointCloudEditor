@@ -37,6 +37,9 @@
     <ClInclude Include="..\code\headers\PointCloudRenderer.h" />
     <ClInclude Include="..\code\headers\PointCloudView.h" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="..\code\shaders\PointCloudShader.shader" />
+  </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{F0138436-4F55-41CE-9015-7950545AF924}</ProjectGuid>
     <Keyword>QtVS_v304</Keyword>

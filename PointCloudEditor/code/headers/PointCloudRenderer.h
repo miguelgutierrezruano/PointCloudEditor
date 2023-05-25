@@ -9,6 +9,7 @@
 
 #include "PointCloud.h"
 #include "Renderer.hpp"
+#include "Shader.h"
 #include "PointCloudView.h"
 
 using namespace mpc;
@@ -21,6 +22,8 @@ class PointCloudRenderer : public Renderer
 private:
 
 	std::shared_ptr<PointCloud> pointCloud;
+	std::shared_ptr<Shader    > shader;
+
 	PointCloudView* view;
 
 public:

@@ -12,6 +12,9 @@
 #include "Shader.h"
 #include "VertexArray.h"
 #include "VertexBuffer.h"
+#include "IndexBuffer.h"
+
+#include <vector>
 
 using namespace gli;
 using namespace mpc;
@@ -23,8 +26,10 @@ class PointCloudView
 {
 	shared_ptr< PointCloud > pointCloud;
 
-	//VertexArray  vao;
-	//VertexBuffer vbo;
+	VertexArray  vao;
+	VertexBuffer vbo;
+
+	std::vector<Point> myPoints;
 	
 public:
 

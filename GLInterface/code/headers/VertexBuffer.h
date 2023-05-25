@@ -17,7 +17,7 @@ namespace gli
 
 	public:
 
-		VertexBuffer() { id = 0; }
+		VertexBuffer() { }
 
 		VertexBuffer(const void* data, unsigned int size);
 	   ~VertexBuffer();

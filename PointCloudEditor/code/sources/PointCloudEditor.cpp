@@ -5,18 +5,18 @@
 
 #include <glm/glm.hpp>
 
-#include "OpenGLWidget.h"
 #include "PointCloudEditor.h"
 
 PointCloudEditor::PointCloudEditor(QWidget *parent)
     : QMainWindow(parent)
 {
-    ui.setupUi(this);
+    setupUi(this);
 	setupOpenGLWidget();
 
 	pointCloud = std::make_shared<PointCloud>("");
 	
-	connect(ui.actionExit, &QAction::triggered, this, &PointCloudEditor::menuExitTriggered);
+	connect(actionExit, &QAction::triggered, this, &PointCloudEditor::menuExitTriggered);
+	connect(actionLoad, &QAction::triggered, this, &PointCloudEditor::loadPointCloud);
 }
 
 PointCloudEditor::~PointCloudEditor()
@@ -25,6 +25,6 @@ PointCloudEditor::~PointCloudEditor()
 
 void PointCloudEditor::setupOpenGLWidget()
 {
-	openglWidget = new OpenGLWidget(ui.placeholder, renderer);
-	openglWidget->setFixedSize(ui.placeholder->size());
+	openglWidget = new OpenGLWidget(placeholder, renderer);
+	openglWidget->setFixedSize(placeholder->size());
 }

@@ -27,13 +27,15 @@ void PointCloudRenderer::initialize()
     glDepthFunc(GL_LESS);
 
     // Enable antialiasing
-    glEnable(GL_MULTISAMPLE);
+    //glEnable(GL_MULTISAMPLE);
 
     // Enable blending
     glEnable(GL_BLEND);
     glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 
     glClearColor(0.2f, 0.2f, 0.2f, 1.f);
+
+    shader = std::make_shared<Shader>("../code/shaders/PointCloudShader.shader");
 }
 
 void PointCloudRenderer::resize(int newWidth, int newHeight)
@@ -43,7 +45,13 @@ void PointCloudRenderer::resize(int newWidth, int newHeight)
 
 void PointCloudRenderer::render()
 {
-    std::cout << "Im supposed to be rendering!" << std::endl;
+    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+
+    if (view != nullptr)
+    {
+        std::cout << "Im supposed to be rendering!" << std::endl;
+        view->render(shader);
+    }
 }
 
 void PointCloudRenderer::setupPointCloud(std::shared_ptr<PointCloud> newPointCloud)
