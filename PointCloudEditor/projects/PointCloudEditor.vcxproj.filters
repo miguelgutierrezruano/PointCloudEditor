@@ -60,12 +60,18 @@
     <ClCompile Include="..\code\sources\PointCloudView.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="..\code\sources\OpenGLWidget.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\code\headers\PointCloudRenderer.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\code\headers\PointCloudView.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\code\headers\OpenGLWidget.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

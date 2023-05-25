@@ -10,8 +10,8 @@
 #include <QtWidgets/QMainWindow>
 #include "ui_PointCloudEditor.h"
 
-#include "CameraController.h"
 #include "PointCloudRenderer.h"
+#include "OpenGLWidget.h"
 
 using namespace mpc;
 
@@ -23,12 +23,11 @@ class PointCloudEditor : public QMainWindow
 
 private:
 
-    Camera cam;
-    CameraController camController;
+    //OpenGLWidget* openglWidget;
+    PointCloudRenderer renderer;
 
     // Here because SerializeSystem may use it too
     shared_ptr< PointCloud > pointCloud;
-    PointCloudRenderer renderer;
 
 public:
 
@@ -42,4 +41,6 @@ public:
 private:
 
     Ui::PointCloudEditorClass ui;
+
+    void setupOpenGLWidget();
 };

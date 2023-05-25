@@ -5,34 +5,31 @@
 
 #include <glm/glm.hpp>
 
+#include "OpenGLWidget.h"
 #include "PointCloudEditor.h"
 
 PointCloudEditor::PointCloudEditor(QWidget *parent)
-    : QMainWindow(parent),
-    camController(&cam)
+    : QMainWindow(parent)
 {
     ui.setupUi(this);
+	setupOpenGLWidget();
 
 	// Initialize OpenGL
 	//renderer.initialize();
 
 	pointCloud = std::make_shared<PointCloud>("");
-	renderer.setPointCloud(pointCloud);
+	//renderer.setPointCloud(pointCloud);
 
-	camController.print_camera_position();
-
-	float target_fps = 1 / 60.f;
-
-	for (int i = 0; i < 100; i++)
-	{
-		camController.moveCamera(target_fps);
-	}
-
-	renderer.render();
+	//renderer.render();
 	quitAction = ui.actionExit;
 }
 
 PointCloudEditor::~PointCloudEditor()
 {
+}
 
+void PointCloudEditor::setupOpenGLWidget()
+{
+	/*openglWidget = new OpenGLWidget(ui.widget, renderer);
+	openglWidget->setFixedSize(ui.widget->size());*/
 }
