@@ -21,7 +21,7 @@ class PointCloudRenderer : public Renderer
 private:
 
 	std::shared_ptr<PointCloud> pointCloud;
-	PointCloudView view;
+	//PointCloudView view;
 
 public:
 

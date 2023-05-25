@@ -4,11 +4,12 @@
 // 2023
 
 #include <iostream>
+#include <glad/glad.h>
 
 #include "PointCloudRenderer.h"
 
-PointCloudRenderer::PointCloudRenderer() :
-    view(nullptr)
+PointCloudRenderer::PointCloudRenderer()// :
+    //view(nullptr)
 {
 
 }
@@ -42,11 +43,11 @@ void PointCloudRenderer::resize(int newWidth, int newHeight)
 
 void PointCloudRenderer::render()
 {
-    std::cout << "Renderizando con la mente" << std::endl;
+    std::cout << "Im supposed to be rendering!" << std::endl;
 }
 
 void PointCloudRenderer::setPointCloud(std::shared_ptr<PointCloud> newPointCloud)
 {
     pointCloud = newPointCloud;
-    view.setView(newPointCloud);
+    //view.setView(newPointCloud);
 }

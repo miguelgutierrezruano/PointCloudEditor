@@ -14,11 +14,8 @@ PointCloudEditor::PointCloudEditor(QWidget *parent)
     ui.setupUi(this);
 	setupOpenGLWidget();
 
-	// Initialize OpenGL
-	//renderer.initialize();
-
 	pointCloud = std::make_shared<PointCloud>("");
-	//renderer.setPointCloud(pointCloud);
+	renderer.setPointCloud(pointCloud);
 
 	//renderer.render();
 	quitAction = ui.actionExit;
@@ -30,6 +27,6 @@ PointCloudEditor::~PointCloudEditor()
 
 void PointCloudEditor::setupOpenGLWidget()
 {
-	/*openglWidget = new OpenGLWidget(ui.widget, renderer);
-	openglWidget->setFixedSize(ui.widget->size());*/
+	openglWidget = new OpenGLWidget(ui.placeholder, renderer);
+	openglWidget->setFixedSize(ui.placeholder->size());
 }

@@ -11,11 +11,12 @@
 #include "ui_PointCloudEditor.h"
 
 #include "PointCloudRenderer.h"
-#include "OpenGLWidget.h"
 
 using namespace mpc;
 
 using std::shared_ptr;
+
+class OpenGLWidget;
 
 class PointCloudEditor : public QMainWindow
 {
@@ -23,7 +24,7 @@ class PointCloudEditor : public QMainWindow
 
 private:
 
-    //OpenGLWidget* openglWidget;
+    OpenGLWidget* openglWidget;
     PointCloudRenderer renderer;
 
     // Here because SerializeSystem may use it too
