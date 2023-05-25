@@ -8,8 +8,8 @@
 
 #include "PointCloudRenderer.h"
 
-PointCloudRenderer::PointCloudRenderer()// :
-    //view(nullptr)
+PointCloudRenderer::PointCloudRenderer() :
+    view(nullptr)
 {
 
 }
@@ -46,8 +46,8 @@ void PointCloudRenderer::render()
     std::cout << "Im supposed to be rendering!" << std::endl;
 }
 
-void PointCloudRenderer::setPointCloud(std::shared_ptr<PointCloud> newPointCloud)
+void PointCloudRenderer::setupPointCloud(std::shared_ptr<PointCloud> newPointCloud)
 {
     pointCloud = newPointCloud;
-    //view.setView(newPointCloud);
+    view = new PointCloudView(pointCloud);
 }

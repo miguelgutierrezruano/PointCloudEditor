@@ -15,10 +15,8 @@ PointCloudEditor::PointCloudEditor(QWidget *parent)
 	setupOpenGLWidget();
 
 	pointCloud = std::make_shared<PointCloud>("");
-	renderer.setPointCloud(pointCloud);
-
-	//renderer.render();
-	quitAction = ui.actionExit;
+	
+	connect(ui.actionExit, &QAction::triggered, this, &PointCloudEditor::menuExitTriggered);
 }
 
 PointCloudEditor::~PointCloudEditor()

@@ -21,7 +21,7 @@ class PointCloudRenderer : public Renderer
 private:
 
 	std::shared_ptr<PointCloud> pointCloud;
-	//PointCloudView view;
+	PointCloudView* view;
 
 public:
 
@@ -33,5 +33,5 @@ public:
 	void resize(int newWidth, int newHeight) override;
 	void render() override;
 
-	void setPointCloud(std::shared_ptr<PointCloud> newPointCloud);
+	void setupPointCloud(std::shared_ptr<PointCloud> newPointCloud);
 };

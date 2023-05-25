@@ -32,16 +32,21 @@ private:
 
 public:
 
-    QAction* quitAction;
-
-public:
-
     PointCloudEditor(QWidget *parent = nullptr);
     ~PointCloudEditor();
+
+public slots:
+
+    void menuExitTriggered()
+    {
+        QApplication::quit();
+    }
+
+private:
+
+    void setupOpenGLWidget();
 
 private:
 
     Ui::PointCloudEditorClass ui;
-
-    void setupOpenGLWidget();
 };

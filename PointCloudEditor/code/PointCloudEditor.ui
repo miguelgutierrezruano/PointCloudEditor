@@ -63,7 +63,15 @@
         <string notr="true">background-color: white;</string>
        </property>
       </widget>
-      <widget class="QWidget" name="">
+      <widget class="QWidget" name="layoutWidget">
+       <property name="geometry">
+        <rect>
+         <x>0</x>
+         <y>0</y>
+         <width>160</width>
+         <height>309</height>
+        </rect>
+       </property>
        <layout class="QVBoxLayout" name="ToolsLayout">
         <property name="spacing">
          <number>35</number>
@@ -378,22 +386,5 @@ QSlider::handle:horizontal {
  <resources>
   <include location="PointCloudEditor.qrc"/>
  </resources>
- <connections>
-  <connection>
-   <sender>actionExit</sender>
-   <signal>triggered()</signal>
-   <receiver>MainLayout</receiver>
-   <slot>close()</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>-1</x>
-     <y>-1</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>557</x>
-     <y>328</y>
-    </hint>
-   </hints>
-  </connection>
- </connections>
+ <connections/>
 </ui>
