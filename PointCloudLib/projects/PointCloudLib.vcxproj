@@ -24,6 +24,7 @@
     <ClCompile Include="..\code\sources\CameraController.cpp" />
     <ClCompile Include="..\code\sources\PointCloud.cpp" />
     <ClCompile Include="..\code\sources\PointCloudLoader.cpp" />
+    <ClCompile Include="..\code\sources\Transform.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>

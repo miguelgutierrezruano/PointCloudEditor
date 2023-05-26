@@ -39,6 +39,9 @@ void PointCloudView::render(shared_ptr<Shader> shader)
 	vao.bind();
 	shader->bind();
 
+	mat4 modelMatrix = pointCloud->transform.get_matrix();
+	shader->setUniformMat4f("model", modelMatrix);
+
 	GLClearError();
 	glDrawArrays(GL_POINTS, 0, pointCloud->getPoints().size());
 	GLLogCall();

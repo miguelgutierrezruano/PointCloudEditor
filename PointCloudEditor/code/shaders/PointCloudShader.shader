@@ -11,10 +11,19 @@ layout(location = 1) in vec3 color;
 
 out vec3 vColor;
 
+// Object transform
+uniform mat4 model;
+
+// View (Camera transform)
+uniform mat4 view;
+
+// Projection to NDC
+uniform mat4 projection;
+
 void main()
 {
     vColor = color;
-    gl_Position = vec4(position, 1);
+    gl_Position = projection * view * model * vec4(position, 1);
 }
 
 #shader fragment

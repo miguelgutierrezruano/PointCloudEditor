@@ -8,6 +8,7 @@
 #include <vector>
 
 #include "Point.h"
+#include "Transform.h"
 
 using std::vector;
 
@@ -15,6 +16,10 @@ namespace mpc
 {
 	class API PointCloud
 	{
+
+	public:
+
+		Transform transform;
 
 	private:
 

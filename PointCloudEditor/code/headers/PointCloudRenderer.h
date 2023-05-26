@@ -11,6 +11,7 @@
 #include "Renderer.hpp"
 #include "Shader.h"
 #include "PointCloudView.h"
+#include "Camera.h"
 
 using namespace mpc;
 using namespace gli;
@@ -20,9 +21,13 @@ class PointCloudRenderer : public Renderer
 
 private:
 
+	int widgetWidth;
+	int widgetHeight;
+
 	std::shared_ptr<PointCloud> pointCloud;
 	std::shared_ptr<Shader    > shader;
 
+	Camera camera;
 	PointCloudView* view;
 
 public:

@@ -50,5 +50,8 @@
     <ClCompile Include="..\code\sources\PointCloudLoader.cpp">
       <Filter>sources</Filter>
     </ClCompile>
+    <ClCompile Include="..\code\sources\Transform.cpp">
+      <Filter>sources</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

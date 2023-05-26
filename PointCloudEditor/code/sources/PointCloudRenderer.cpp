@@ -9,9 +9,10 @@
 #include "PointCloudRenderer.h"
 
 PointCloudRenderer::PointCloudRenderer() :
-    view(nullptr)
+    view(nullptr), camera(45, 1.f, 150.f)
 {
-
+    widgetWidth  = 1920;
+    widgetHeight = 1080;
 }
 
 PointCloudRenderer::~PointCloudRenderer()
@@ -39,17 +40,37 @@ void PointCloudRenderer::initialize()
     glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 
     glClearColor(0.2f, 0.2f, 0.2f, 1.f);
-    glPointSize(10.f);
+    glPointSize(2.f);
 
     shader = std::make_shared<Shader>("../code/shaders/PointCloudShader.shader");
 
     pointCloud = std::make_shared<PointCloud>("../resources/pyramid.ply");
     setupPointCloud(pointCloud);
+
+    camera.transform.position = vec3(10, 40, -70);
+    camera.transform.rotation = vec3(20, 0, 0);
+
+    pointCloud->transform.rotation = vec3(-90, 0, 0);
+
+    mat4 projection = camera.get_projection_matrix((float)widgetWidth / widgetHeight);
+    mat4 view = camera.get_view_matrix();
+
+    shader->bind();
+    shader->setUniformMat4f("projection", projection);
+    shader->setUniformMat4f("view", view);
 }
 
 void PointCloudRenderer::resize(int newWidth, int newHeight)
 {
+    widgetWidth  =  newWidth;
+    widgetHeight = newHeight;
+
     glViewport(0, 0, newWidth, newHeight);
+
+    mat4 projection = camera.get_projection_matrix((float)widgetWidth / widgetHeight);
+
+    shader->bind();
+    shader->setUniformMat4f("projection", projection);
 }
 
 void PointCloudRenderer::render()
