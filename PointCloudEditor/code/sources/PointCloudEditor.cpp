@@ -15,6 +15,7 @@ PointCloudEditor::PointCloudEditor(QWidget *parent)
 	
 	connect(actionExit, &QAction::triggered, this, &PointCloudEditor::menuExitTriggered);
 	connect(actionLoad, &QAction::triggered, this, &PointCloudEditor::loadPointCloud);
+	connect(centerButton, &QPushButton::clicked, this, &PointCloudEditor::center);
 }
 
 PointCloudEditor::~PointCloudEditor()

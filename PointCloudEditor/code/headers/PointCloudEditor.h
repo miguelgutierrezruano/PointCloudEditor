@@ -46,6 +46,12 @@ public slots:
         openglWidget->update();
     }
 
+    void center()
+    {
+        renderer.centerPointCloud();
+        openglWidget->update();
+    }
+
 private:
 
     void setupOpenGLWidget();

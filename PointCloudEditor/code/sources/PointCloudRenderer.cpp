@@ -47,10 +47,7 @@ void PointCloudRenderer::initialize()
     pointCloud = std::make_shared<PointCloud>("../resources/pyramid.ply");
     setupPointCloud(pointCloud);
 
-    camera.transform.position = vec3(10, 40, -70);
-    camera.transform.rotation = vec3(20, 0, 0);
-
-    pointCloud->transform.rotation = vec3(-90, 0, 0);
+    camera.transform.position = vec3(0, 0, -70);
 
     mat4 projection = camera.get_projection_matrix((float)widgetWidth / widgetHeight);
     mat4 view = camera.get_view_matrix();
@@ -88,4 +85,10 @@ void PointCloudRenderer::setupPointCloud(std::shared_ptr<PointCloud> newPointClo
 {
     pointCloud = newPointCloud;
     view = new PointCloudView(pointCloud);
+}
+
+void PointCloudRenderer::centerPointCloud()
+{
+    if (pointCloud != nullptr)
+        pointCloud->centerPointCloud();
 }

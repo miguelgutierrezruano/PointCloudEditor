@@ -42,4 +42,5 @@ public:
 	void render() override;
 
 	void setupPointCloud(std::shared_ptr<PointCloud> newPointCloud);
+	void centerPointCloud();
 };
