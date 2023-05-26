@@ -16,24 +16,24 @@ namespace mpc
 	class API Point
 	{
 		glm::vec3 position;
-		glm::vec4 color;
+		glm::vec3 color;
 
 	public:
 
 		Point()
 		{
 			position = glm::vec3(0);
-			color    = glm::vec4(0);
+			color    = glm::vec3(0);
 		}
 
-		Point(glm::vec3 position, glm::vec4 color)
+		Point(glm::vec3 position, glm::vec3 color)
 		{
 			this->position = position;
 			this->color = color;
 		}
 
 		const glm::vec3& get_position() { return position; }
-		const glm::vec4& get_color   () { return    color; }
+		const glm::vec3& get_color   () { return    color; }
 
 		void set_position(float x, float y, float z)
 		{

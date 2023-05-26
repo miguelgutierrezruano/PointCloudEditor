@@ -48,7 +48,10 @@ namespace mpc
 			iss >> pos.x >> pos.y >> pos.z;
 			iss >> color.x >> color.y >> color.z;
 
-			points[pointCount++] = Point(pos, glm::vec4(color.x, color.y, color.z, 1));
+			// Color range 0-1
+			color /= 255.f;
+
+			points[pointCount++] = Point(pos, color);
 		}
 	}
 }

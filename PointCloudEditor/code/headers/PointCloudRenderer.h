@@ -17,7 +17,6 @@ using namespace gli;
 
 class PointCloudRenderer : public Renderer
 {
-	// Everything from MGRenderer
 
 private:
 
