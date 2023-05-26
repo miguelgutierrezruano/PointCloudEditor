@@ -43,7 +43,7 @@ void PointCloudRenderer::initialize()
 
     shader = std::make_shared<Shader>("../code/shaders/PointCloudShader.shader");
 
-    pointCloud = std::make_shared<PointCloud>("");
+    pointCloud = std::make_shared<PointCloud>("../resources/pyramid.ply");
     setupPointCloud(pointCloud);
 }
 
