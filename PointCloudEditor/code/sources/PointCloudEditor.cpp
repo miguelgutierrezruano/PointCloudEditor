@@ -12,10 +12,6 @@ PointCloudEditor::PointCloudEditor(QWidget *parent)
 {
     setupUi(this);
 	setupOpenGLWidget();
-
-	//setWindowFlag(Qt::MSWindowsFixedSizeDialogHint, true);
-
-	pointCloud = std::make_shared<PointCloud>("");
 	
 	connect(actionExit, &QAction::triggered, this, &PointCloudEditor::menuExitTriggered);
 	connect(actionLoad, &QAction::triggered, this, &PointCloudEditor::loadPointCloud);
@@ -23,6 +19,7 @@ PointCloudEditor::PointCloudEditor(QWidget *parent)
 
 PointCloudEditor::~PointCloudEditor()
 {
+	delete openglWidget;
 }
 
 void PointCloudEditor::setupOpenGLWidget()

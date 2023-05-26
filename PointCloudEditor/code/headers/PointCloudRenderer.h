@@ -29,6 +29,7 @@ private:
 public:
 
 	PointCloudRenderer();
+   ~PointCloudRenderer();
 
 public:
 

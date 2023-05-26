@@ -14,6 +14,11 @@ PointCloudRenderer::PointCloudRenderer() :
 
 }
 
+PointCloudRenderer::~PointCloudRenderer()
+{
+    delete view;
+}
+
 void PointCloudRenderer::initialize()
 {
     // Glad initialization
@@ -37,7 +42,9 @@ void PointCloudRenderer::initialize()
     glPointSize(10.f);
 
     shader = std::make_shared<Shader>("../code/shaders/PointCloudShader.shader");
-    setupPointCloud(nullptr);
+
+    pointCloud = std::make_shared<PointCloud>("");
+    setupPointCloud(pointCloud);
 }
 
 void PointCloudRenderer::resize(int newWidth, int newHeight)
@@ -51,7 +58,7 @@ void PointCloudRenderer::render()
 
     if (view != nullptr)
     {
-        std::cout << "Im supposed to be rendering!" << std::endl;
+        std::cout << "Render!" << std::endl;
         view->render(shader);
     }
 }

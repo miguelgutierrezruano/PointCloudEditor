@@ -15,14 +15,6 @@ PointCloudView::PointCloudView()
 
 PointCloudView::PointCloudView(shared_ptr<PointCloud> viewPointCloud)
 {
-	Point point1(glm::vec3(-0.5f, -0.5f, 0), glm::vec4(1, 0, 0, 1));
-	Point point2(glm::vec3(0.5f, -0.5f, 0), glm::vec4(0, 1, 0, 1));
-	Point point3(glm::vec3(0, 0.5f, 0), glm::vec4(0, 0, 1, 1));
-
-	myPoints.push_back(point1);
-	myPoints.push_back(point2);
-	myPoints.push_back(point3);
-
 	setView(viewPointCloud);
 }
 
@@ -30,8 +22,8 @@ void PointCloudView::setView(shared_ptr<PointCloud> viewPointCloud)
 {
 	pointCloud = viewPointCloud;
 
-	//vbo.upload_to_gpu(pointCloud->getPoints().data(), (unsigned int)pointCloud->getPoints().size() * sizeof(Point));
-	vbo.upload_to_gpu(myPoints.data(), (unsigned int)myPoints.size() * sizeof(Point));
+	vbo.upload_to_gpu(pointCloud->getPoints().data(), (unsigned int)pointCloud->getPoints().size() * sizeof(Point));
+	//vbo.upload_to_gpu(myPoints.data(), (unsigned int)myPoints.size() * sizeof(Point));
 
 	VertexBufferLayout vbLayout;
 	vbLayout.push<float>(3);
@@ -48,6 +40,6 @@ void PointCloudView::render(shared_ptr<Shader> shader)
 	shader->bind();
 
 	GLClearError();
-	glDrawArrays(GL_POINTS, 0, myPoints.size());
+	glDrawArrays(GL_POINTS, 0, pointCloud->getPoints().size());
 	GLLogCall();
 }

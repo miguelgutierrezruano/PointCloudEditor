@@ -27,9 +27,6 @@ private:
 
     PointCloudRenderer renderer;
 
-    // Here because SerializeSystem may use it too
-    shared_ptr< PointCloud > pointCloud;
-
 public:
 
     PointCloudEditor(QWidget *parent = nullptr);
@@ -44,7 +41,8 @@ public slots:
 
     void loadPointCloud()
     {
-        renderer.setupPointCloud(pointCloud);
+        // Method to load from file
+        //renderer.setupPointCloud(pointCloud);
         openglWidget->update();
     }
 

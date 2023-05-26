@@ -28,8 +28,6 @@ class PointCloudView
 
 	VertexArray  vao;
 	VertexBuffer vbo;
-
-	std::vector<Point> myPoints;
 	
 public:
 
