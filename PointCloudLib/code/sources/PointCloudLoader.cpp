@@ -23,7 +23,20 @@ namespace mpc
 		while (line != "end_header")
 		{
 			std::getline(file, line);
+
+			if (line.find("element vertex") != std::string::npos)
+			{
+				// Extract the size
+				std::istringstream iss(line);
+				std::string element, vertex;
+				int size;
+				iss >> element >> vertex >> size;
+
+				points.resize((size_t)size);
+			}
 		}
+
+		unsigned int pointCount = 0;
 
 		while (std::getline(file, line))
 		{
@@ -35,7 +48,7 @@ namespace mpc
 			iss >> pos.x >> pos.y >> pos.z;
 			iss >> color.x >> color.y >> color.z;
 
-			points.push_back(Point(pos, glm::vec4(color.x, color.y, color.z, 1)));
+			points[pointCount++] = Point(pos, glm::vec4(color.x, color.y, color.z, 1));
 		}
 	}
 }

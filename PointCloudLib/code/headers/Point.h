@@ -20,6 +20,12 @@ namespace mpc
 
 	public:
 
+		Point()
+		{
+			position = glm::vec3(0);
+			color    = glm::vec4(0);
+		}
+
 		Point(glm::vec3 position, glm::vec4 color)
 		{
 			this->position = position;
