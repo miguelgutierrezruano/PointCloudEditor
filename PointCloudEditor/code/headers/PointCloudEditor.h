@@ -39,18 +39,8 @@ public slots:
         QApplication::quit();
     }
 
-    void loadPointCloud()
-    {
-        // Method to load from file
-        //renderer.setupPointCloud(pointCloud);
-        openglWidget->update();
-    }
-
-    void center()
-    {
-        renderer.centerPointCloud();
-        openglWidget->update();
-    }
+    void center();
+    void pointSizeSliderChanged(int newValue);
 
 private:
 

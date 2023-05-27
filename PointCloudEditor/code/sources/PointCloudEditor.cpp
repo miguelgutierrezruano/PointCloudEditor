@@ -14,8 +14,9 @@ PointCloudEditor::PointCloudEditor(QWidget *parent)
 	setupOpenGLWidget();
 	
 	connect(actionExit, &QAction::triggered, this, &PointCloudEditor::menuExitTriggered);
-	connect(actionLoad, &QAction::triggered, this, &PointCloudEditor::loadPointCloud);
 	connect(centerButton, &QPushButton::clicked, this, &PointCloudEditor::center);
+
+	connect(pointSizeSlider, &QSlider::valueChanged, this, &PointCloudEditor::pointSizeSliderChanged);
 }
 
 PointCloudEditor::~PointCloudEditor()
@@ -28,4 +29,16 @@ void PointCloudEditor::setupOpenGLWidget()
 	openglWidget = new OpenGLWidget(placeholder, renderer);
 	openglWidget->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
 	placeholder->layout()->addWidget(openglWidget);
+}
+
+void PointCloudEditor::pointSizeSliderChanged(int newValue)
+{
+	renderer.changePointSize((float)newValue);
+	openglWidget->update();
+}
+
+void PointCloudEditor::center()
+{
+	renderer.centerPointCloud();
+	openglWidget->update();
 }
