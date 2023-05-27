@@ -16,34 +16,11 @@ namespace mpc
 		loadPointCloud(filePath);
 	}
 
-	void PointCloud::centerPointCloud()
-	{
-		std::cout << "Centering point cloud" << std::endl;
-
-		transform.position = transform.position - center;
-		center = vec3(0);
-	}
-
 	void PointCloud::loadPointCloud(const char* filePath)
 	{
 		// TODO: Filter file type
 
 		PointCloudLoader::loadPLYCloud(filePath, points);
-
-		constexpr float min = std::numeric_limits<float>::min();
-		constexpr float max = std::numeric_limits<float>::max();
-		
-		vec2 xLimits = vec2(max, min);
-		vec2 yLimits = vec2(max, min);
-		vec2 zLimits = vec2(max, min);
-
-		for (auto& point : points)
-			calculateLimit(point, xLimits, yLimits, zLimits);
-
-		float meanX = (xLimits.x + xLimits.y) / 2;
-		float meanY = (yLimits.x + yLimits.y) / 2;
-		float meanZ = (zLimits.x + zLimits.y) / 2;
-		center = vec3(meanX, meanY, meanZ);
 	}
 
 	void PointCloud::calculateLimit(Point& point, vec2& xLimits, vec2& yLimits, vec2& zLimits)

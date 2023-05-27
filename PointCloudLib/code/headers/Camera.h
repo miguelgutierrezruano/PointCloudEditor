@@ -44,6 +44,8 @@ namespace mpc
 		// Get projection matrix given by values
 		glm::mat4 get_projection_matrix(float aspectRatio);
 
+		void set_fov(float fov);
+
 	private:
 
 		void move_camera_x_axis(float value, float delta);

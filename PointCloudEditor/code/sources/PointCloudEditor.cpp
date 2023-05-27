@@ -16,7 +16,11 @@ PointCloudEditor::PointCloudEditor(QWidget *parent)
 	connect(actionExit, &QAction::triggered, this, &PointCloudEditor::menuExitTriggered);
 	connect(centerButton, &QPushButton::clicked, this, &PointCloudEditor::center);
 
+	connect(fovSlider, &QSlider::valueChanged, this, &PointCloudEditor::fovSliderChanged);
 	connect(pointSizeSlider, &QSlider::valueChanged, this, &PointCloudEditor::pointSizeSliderChanged);
+	connect(rotationXSlider, &QSlider::valueChanged, this, &PointCloudEditor::rotationXSliderChanged);
+	connect(rotationYSlider, &QSlider::valueChanged, this, &PointCloudEditor::rotationYSliderChanged);
+	connect(rotationZSlider, &QSlider::valueChanged, this, &PointCloudEditor::rotationZSliderChanged);
 }
 
 PointCloudEditor::~PointCloudEditor()
@@ -31,14 +35,38 @@ void PointCloudEditor::setupOpenGLWidget()
 	placeholder->layout()->addWidget(openglWidget);
 }
 
+void PointCloudEditor::center()
+{
+	renderer.centerPointCloud();
+	openglWidget->update();
+}
+
+void PointCloudEditor::fovSliderChanged(int newValue)
+{
+	renderer.changeFieldOfView((float)newValue);
+	openglWidget->update();
+}
+
 void PointCloudEditor::pointSizeSliderChanged(int newValue)
 {
 	renderer.changePointSize((float)newValue);
 	openglWidget->update();
 }
 
-void PointCloudEditor::center()
+void PointCloudEditor::rotationXSliderChanged(int newValue)
 {
-	renderer.centerPointCloud();
+	renderer.rotatePointCloudX((float)newValue);
+	openglWidget->update();
+}
+
+void PointCloudEditor::rotationYSliderChanged(int newValue)
+{
+	renderer.rotatePointCloudY((float)newValue);
+	openglWidget->update();
+}
+
+void PointCloudEditor::rotationZSliderChanged(int newValue)
+{
+	renderer.rotatePointCloudZ((float)newValue);
 	openglWidget->update();
 }

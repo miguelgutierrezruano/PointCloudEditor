@@ -43,5 +43,9 @@ public:
 
 	void setupPointCloud(std::shared_ptr<PointCloud> newPointCloud);
 	void centerPointCloud();
-	void changePointSize(float pointSize);
+	void changeFieldOfView (float fov);
+	void changePointSize   (float pointSize);
+	void rotatePointCloudX (float value);
+	void rotatePointCloudY (float value);
+	void rotatePointCloudZ (float value);
 };

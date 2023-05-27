@@ -28,4 +28,9 @@ namespace mpc
 	{
 		return glm::perspectiveLH_NO(glm::radians(fieldOfView), aspectRatio, nearPlane, farPlane);
 	}
+
+	void Camera::set_fov(float fov)
+	{
+		fieldOfView = fov;
+	}
 }

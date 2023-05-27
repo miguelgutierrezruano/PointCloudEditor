@@ -24,7 +24,6 @@ namespace mpc
 	private:
 
 		vector< Point > points;
-		glm::vec3 center;
 
 	public:
 
@@ -34,12 +33,10 @@ namespace mpc
 
 		const vector<Point>& getPoints() const { return points; }
 
-		// Should be on controller
-		void centerPointCloud();
+		void calculateLimit(Point& point, vec2& xLimits, vec2& yLimits, vec2& zLimits);
 
 	private:
 
 		void loadPointCloud(const char* filePath);
-		void calculateLimit(Point& point, vec2& xLimits, vec2& yLimits, vec2& zLimits);
 	};
 }

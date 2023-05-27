@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1115</width>
+    <width>1128</width>
     <height>636</height>
    </rect>
   </property>
@@ -57,7 +57,7 @@
        <item>
         <layout class="QVBoxLayout" name="ToolsLayout">
          <property name="spacing">
-          <number>35</number>
+          <number>18</number>
          </property>
          <property name="sizeConstraint">
           <enum>QLayout::SetDefaultConstraint</enum>
@@ -104,7 +104,7 @@ font-family: &quot;Tahoma&quot;</string>
             </widget>
            </item>
            <item>
-            <spacer name="verticalSpacer">
+            <spacer name="verticalSpacer_3">
              <property name="orientation">
               <enum>Qt::Vertical</enum>
              </property>
@@ -114,7 +114,7 @@ font-family: &quot;Tahoma&quot;</string>
              <property name="sizeHint" stdset="0">
               <size>
                <width>20</width>
-               <height>8</height>
+               <height>13</height>
               </size>
              </property>
             </spacer>
@@ -159,7 +159,7 @@ font-family: &quot;Tahoma&quot;</string>
               <number>100</number>
              </property>
              <property name="value">
-              <number>70</number>
+              <number>45</number>
              </property>
              <property name="orientation">
               <enum>Qt::Horizontal</enum>
@@ -208,6 +208,136 @@ QSlider::handle:horizontal {
              </property>
              <property name="value">
               <number>1</number>
+             </property>
+             <property name="orientation">
+              <enum>Qt::Horizontal</enum>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <spacer name="verticalSpacer">
+             <property name="orientation">
+              <enum>Qt::Vertical</enum>
+             </property>
+             <property name="sizeType">
+              <enum>QSizePolicy::Fixed</enum>
+             </property>
+             <property name="sizeHint" stdset="0">
+              <size>
+               <width>20</width>
+               <height>13</height>
+              </size>
+             </property>
+            </spacer>
+           </item>
+           <item>
+            <widget class="QLabel" name="rotationx">
+             <property name="sizePolicy">
+              <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+               <horstretch>0</horstretch>
+               <verstretch>0</verstretch>
+              </sizepolicy>
+             </property>
+             <property name="font">
+              <font>
+               <family>Tahoma</family>
+               <pointsize>10</pointsize>
+              </font>
+             </property>
+             <property name="styleSheet">
+              <string notr="true">color: white;
+font-family: &quot;Tahoma&quot;</string>
+             </property>
+             <property name="text">
+              <string>Rotation X</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QSlider" name="rotationXSlider">
+             <property name="styleSheet">
+              <string notr="true">QSlider::handle:horizontal {
+    background-color: #333333;
+}</string>
+             </property>
+             <property name="maximum">
+              <number>360</number>
+             </property>
+             <property name="orientation">
+              <enum>Qt::Horizontal</enum>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QLabel" name="rotationy">
+             <property name="sizePolicy">
+              <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+               <horstretch>0</horstretch>
+               <verstretch>0</verstretch>
+              </sizepolicy>
+             </property>
+             <property name="font">
+              <font>
+               <family>Tahoma</family>
+               <pointsize>10</pointsize>
+              </font>
+             </property>
+             <property name="styleSheet">
+              <string notr="true">color: white;
+font-family: &quot;Tahoma&quot;</string>
+             </property>
+             <property name="text">
+              <string>Rotation Y</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QSlider" name="rotationYSlider">
+             <property name="styleSheet">
+              <string notr="true">QSlider::handle:horizontal {
+    background-color: #333333;
+}</string>
+             </property>
+             <property name="maximum">
+              <number>360</number>
+             </property>
+             <property name="orientation">
+              <enum>Qt::Horizontal</enum>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QLabel" name="rotationz">
+             <property name="sizePolicy">
+              <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+               <horstretch>0</horstretch>
+               <verstretch>0</verstretch>
+              </sizepolicy>
+             </property>
+             <property name="font">
+              <font>
+               <family>Tahoma</family>
+               <pointsize>10</pointsize>
+              </font>
+             </property>
+             <property name="styleSheet">
+              <string notr="true">color: white;
+font-family: &quot;Tahoma&quot;</string>
+             </property>
+             <property name="text">
+              <string>Rotation Z</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QSlider" name="rotationZSlider">
+             <property name="styleSheet">
+              <string notr="true">QSlider::handle:horizontal {
+    background-color: #333333;
+}</string>
+             </property>
+             <property name="maximum">
+              <number>360</number>
              </property>
              <property name="orientation">
               <enum>Qt::Horizontal</enum>
@@ -310,6 +440,9 @@ background-color: rgb(51, 51, 51)</string>
           <string notr="true">background-color: white;</string>
          </property>
          <layout class="QVBoxLayout" name="verticalLayout_2">
+          <property name="spacing">
+           <number>0</number>
+          </property>
           <property name="leftMargin">
            <number>0</number>
           </property>
@@ -335,7 +468,7 @@ background-color: rgb(51, 51, 51)</string>
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>1115</width>
+     <width>1128</width>
      <height>22</height>
     </rect>
    </property>

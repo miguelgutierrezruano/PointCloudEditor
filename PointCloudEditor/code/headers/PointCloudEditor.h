@@ -40,7 +40,11 @@ public slots:
     }
 
     void center();
+    void fovSliderChanged      (int newValue);
     void pointSizeSliderChanged(int newValue);
+    void rotationXSliderChanged(int newValue);
+    void rotationYSliderChanged(int newValue);
+    void rotationZSliderChanged(int newValue);
 
 private:
 
