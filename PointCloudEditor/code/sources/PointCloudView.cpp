@@ -8,12 +8,12 @@
 
 #include "PointCloudView.h"
 
-PointCloudView::PointCloudView()
+PointCloudView::PointCloudView() : pointSize(1)
 {
 	
 }
 
-PointCloudView::PointCloudView(shared_ptr<PointCloud> viewPointCloud)
+PointCloudView::PointCloudView(shared_ptr<PointCloud> viewPointCloud) : pointSize(1)
 {
 	setView(viewPointCloud);
 }
@@ -34,6 +34,11 @@ void PointCloudView::setView(shared_ptr<PointCloud> viewPointCloud)
 	std::cout << "Data sent to GPU sucessfully" << std::endl;
 }
 
+void PointCloudView::setPointSize(float newPointSize)
+{
+	pointSize = newPointSize;
+}
+
 void PointCloudView::render(shared_ptr<Shader> shader)
 {
 	vao.bind();
@@ -41,6 +46,8 @@ void PointCloudView::render(shared_ptr<Shader> shader)
 
 	mat4 modelMatrix = pointCloud->transform.get_matrix();
 	shader->setUniformMat4f("model", modelMatrix);
+
+	glPointSize(pointSize);
 
 	GLClearError();
 	glDrawArrays(GL_POINTS, 0, pointCloud->getPoints().size());

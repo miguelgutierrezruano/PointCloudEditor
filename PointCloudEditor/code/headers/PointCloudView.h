@@ -28,6 +28,8 @@ class PointCloudView
 
 	VertexArray  vao;
 	VertexBuffer vbo;
+
+	float pointSize;
 	
 public:
 
@@ -40,4 +42,5 @@ public:
 	void render(shared_ptr< Shader > shader);
 
 	void setView(shared_ptr< PointCloud > viewPointCloud);
+	void setPointSize(float newPointSize);
 };

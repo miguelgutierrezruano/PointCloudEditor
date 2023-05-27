@@ -39,8 +39,6 @@ void PointCloudRenderer::initialize()
     glEnable(GL_BLEND);
     glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 
-    glPointSize(1);
-
     glClearColor(0.15f, 0.15f, 0.15f, 1.f);
 
     shader = std::make_shared<Shader>("../code/shaders/PointCloudShader.shader");
@@ -94,5 +92,7 @@ void PointCloudRenderer::centerPointCloud()
 void PointCloudRenderer::changePointSize(float pointSize)
 {
     std::cout << "Changed point size to: " << pointSize << std::endl;
-    glPointSize(pointSize);
+    
+    if (pointCloud != nullptr)
+        view->setPointSize(pointSize);
 }
