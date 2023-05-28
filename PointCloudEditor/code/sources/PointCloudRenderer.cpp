@@ -45,6 +45,7 @@ void PointCloudRenderer::initialize()
     shader = std::make_shared<Shader>("../code/shaders/PointCloudShader.shader");
 
     pointCloud = std::make_shared<PointCloud>("../resources/pyramid.ply");
+    //pointCloud = std::make_shared<PointCloud>("../resources/pyramid-copy.ply");
     setupPointCloud(pointCloud);
 
     camera.transform.position = vec3(0, 0, -70);

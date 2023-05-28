@@ -75,5 +75,9 @@ void PointCloudEditor::rotationZSliderChanged(int newValue)
 
 void PointCloudEditor::saveAs()
 {
-	PointCloudLoader::generateCopy(renderer.getPointCloud()->getPath());
+	PointCloudLoader::generateCopy
+	(
+		renderer.getPointCloud()->getPath(),
+		renderer.getPointCloud()->getPoints()
+	);
 }

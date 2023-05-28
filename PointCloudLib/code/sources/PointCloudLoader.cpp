@@ -16,7 +16,7 @@ using namespace glm;
 
 namespace mpc
 {
-	bool PointCloudLoader::generateCopy(const std::string& path)
+	bool PointCloudLoader::generateCopy(const std::string& path, std::vector<Point>& points)
 	{
 		// Load source file
 		std::ifstream sourceFile(path, std::ios::binary);
@@ -45,7 +45,24 @@ namespace mpc
 			return false;
 		}
 
-		destinationFile << sourceFile.rdbuf();
+		// Copy header
+		std::string line;
+		while (line != "end_header\r")
+		{
+			std::getline(sourceFile, line);
+			destinationFile << line << std::endl;
+		}
+
+		// Write point data
+		for (auto& point : points)
+		{
+			vec3 pos = point.get_position();
+			vec3 color = point.get_color();
+			color *= 255.f;
+
+			destinationFile << pos.x << " " << pos.y << " " << pos.z << " "
+				<< color.r << " " << color.g << " " << color.b << std::endl;
+		}
 
 		sourceFile.close();
 		destinationFile.close();

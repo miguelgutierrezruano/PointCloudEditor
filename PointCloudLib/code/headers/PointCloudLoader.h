@@ -19,7 +19,7 @@ namespace mpc
 
 	public:
 
-		static bool generateCopy(const std::string& path);
+		static bool generateCopy(const std::string& path, std::vector<Point>& points);
 		static void loadPLYCloud(const std::string& path, std::vector<Point>& points);
 
 	private:
