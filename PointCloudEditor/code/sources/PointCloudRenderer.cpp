@@ -89,7 +89,7 @@ void PointCloudRenderer::centerPointCloud()
     if (pointCloud != nullptr)
     {
         // Center of box containing the point cloud
-        /*constexpr float min = std::numeric_limits<float>::min();
+        constexpr float min = std::numeric_limits<float>::min();
         constexpr float max = std::numeric_limits<float>::max();
 
         vec2 xLimits = vec2(max, min);
@@ -104,10 +104,8 @@ void PointCloudRenderer::centerPointCloud()
         float meanZ = (zLimits.x + zLimits.y) / 2;
         vec3 center = vec3(meanX, meanY, meanZ);
 
-        pointCloud->transform.position = pointCloud->transform.position - center;*/
-
         // Mean of vertices
-        float xCount = 0, yCount = 0, zCount = 0;
+        /*float xCount = 0, yCount = 0, zCount = 0;
 
         for (auto point : pointCloud->getPoints())
         {
@@ -118,10 +116,8 @@ void PointCloudRenderer::centerPointCloud()
         }
 
         int size = pointCloud->getPoints().size();
-        vec3 center = vec3(xCount / size, yCount / size, zCount / size);
-        //pointCloud->transform.position = pointCloud->transform.position - center;
-
-        updateBuffers(center);
+        vec3 center = vec3(xCount / size, yCount / size, zCount / size);*/
+        updateBuffersCenter(center);
     }
 }
 
@@ -159,7 +155,7 @@ void PointCloudRenderer::rotatePointCloudZ(float value)
         pointCloud->transform.rotation.z = value;
 }
 
-void PointCloudRenderer::updateBuffers(vec3 center)
+void PointCloudRenderer::updateBuffersCenter(vec3 center)
 {
     for (auto& point : pointCloud->getPoints())
     {

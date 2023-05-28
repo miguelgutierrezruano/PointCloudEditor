@@ -49,7 +49,12 @@ public:
 	void rotatePointCloudY (float value);
 	void rotatePointCloudZ (float value);
 
+	const std::shared_ptr<PointCloud> const getPointCloud()
+	{
+		return pointCloud;
+	}
+
 private:
 
-	void updateBuffers(vec3 center);
+	void updateBuffersCenter(vec3 center);
 };

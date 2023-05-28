@@ -13,6 +13,7 @@ namespace mpc
 {
 	PointCloud::PointCloud(const char* filePath)
 	{
+		path = filePath;
 		loadPointCloud(filePath);
 	}
 

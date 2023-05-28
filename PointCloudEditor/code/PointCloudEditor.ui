@@ -506,7 +506,7 @@ background-color: rgb(51, 51, 51)</string>
   </action>
   <action name="actionSave">
    <property name="text">
-    <string>Save</string>
+    <string>Save copy</string>
    </property>
   </action>
   <action name="actionExit">

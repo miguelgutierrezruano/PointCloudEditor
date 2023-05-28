@@ -46,6 +46,8 @@ public slots:
     void rotationYSliderChanged(int newValue);
     void rotationZSliderChanged(int newValue);
 
+    void saveAs();
+
 private:
 
     void setupOpenGLWidget();

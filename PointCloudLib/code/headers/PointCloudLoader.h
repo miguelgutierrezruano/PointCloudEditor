@@ -8,15 +8,23 @@
 #include <vector>
 #include <string>
 
-#include "Point.h"
+#include "API.h"
 
 namespace mpc
 {
-	class PointCloudLoader
+	class Point;
+
+	class API PointCloudLoader
 	{
 
 	public:
 
+		static bool generateCopy(const std::string& path);
 		static void loadPLYCloud(const std::string& path, std::vector<Point>& points);
+
+	private:
+
+		static std::string getFilenameFromPath(const std::string& path);
+		static std::string getParentPath(const std::string& path);
 	};
 }

@@ -6,7 +6,9 @@
 #include <iostream>
 #include <fstream>
 #include <sstream>
+#include <filesystem>
 
+#include "Point.h"
 #include "PointCloudLoader.h"
 
 using std::vector;
@@ -14,6 +16,43 @@ using namespace glm;
 
 namespace mpc
 {
+	bool PointCloudLoader::generateCopy(const std::string& path)
+	{
+		// Load source file
+		std::ifstream sourceFile(path, std::ios::binary);
+		if (!sourceFile)
+		{
+			std::cout << "Failed to load source file " << path << std::endl;
+			return false;
+		}
+
+		// Get name and add -copy
+		std::string fileName = getFilenameFromPath(path);
+		std::size_t dotIndex = fileName.find('.');
+		if (dotIndex != std::string::npos)
+			fileName = fileName.substr(0, dotIndex) + "-copy" + fileName.substr(dotIndex);
+
+		// Get directory
+		std::string parentPath = getParentPath(path);
+
+		// Full path
+		std::string destinationName = parentPath + "/" + fileName;
+
+		// Create new file
+		std::ofstream destinationFile(destinationName, std::ios::binary);
+		if (!destinationFile) {
+			std::cout << "Failed to create destination file: " << destinationName << std::endl;
+			return false;
+		}
+
+		destinationFile << sourceFile.rdbuf();
+
+		sourceFile.close();
+		destinationFile.close();
+
+		return true;
+	}
+
 	void PointCloudLoader::loadPLYCloud(const std::string& path, std::vector<Point>& points)
 	{
 		std::ifstream file(path);
@@ -53,5 +92,17 @@ namespace mpc
 
 			points[pointCount++] = Point(pos, color);
 		}
+	}
+
+	std::string PointCloudLoader::getFilenameFromPath(const std::string& path)
+	{
+		std::filesystem::path filePath(path);
+		return filePath.filename().string();
+	}
+
+	std::string PointCloudLoader::getParentPath(const std::string& path)
+	{
+		std::filesystem::path fullPath(path);
+		return fullPath.parent_path().string();
 	}
 }

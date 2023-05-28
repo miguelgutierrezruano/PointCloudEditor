@@ -5,6 +5,7 @@
 
 #include <glm/glm.hpp>
 
+#include "PointCloudLoader.h"
 #include "PointCloudEditor.h"
 
 PointCloudEditor::PointCloudEditor(QWidget *parent)
@@ -14,6 +15,7 @@ PointCloudEditor::PointCloudEditor(QWidget *parent)
 	setupOpenGLWidget();
 	
 	connect(actionExit, &QAction::triggered, this, &PointCloudEditor::menuExitTriggered);
+	connect(actionSave, &QAction::triggered, this, &PointCloudEditor::saveAs);
 	connect(centerButton, &QPushButton::clicked, this, &PointCloudEditor::center);
 
 	connect(fovSlider, &QSlider::valueChanged, this, &PointCloudEditor::fovSliderChanged);
@@ -69,4 +71,9 @@ void PointCloudEditor::rotationZSliderChanged(int newValue)
 {
 	renderer.rotatePointCloudZ((float)newValue);
 	openglWidget->update();
+}
+
+void PointCloudEditor::saveAs()
+{
+	PointCloudLoader::generateCopy(renderer.getPointCloud()->getPath());
 }

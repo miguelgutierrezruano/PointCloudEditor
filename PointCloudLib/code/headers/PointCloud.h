@@ -6,6 +6,7 @@
 #pragma once
 
 #include <vector>
+#include <string>
 
 #include "Point.h"
 #include "Transform.h"
@@ -23,6 +24,7 @@ namespace mpc
 
 	private:
 
+		std::string path;
 		vector< Point > points;
 
 	public:
@@ -32,6 +34,7 @@ namespace mpc
 	public:
 
 		vector<Point>& getPoints() { return points; }
+		std::string&   getPath  () { return   path; }
 
 		void calculateLimit(Point& point, vec2& xLimits, vec2& yLimits, vec2& zLimits);
 
