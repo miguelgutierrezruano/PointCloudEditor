@@ -48,4 +48,8 @@ public:
 	void rotatePointCloudX (float value);
 	void rotatePointCloudY (float value);
 	void rotatePointCloudZ (float value);
+
+private:
+
+	void updateBuffers(vec3 center);
 };

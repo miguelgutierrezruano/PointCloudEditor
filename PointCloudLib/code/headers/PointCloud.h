@@ -31,7 +31,7 @@ namespace mpc
 
 	public:
 
-		const vector<Point>& getPoints() const { return points; }
+		vector<Point>& getPoints() { return points; }
 
 		void calculateLimit(Point& point, vec2& xLimits, vec2& yLimits, vec2& zLimits);
 

@@ -23,7 +23,6 @@ void PointCloudView::setView(shared_ptr<PointCloud> viewPointCloud)
 	pointCloud = viewPointCloud;
 
 	vbo.upload_to_gpu(pointCloud->getPoints().data(), (unsigned int)pointCloud->getPoints().size() * sizeof(Point));
-	//vbo.upload_to_gpu(myPoints.data(), (unsigned int)myPoints.size() * sizeof(Point));
 
 	VertexBufferLayout vbLayout;
 	vbLayout.push<float>(3);
@@ -37,6 +36,14 @@ void PointCloudView::setView(shared_ptr<PointCloud> viewPointCloud)
 void PointCloudView::setPointSize(float newPointSize)
 {
 	pointSize = newPointSize;
+}
+
+void PointCloudView::updateGPUBuffer()
+{
+	vbo.bind();
+
+	// Update point data
+	glBufferSubData(GL_ARRAY_BUFFER, 0, (unsigned int)pointCloud->getPoints().size() * sizeof(Point), pointCloud->getPoints().data());
 }
 
 void PointCloudView::render(shared_ptr<Shader> shader)

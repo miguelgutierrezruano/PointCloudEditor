@@ -43,4 +43,6 @@ public:
 
 	void setView(shared_ptr< PointCloud > viewPointCloud);
 	void setPointSize(float newPointSize);
+
+	void updateGPUBuffer();
 };

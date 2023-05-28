@@ -6,6 +6,7 @@
 #include <iostream>
 #include <glad/glad.h>
 
+#include "Point.h"
 #include "PointCloudRenderer.h"
 
 PointCloudRenderer::PointCloudRenderer() :
@@ -118,7 +119,9 @@ void PointCloudRenderer::centerPointCloud()
 
         int size = pointCloud->getPoints().size();
         vec3 center = vec3(xCount / size, yCount / size, zCount / size);
-        pointCloud->transform.position = pointCloud->transform.position - center;
+        //pointCloud->transform.position = pointCloud->transform.position - center;
+
+        updateBuffers(center);
     }
 }
 
@@ -154,4 +157,18 @@ void PointCloudRenderer::rotatePointCloudZ(float value)
 {
     if (pointCloud != nullptr)
         pointCloud->transform.rotation.z = value;
+}
+
+void PointCloudRenderer::updateBuffers(vec3 center)
+{
+    for (auto& point : pointCloud->getPoints())
+    {
+        vec3 pos = point.get_position();
+        pos -= center;
+
+        point.set_position(pos);
+    }
+
+    // Update GPU buffer
+    view->updateGPUBuffer();
 }
