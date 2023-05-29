@@ -36,10 +36,12 @@ namespace mpc
 		vector<Point>& getPoints() { return points; }
 		std::string&   getPath  () { return   path; }
 
-		void calculateLimit(Point& point, vec2& xLimits, vec2& yLimits, vec2& zLimits);
+		vec3 getCenterMean();
+		vec3 getCenterBox ();
 
 	private:
 
 		void loadPointCloud(const char* filePath);
+		void calculateLimit(Point& point, vec2& xLimits, vec2& yLimits, vec2& zLimits);
 	};
 }

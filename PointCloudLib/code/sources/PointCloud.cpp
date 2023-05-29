@@ -25,6 +25,43 @@ namespace mpc
 		PointCloudLoader::loadBinaryPLYCloud(filePath, points);
 	}
 
+	vec3 PointCloud::getCenterMean()
+	{
+		// Mean of vertices
+		float xCount = 0, yCount = 0, zCount = 0;
+
+		for (auto point : points)
+		{
+			vec3 pos = point.get_position();
+			xCount += pos.x;
+			yCount += pos.y;
+			zCount += pos.z;
+		}
+
+		int size = points.size();
+		return vec3(xCount / size, yCount / size, zCount / size);
+	}
+
+	vec3 PointCloud::getCenterBox()
+	{
+		// Center of box containing the point cloud
+		constexpr float min = std::numeric_limits<float>::min();
+		constexpr float max = std::numeric_limits<float>::max();
+
+		vec2 xLimits = vec2(max, min);
+		vec2 yLimits = vec2(max, min);
+		vec2 zLimits = vec2(max, min);
+
+		for (auto point : points)
+			calculateLimit(point, xLimits, yLimits, zLimits);
+
+		float meanX = (xLimits.x + xLimits.y) / 2;
+		float meanY = (yLimits.x + yLimits.y) / 2;
+		float meanZ = (zLimits.x + zLimits.y) / 2;
+
+		return vec3(meanX, meanY, meanZ);
+	}
+
 	void PointCloud::calculateLimit(Point& point, vec2& xLimits, vec2& yLimits, vec2& zLimits)
 	{
 		vec3 pos = point.get_position();

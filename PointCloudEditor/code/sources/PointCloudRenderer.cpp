@@ -89,38 +89,7 @@ void PointCloudRenderer::setupPointCloud(std::shared_ptr<PointCloud> newPointClo
 void PointCloudRenderer::centerPointCloud()
 {
     if (pointCloud != nullptr)
-    {
-        // Center of box containing the point cloud
-        constexpr float min = std::numeric_limits<float>::min();
-        constexpr float max = std::numeric_limits<float>::max();
-
-        vec2 xLimits = vec2(max, min);
-        vec2 yLimits = vec2(max, min);
-        vec2 zLimits = vec2(max, min);
-
-        for (auto point : pointCloud->getPoints())
-            pointCloud->calculateLimit(point, xLimits, yLimits, zLimits);
-
-        float meanX = (xLimits.x + xLimits.y) / 2;
-        float meanY = (yLimits.x + yLimits.y) / 2;
-        float meanZ = (zLimits.x + zLimits.y) / 2;
-        vec3 center = vec3(meanX, meanY, meanZ);
-
-        // Mean of vertices
-        /*float xCount = 0, yCount = 0, zCount = 0;
-
-        for (auto point : pointCloud->getPoints())
-        {
-            vec3 pos = point.get_position();
-            xCount += pos.x;
-            yCount += pos.y;
-            zCount += pos.z;
-        }
-
-        int size = pointCloud->getPoints().size();
-        vec3 center = vec3(xCount / size, yCount / size, zCount / size);*/
-        updateBuffersCenter(center);
-    }
+        updateBuffersCenter(pointCloud->getCenterBox());
 }
 
 void PointCloudRenderer::changeFieldOfView(float fov)
