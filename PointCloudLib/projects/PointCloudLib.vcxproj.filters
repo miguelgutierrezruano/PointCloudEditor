@@ -13,6 +13,9 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="headers\other">
+      <UniqueIdentifier>{5cdcf103-f2cb-404b-806d-54707231d136}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\code\headers\Point.h">
@@ -35,6 +38,9 @@
     </ClInclude>
     <ClInclude Include="..\code\headers\PointCloudLoader.h">
       <Filter>headers</Filter>
+    </ClInclude>
+    <ClInclude Include="..\libraries\happly\happly.h">
+      <Filter>headers\other</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

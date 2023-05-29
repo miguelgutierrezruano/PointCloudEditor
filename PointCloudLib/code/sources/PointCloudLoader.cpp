@@ -8,11 +8,15 @@
 #include <sstream>
 #include <filesystem>
 
+#include <happly.h>
+
 #include "Point.h"
 #include "PointCloudLoader.h"
 
 using std::vector;
 using namespace glm;
+
+using namespace happly;
 
 namespace mpc
 {
@@ -47,7 +51,7 @@ namespace mpc
 
 		// Copy header
 		std::string line;
-		while (line != "end_header\r")
+		while (line.find(std::string("end_header")) == std::string::npos)
 		{
 			std::getline(sourceFile, line);
 			destinationFile << line << std::endl;
@@ -64,6 +68,9 @@ namespace mpc
 				<< color.r << " " << color.g << " " << color.b << std::endl;
 		}
 
+		std::cout << fileName << " saved successfully!" << std::endl;
+		std::cout << "Path: " << destinationName << std::endl;
+
 		sourceFile.close();
 		destinationFile.close();
 
@@ -74,6 +81,12 @@ namespace mpc
 	{
 		std::ifstream file(path);
 		std::string line;
+
+		if (!file)
+		{
+			std::cout << "Failed to open file: " << path << std::endl;
+			return;
+		}
 
 		// Skip header
 		while (line != "end_header")
@@ -108,6 +121,34 @@ namespace mpc
 			color /= 255.f;
 
 			points[pointCount++] = Point(pos, color);
+		}
+	}
+
+	void PointCloudLoader::loadBinaryPLYCloud(const std::string& path, std::vector<Point>& points)
+	{
+		PLYData plyIn(path.c_str());
+
+		plyIn.validate();
+
+		std::cout << "Loading " << path << " please wait..." << std::endl;
+
+		points.resize(plyIn.getElement("vertex").count);
+
+		vector<float> vertexPosX = plyIn.getElement("vertex").getProperty<float>("x");
+		vector<float> vertexPosY = plyIn.getElement("vertex").getProperty<float>("y");
+		vector<float> vertexPosZ = plyIn.getElement("vertex").getProperty<float>("z");
+
+		vector<unsigned char> vertexColorX = plyIn.getElement("vertex").getProperty<unsigned char>("red");
+		vector<unsigned char> vertexColorY = plyIn.getElement("vertex").getProperty<unsigned char>("green");
+		vector<unsigned char> vertexColorZ = plyIn.getElement("vertex").getProperty<unsigned char>("blue");
+
+		for (int i = 0; i < points.size(); i++)
+		{
+			vec3 pos(vertexPosX[i], vertexPosY[i], vertexPosZ[i]);
+			vec3 color(vertexColorX[i], vertexColorY[i], vertexColorZ[i]);
+			color /= 255.f;
+
+			points[i] = Point(pos, color);
 		}
 	}
 

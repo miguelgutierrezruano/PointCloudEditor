@@ -44,11 +44,12 @@ void PointCloudRenderer::initialize()
 
     shader = std::make_shared<Shader>("../code/shaders/PointCloudShader.shader");
 
-    pointCloud = std::make_shared<PointCloud>("../resources/pyramid.ply");
+    //pointCloud = std::make_shared<PointCloud>("../resources/pyramid.ply");
     //pointCloud = std::make_shared<PointCloud>("../resources/pyramid-copy.ply");
+    pointCloud = std::make_shared<PointCloud>("../resources/boat.ply");
     setupPointCloud(pointCloud);
 
-    camera.transform.position = vec3(0, 0, -70);
+    camera.transform.position = vec3(0, 0, -20);
 
     mat4 projection = camera.get_projection_matrix((float)widgetWidth / widgetHeight);
     mat4 view = camera.get_view_matrix();

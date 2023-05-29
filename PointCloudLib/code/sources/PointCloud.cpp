@@ -21,7 +21,8 @@ namespace mpc
 	{
 		// TODO: Filter file type
 
-		PointCloudLoader::loadPLYCloud(filePath, points);
+		//PointCloudLoader::loadPLYCloud(filePath, points);
+		PointCloudLoader::loadBinaryPLYCloud(filePath, points);
 	}
 
 	void PointCloud::calculateLimit(Point& point, vec2& xLimits, vec2& yLimits, vec2& zLimits)
