@@ -20,110 +20,6 @@ using namespace happly;
 
 namespace mpc
 {
-	bool PointCloudLoader::generateCopy(const std::string& path, std::vector<Point>& points)
-	{
-		// Load source file
-		std::ifstream sourceFile(path, std::ios::binary);
-		if (!sourceFile)
-		{
-			std::cout << "Failed to load source file " << path << std::endl;
-			return false;
-		}
-
-		// Get name and add -copy
-		std::string fileName = getFilenameFromPath(path);
-		std::size_t dotIndex = fileName.find('.');
-		if (dotIndex != std::string::npos)
-			fileName = fileName.substr(0, dotIndex) + "-copy" + fileName.substr(dotIndex);
-
-		// Get directory
-		std::string parentPath = getParentPath(path);
-
-		// Full path
-		std::string destinationName = parentPath + "/" + fileName;
-
-		// Create new file
-		std::ofstream destinationFile(destinationName, std::ios::binary);
-		if (!destinationFile) {
-			std::cout << "Failed to create destination file: " << destinationName << std::endl;
-			return false;
-		}
-
-		// Copy header
-		std::string line;
-		while (line.find(std::string("end_header")) == std::string::npos)
-		{
-			std::getline(sourceFile, line);
-			destinationFile << line << std::endl;
-		}
-
-		// Write point data
-		for (auto& point : points)
-		{
-			vec3 pos = point.get_position();
-			vec3 color = point.get_color();
-			color *= 255.f;
-
-			destinationFile << pos.x << " " << pos.y << " " << pos.z << " "
-				<< color.r << " " << color.g << " " << color.b << std::endl;
-		}
-
-		std::cout << fileName << " saved successfully!" << std::endl;
-		std::cout << "Path: " << destinationName << std::endl;
-
-		sourceFile.close();
-		destinationFile.close();
-
-		return true;
-	}
-
-	void PointCloudLoader::loadPLYCloud(const std::string& path, std::vector<Point>& points)
-	{
-		std::ifstream file(path);
-		std::string line;
-
-		if (!file)
-		{
-			std::cout << "Failed to open file: " << path << std::endl;
-			return;
-		}
-
-		// Skip header
-		while (line != "end_header")
-		{
-			std::getline(file, line);
-
-			if (line.find("element vertex") != std::string::npos)
-			{
-				// Extract the size
-				std::istringstream iss(line);
-				std::string element, vertex;
-				int size;
-				iss >> element >> vertex >> size;
-
-				points.resize((size_t)size);
-			}
-		}
-
-		unsigned int pointCount = 0;
-
-		while (std::getline(file, line))
-		{
-			std::istringstream iss(line);
-
-			vec3 pos(0);
-			vec3 color(0);
-
-			iss >> pos.x >> pos.y >> pos.z;
-			iss >> color.x >> color.y >> color.z;
-
-			// Color range 0-1
-			color /= 255.f;
-
-			points[pointCount++] = Point(pos, color);
-		}
-	}
-
 	void PointCloudLoader::loadBinaryPLYCloud(const std::string& path, std::vector<Point>& points)
 	{
 		PLYData plyIn(path.c_str());
@@ -152,6 +48,103 @@ namespace mpc
 		}
 	}
 
+	bool PointCloudLoader::generatePLYCopy(const std::string& path, std::vector<Point>& points)
+	{
+		// Load source file
+		std::ifstream sourceFile(path, std::ios::binary);
+		if (!sourceFile)
+		{
+			std::cout << "Failed to load source file " << path << std::endl;
+			return false;
+		}
+
+		// Full path
+		std::string destinationName = getCopyName(path);
+
+		// Create new file
+		std::ofstream destinationFile(destinationName, std::ios::binary);
+		if (!destinationFile) {
+			std::cout << "Failed to create destination file: " << destinationName << std::endl;
+			return false;
+		}
+
+		// Copy header
+		std::string line;
+		while (line.find(std::string("end_header")) == std::string::npos)
+		{
+			std::getline(sourceFile, line);
+			destinationFile << line << std::endl;
+		}
+
+		// Write point data
+		for (auto& point : points)
+		{
+			vec3 pos = point.get_position();
+			vec3 color = point.get_color();
+			color *= 255.f;
+
+			destinationFile << pos.x << " " << pos.y << " " << pos.z << " "
+				<< color.r << " " << color.g << " " << color.b << std::endl;
+		}
+
+		std::cout << destinationName << " saved successfully!" << std::endl;
+
+		sourceFile.close();
+		destinationFile.close();
+
+		return true;
+	}
+
+	bool PointCloudLoader::generateBinaryPLYCopy(const std::string& path, std::vector<Point>& points)
+	{
+		PLYData plyOut;
+
+		vector<float> vertexPosX(points.size());
+		vector<float> vertexPosY(points.size());
+		vector<float> vertexPosZ(points.size());
+
+		vector<unsigned char> vertexColorX(points.size());
+		vector<unsigned char> vertexColorY(points.size());
+		vector<unsigned char> vertexColorZ(points.size());
+
+		for (int i = 0; i < points.size(); i++)
+		{
+			vec3 pos   = points[i].get_position();
+			vec3 color = points[i].get_color();
+			color *= 255.f;
+
+			vertexPosX[i] = pos.x;
+			vertexPosY[i] = pos.y;
+			vertexPosZ[i] = pos.z;
+
+			vertexColorX[i] = color.r;
+			vertexColorY[i] = color.g;
+			vertexColorZ[i] = color.b;
+		}
+
+		plyOut.addElement("vertex", points.size());
+
+		plyOut.getElement("vertex").addProperty<float>("x", vertexPosX);
+		plyOut.getElement("vertex").addProperty<float>("y", vertexPosY);
+		plyOut.getElement("vertex").addProperty<float>("z", vertexPosZ);
+
+		plyOut.getElement("vertex").addProperty<unsigned char>("red", vertexColorX);
+		plyOut.getElement("vertex").addProperty<unsigned char>("green", vertexColorY);
+		plyOut.getElement("vertex").addProperty<unsigned char>("blue", vertexColorZ);
+
+		// Full path
+		std::string destinationName = getCopyName(path);
+
+		// Create new file
+		std::ofstream destinationFile(destinationName, std::ios::binary);
+		if (!destinationFile) {
+			std::cout << "Failed to create destination file: " << destinationName << std::endl;
+			return false;
+		}
+
+		plyOut.write(destinationFile, DataFormat::Binary);
+	}
+
 	std::string PointCloudLoader::getFilenameFromPath(const std::string& path)
 	{
 		std::filesystem::path filePath(path);
@@ -162,5 +155,20 @@ namespace mpc
 	{
 		std::filesystem::path fullPath(path);
 		return fullPath.parent_path().string();
+	}
+
+	std::string PointCloudLoader::getCopyName(const std::string& path)
+	{
+		// Get name and add -copy
+		std::string fileName = getFilenameFromPath(path);
+		std::size_t dotIndex = fileName.find('.');
+		if (dotIndex != std::string::npos)
+			fileName = fileName.substr(0, dotIndex) + "-copy" + fileName.substr(dotIndex);
+
+		// Get directory
+		std::string parentPath = getParentPath(path);
+
+		// Full path
+		return parentPath + "/" + fileName;
 	}
 }

@@ -18,11 +18,20 @@ namespace mpc
 	class API PointCloud
 	{
 
+		enum FileType
+		{
+			none,
+			ascii,
+			binary
+		};
+
 	public:
 
 		Transform transform;
 
 	private:
+
+		FileType fileType;
 
 		std::string path;
 		vector< Point > points;
