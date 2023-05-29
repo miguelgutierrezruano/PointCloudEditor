@@ -48,53 +48,6 @@ namespace mpc
 		}
 	}
 
-	bool PointCloudLoader::generatePLYCopy(const std::string& path, std::vector<Point>& points)
-	{
-		// Load source file
-		std::ifstream sourceFile(path, std::ios::binary);
-		if (!sourceFile)
-		{
-			std::cout << "Failed to load source file " << path << std::endl;
-			return false;
-		}
-
-		// Full path
-		std::string destinationName = getCopyName(path);
-
-		// Create new file
-		std::ofstream destinationFile(destinationName, std::ios::binary);
-		if (!destinationFile) {
-			std::cout << "Failed to create destination file: " << destinationName << std::endl;
-			return false;
-		}
-
-		// Copy header
-		std::string line;
-		while (line.find(std::string("end_header")) == std::string::npos)
-		{
-			std::getline(sourceFile, line);
-			destinationFile << line << std::endl;
-		}
-
-		// Write point data
-		for (auto& point : points)
-		{
-			vec3 pos = point.get_position();
-			vec3 color = point.get_color();
-			color *= 255.f;
-
-			destinationFile << pos.x << " " << pos.y << " " << pos.z << " "
-				<< color.r << " " << color.g << " " << color.b << std::endl;
-		}
-
-		std::cout << destinationName << " saved successfully!" << std::endl;
-
-		sourceFile.close();
-		destinationFile.close();
-
-		return true;
-	}
-
 	bool PointCloudLoader::generateBinaryPLYCopy(const std::string& path, std::vector<Point>& points)
 	{
 		PLYData plyOut;
@@ -137,12 +90,16 @@ namespace mpc
 
 		// Create new file
 		std::ofstream destinationFile(destinationName, std::ios::binary);
-		if (!destinationFile) {
-			std::cout << "Failed to create destination file: " << destinationName << std::endl;
+		if (!destinationFile)
+		{
+			std::cout << "Failed to create " << destinationName << std::endl;
 			return false;
 		}
 
 		plyOut.write(destinationFile, DataFormat::Binary);
+		
+		std::cout << destinationName << " copied successfully!" << std::endl;
+		return true;
 	}
 
 	std::string PointCloudLoader::getFilenameFromPath(const std::string& path)

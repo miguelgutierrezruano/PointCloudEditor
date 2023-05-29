@@ -20,7 +20,6 @@ namespace mpc
 	public:
 
 		static void loadBinaryPLYCloud    (const std::string& path, std::vector<Point>& points);
-		static bool generatePLYCopy       (const std::string& path, std::vector<Point>& points);
 		static bool generateBinaryPLYCopy (const std::string& path, std::vector<Point>& points);
 
 	private:

@@ -15,25 +15,6 @@ namespace mpc
 {
 	PointCloud::PointCloud(const char* filePath)
 	{
-		fileType = none;
-
-		std::ifstream file(filePath);
-		std::string line;
-
-		// Skip first line
-		std::getline(file, line);
-		std::getline(file, line);
-
-		if (line.find(std::string("ascii")) != std::string::npos)
-			fileType = ascii;
-		else if (line.find(std::string("binary")) != std::string::npos)
-			fileType = binary;
-		else
-		{
-			std::cout << "Invalid type, Point Cloud: " << filePath << " won't load" << std::endl;
-			return;
-		}
-
 		path = filePath;
 		loadPointCloud(filePath);
 	}
