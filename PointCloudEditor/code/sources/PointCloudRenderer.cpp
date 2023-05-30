@@ -56,9 +56,9 @@ void PointCloudRenderer::initialize()
 
     //pointCloud = std::make_shared<PointCloud>("../resources/pyramid.ply");
     //pointCloud = std::make_shared<PointCloud>("../resources/pyramid-copy.ply");
-    pointCloud = std::make_shared<PointCloud>("../resources/boat.ply");
+    //pointCloud = std::make_shared<PointCloud>("../resources/boat.ply");
     //pointCloud = std::make_shared<PointCloud>("../resources/boat-copy.ply");
-    //pointCloud = std::make_shared<PointCloud>("../resources/raptor.ply");
+    pointCloud = std::make_shared<PointCloud>("../resources/creation.ply");
     setupPointCloud(pointCloud);
 
     camera.transform.position = vec3(0, 0, -20);
@@ -123,7 +123,6 @@ void PointCloudRenderer::changePointSize(float pointSize)
 void PointCloudRenderer::rotateCamera(float value)
 {
     cameraAngle += value * cameraMovementSpeed;
-    //cameraAngle = 90;
 
     if (cameraAngle > cameraAngleLimits.x)
         cameraAngle = cameraAngleLimits.x;

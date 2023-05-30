@@ -14,11 +14,12 @@ PointCloudEditor::PointCloudEditor(QWidget *parent)
     setupUi(this);
 	setupOpenGLWidget();
 	
-	connect(actionExit, &QAction::triggered, this, &PointCloudEditor::menuExitTriggered);
-	connect(actionSave, &QAction::triggered, this, &PointCloudEditor::saveAs);
-	connect(centerButton, &QPushButton::clicked, this, &PointCloudEditor::center);
+	connect(     actionExit,    &QAction::triggered, this, &PointCloudEditor::menuExitTriggered     );
+	connect(     actionSave,    &QAction::triggered, this, &PointCloudEditor::save                  );
+	connect( actionSaveCopy,    &QAction::triggered, this, &PointCloudEditor::saveCopy              );
+	connect(   centerButton,  &QPushButton::clicked, this, &PointCloudEditor::center                );
 
-	connect(fovSlider, &QSlider::valueChanged, this, &PointCloudEditor::fovSliderChanged);
+	connect(      fovSlider, &QSlider::valueChanged, this, &PointCloudEditor::fovSliderChanged      );
 	connect(pointSizeSlider, &QSlider::valueChanged, this, &PointCloudEditor::pointSizeSliderChanged);
 }
 
@@ -64,7 +65,16 @@ void PointCloudEditor::rotationYSliderChanged(int newValue)
 	openglWidget->update();
 }
 
-void PointCloudEditor::saveAs()
+void PointCloudEditor::save()
+{
+	PointCloudLoader::saveBinaryPLYCloud
+	(
+		renderer.getPointCloud()->getPath(),
+		renderer.getPointCloud()->getPoints()
+	);
+}
+
+void PointCloudEditor::saveCopy()
 {
 	PointCloudLoader::generateBinaryPLYCopy
 	(

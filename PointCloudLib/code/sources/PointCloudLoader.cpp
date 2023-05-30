@@ -48,7 +48,53 @@ namespace mpc
 		}
 	}
 
+	void PointCloudLoader::saveBinaryPLYCloud(const std::string& path, std::vector<Point>& points)
+	{
+		PLYData plyOut = getPLYDataFromPoints(points);
+
+		std::ofstream destinationFile(path, std::ios::binary);
+		destinationFile.clear();
+
+		plyOut.write(destinationFile, DataFormat::Binary);
+		destinationFile.close();
+	}
+
 	bool PointCloudLoader::generateBinaryPLYCopy(const std::string& path, std::vector<Point>& points)
+	{
+		PLYData plyOut = getPLYDataFromPoints(points);
+
+		// Full path
+		std::string destinationName = getCopyName(path);
+
+		// Create new file
+		std::ofstream destinationFile(destinationName, std::ios::binary);
+		if (!destinationFile)
+		{
+			std::cout << "Failed to create " << destinationName << std::endl;
+			return false;
+		}
+
+		plyOut.write(destinationFile, DataFormat::Binary);
+		
+		std::cout << destinationName << " copied successfully!" << std::endl;
+		destinationFile.close();
+
+		return true;
+	}
+
+	std::string PointCloudLoader::getFilenameFromPath(const std::string& path)
+	{
+		std::filesystem::path filePath(path);
+		return filePath.filename().string();
+	}
+
+	std::string PointCloudLoader::getParentPath(const std::string& path)
+	{
+		std::filesystem::path fullPath(path);
+		return fullPath.parent_path().string();
+	}
+
+	PLYData PointCloudLoader::getPLYDataFromPoints(std::vector<Point>& points)
 	{
 		PLYData plyOut;
 
@@ -62,7 +108,7 @@ namespace mpc
 
 		for (int i = 0; i < points.size(); i++)
 		{
-			vec3 pos   = points[i].get_position();
+			vec3 pos = points[i].get_position();
 			vec3 color = points[i].get_color();
 			color *= 255.f;
 
@@ -85,33 +131,7 @@ namespace mpc
 		plyOut.getElement("vertex").addProperty<unsigned char>("green", vertexColorY);
 		plyOut.getElement("vertex").addProperty<unsigned char>("blue", vertexColorZ);
 
-		// Full path
-		std::string destinationName = getCopyName(path);
-
-		// Create new file
-		std::ofstream destinationFile(destinationName, std::ios::binary);
-		if (!destinationFile)
-		{
-			std::cout << "Failed to create " << destinationName << std::endl;
-			return false;
-		}
-
-		plyOut.write(destinationFile, DataFormat::Binary);
-		
-		std::cout << destinationName << " copied successfully!" << std::endl;
-		return true;
-	}
-
-	std::string PointCloudLoader::getFilenameFromPath(const std::string& path)
-	{
-		std::filesystem::path filePath(path);
-		return filePath.filename().string();
-	}
-
-	std::string PointCloudLoader::getParentPath(const std::string& path)
-	{
-		std::filesystem::path fullPath(path);
-		return fullPath.parent_path().string();
+		return plyOut;
 	}
 
 	std::string PointCloudLoader::getCopyName(const std::string& path)

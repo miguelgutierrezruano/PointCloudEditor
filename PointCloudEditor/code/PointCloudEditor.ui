@@ -230,120 +230,6 @@ QSlider::handle:horizontal {
              </property>
             </spacer>
            </item>
-           <item>
-            <widget class="QLabel" name="rotationx">
-             <property name="sizePolicy">
-              <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
-               <horstretch>0</horstretch>
-               <verstretch>0</verstretch>
-              </sizepolicy>
-             </property>
-             <property name="font">
-              <font>
-               <family>Tahoma</family>
-               <pointsize>10</pointsize>
-              </font>
-             </property>
-             <property name="styleSheet">
-              <string notr="true">color: white;
-font-family: &quot;Tahoma&quot;</string>
-             </property>
-             <property name="text">
-              <string>Rotation X</string>
-             </property>
-            </widget>
-           </item>
-           <item>
-            <widget class="QSlider" name="rotationXSlider">
-             <property name="styleSheet">
-              <string notr="true">QSlider::handle:horizontal {
-    background-color: #333333;
-}</string>
-             </property>
-             <property name="maximum">
-              <number>360</number>
-             </property>
-             <property name="orientation">
-              <enum>Qt::Horizontal</enum>
-             </property>
-            </widget>
-           </item>
-           <item>
-            <widget class="QLabel" name="rotationy">
-             <property name="sizePolicy">
-              <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
-               <horstretch>0</horstretch>
-               <verstretch>0</verstretch>
-              </sizepolicy>
-             </property>
-             <property name="font">
-              <font>
-               <family>Tahoma</family>
-               <pointsize>10</pointsize>
-              </font>
-             </property>
-             <property name="styleSheet">
-              <string notr="true">color: white;
-font-family: &quot;Tahoma&quot;</string>
-             </property>
-             <property name="text">
-              <string>Rotation Y</string>
-             </property>
-            </widget>
-           </item>
-           <item>
-            <widget class="QSlider" name="rotationYSlider">
-             <property name="styleSheet">
-              <string notr="true">QSlider::handle:horizontal {
-    background-color: #333333;
-}</string>
-             </property>
-             <property name="maximum">
-              <number>360</number>
-             </property>
-             <property name="orientation">
-              <enum>Qt::Horizontal</enum>
-             </property>
-            </widget>
-           </item>
-           <item>
-            <widget class="QLabel" name="rotationz">
-             <property name="sizePolicy">
-              <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
-               <horstretch>0</horstretch>
-               <verstretch>0</verstretch>
-              </sizepolicy>
-             </property>
-             <property name="font">
-              <font>
-               <family>Tahoma</family>
-               <pointsize>10</pointsize>
-              </font>
-             </property>
-             <property name="styleSheet">
-              <string notr="true">color: white;
-font-family: &quot;Tahoma&quot;</string>
-             </property>
-             <property name="text">
-              <string>Rotation Z</string>
-             </property>
-            </widget>
-           </item>
-           <item>
-            <widget class="QSlider" name="rotationZSlider">
-             <property name="styleSheet">
-              <string notr="true">QSlider::handle:horizontal {
-    background-color: #333333;
-}</string>
-             </property>
-             <property name="maximum">
-              <number>360</number>
-             </property>
-             <property name="orientation">
-              <enum>Qt::Horizontal</enum>
-             </property>
-            </widget>
-           </item>
           </layout>
          </item>
          <item>
@@ -476,8 +362,8 @@ background-color: rgb(51, 51, 51)</string>
     <property name="title">
      <string>File</string>
     </property>
-    <addaction name="actionLoad"/>
     <addaction name="actionSave"/>
+    <addaction name="actionSaveCopy"/>
     <addaction name="separator"/>
     <addaction name="actionExit"/>
    </widget>
@@ -504,7 +390,7 @@ background-color: rgb(51, 51, 51)</string>
     <string>Load</string>
    </property>
   </action>
-  <action name="actionSave">
+  <action name="actionSaveCopy">
    <property name="text">
     <string>Save copy</string>
    </property>
@@ -538,6 +424,11 @@ background-color: rgb(51, 51, 51)</string>
   <action name="actionRotate_Z_90">
    <property name="text">
     <string>Rotate Z 90º</string>
+   </property>
+  </action>
+  <action name="actionSave">
+   <property name="text">
+    <string>Save</string>
    </property>
   </action>
  </widget>

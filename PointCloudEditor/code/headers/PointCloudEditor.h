@@ -45,7 +45,8 @@ public slots:
     void rotationXSliderChanged(int newValue);
     void rotationYSliderChanged(int newValue);
 
-    void saveAs();
+    void save();
+    void saveCopy();
 
 private:
 

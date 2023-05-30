@@ -27,10 +27,6 @@ namespace mpc
 		float nearPlane;
 		float farPlane;
 
-		float zoomInLimit;
-		float zoomOutLimit;
-		float zoomSpeed;
-
 	public:
 
 		Camera(float fov, float near, float far);
