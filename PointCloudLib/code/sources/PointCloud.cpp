@@ -37,7 +37,7 @@ namespace mpc
 			zCount += pos.z;
 		}
 
-		int size = points.size();
+		int size = (int)points.size();
 		return vec3(xCount / size, yCount / size, zCount / size);
 	}
 

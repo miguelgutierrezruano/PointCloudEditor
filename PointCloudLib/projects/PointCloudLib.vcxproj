@@ -13,7 +13,6 @@
   <ItemGroup>
     <ClInclude Include="..\code\headers\API.h" />
     <ClInclude Include="..\code\headers\Camera.h" />
-    <ClInclude Include="..\code\headers\CameraController.h" />
     <ClInclude Include="..\code\headers\Point.h" />
     <ClInclude Include="..\code\headers\PointCloud.h" />
     <ClInclude Include="..\code\headers\PointCloudLoader.h" />
@@ -22,7 +21,6 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\code\sources\Camera.cpp" />
-    <ClCompile Include="..\code\sources\CameraController.cpp" />
     <ClCompile Include="..\code\sources\PointCloud.cpp" />
     <ClCompile Include="..\code\sources\PointCloudLoader.cpp" />
     <ClCompile Include="..\code\sources\Transform.cpp" />

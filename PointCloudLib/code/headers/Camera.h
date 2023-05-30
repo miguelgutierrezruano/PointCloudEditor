@@ -17,8 +17,6 @@ namespace mpc
 	class API Camera
 	{
 
-		friend class CameraController;
-
 	public:
 
 		Transform transform;
@@ -46,12 +44,6 @@ namespace mpc
 
 		void set_fov(float fov);
 
-	private:
-
-		void move_camera_x_axis(float value, float delta);
-		void move_camera_z_axis(float value, float delta);
-
-		void move_camera(glm::vec2 positionDifference, float delta);
-		void rotate_camera(glm::vec2 positionDifference, float delta);
+		void move_camera(glm::vec2 positionDifference);
 	};
 }

@@ -4,6 +4,7 @@
 // 2023
 
 #include <glm/gtc/matrix_transform.hpp>
+#include <glm/gtx/matrix_decompose.hpp>
 #include <glm/gtx/rotate_vector.hpp>
 
 #include "Transform.h"
@@ -62,5 +63,42 @@ namespace mpc
 		mat4 translationMatrix = glm::translate(identity, position);
 
 		return translationMatrix * rotationMatrix * scalingMatrix;
+	}
+
+	vec3 Transform::get_position_from_matrix(mat4 transformationMatrix)
+	{
+		vec3 scale;
+		quat rotation;
+		vec3 position;
+		vec3 skew;
+		vec4 perspective;
+
+		decompose(transformationMatrix, scale, rotation, position, skew, perspective);
+		return position;
+	}
+
+	vec3 Transform::get_rotation_from_matrix(mat4 transformationMatrix)
+	{
+		vec3 scale;
+		quat rotation;
+		vec3 position;
+		vec3 skew;
+		vec4 perspective;
+
+		decompose(transformationMatrix, scale, rotation, position, skew, perspective);
+
+		return eulerAngles(rotation);
+	}
+
+	vec3 Transform::get_scale_from_matrix(mat4 transformationMatrix)
+	{
+		vec3 scale;
+		quat rotation;
+		vec3 position;
+		vec3 skew;
+		vec4 perspective;
+
+		decompose(transformationMatrix, scale, rotation, position, skew, perspective);
+		return scale;
 	}
 }

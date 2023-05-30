@@ -34,5 +34,9 @@ namespace mpc
 		const vec3 get_up();
 
 		const mat4 get_matrix();
+
+		static vec3 get_position_from_matrix(mat4 transformationMatrix);
+		static vec3 get_rotation_from_matrix(mat4 transformationMatrix);
+		static vec3 get_scale_from_matrix   (mat4 transformationMatrix);
 	};
 }

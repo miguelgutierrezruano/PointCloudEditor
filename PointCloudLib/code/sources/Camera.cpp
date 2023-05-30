@@ -15,13 +15,13 @@ namespace mpc
 		nearPlane = near;
 		farPlane = far;
 
-		movementSpeed = 0;
+		movementSpeed = 0.2f;
 		rotationSpeed = 0;
 	}
 
 	glm::mat4 Camera::get_view_matrix()
 	{
-		return glm::lookAtLH(transform.position, transform.position + transform.get_forward(), transform.get_up());
+		return glm::lookAtLH(transform.position, vec3(0), transform.get_up());
 	}
 
 	glm::mat4 Camera::get_projection_matrix(float aspectRatio)
@@ -32,5 +32,14 @@ namespace mpc
 	void Camera::set_fov(float fov)
 	{
 		fieldOfView = fov;
+	}
+
+	void Camera::move_camera(glm::vec2 positionDifference)
+	{
+		// Update x axis
+		transform.position = transform.position + transform.get_right() * positionDifference.x * movementSpeed;
+
+		// Update y axis
+		transform.position = transform.position + transform.get_up() * positionDifference.y * movementSpeed;
 	}
 }

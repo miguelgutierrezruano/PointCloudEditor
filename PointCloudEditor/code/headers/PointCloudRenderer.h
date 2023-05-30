@@ -42,12 +42,16 @@ public:
 	void render() override;
 
 	void setupPointCloud(std::shared_ptr<PointCloud> newPointCloud);
+
+	// Editor methods
 	void centerPointCloud();
 	void changeFieldOfView (float fov);
 	void changePointSize   (float pointSize);
 	void rotatePointCloudX (float value);
 	void rotatePointCloudY (float value);
 	void rotatePointCloudZ (float value);
+
+	void updateMouseMovement(vec2 positionDiff);
 
 	const std::shared_ptr<PointCloud> const getPointCloud()
 	{

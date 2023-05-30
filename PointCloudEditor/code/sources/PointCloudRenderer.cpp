@@ -10,7 +10,7 @@
 #include "PointCloudRenderer.h"
 
 PointCloudRenderer::PointCloudRenderer() :
-    view(nullptr), camera(45, 1.f, 150.f)
+    view(nullptr), camera(45, 1.f, 400.f)
 {
     widgetWidth  = 1920;
     widgetHeight = 1080;
@@ -44,11 +44,11 @@ void PointCloudRenderer::initialize()
 
     shader = std::make_shared<Shader>("../code/shaders/PointCloudShader.shader");
 
-    //pointCloud = std::make_shared<PointCloud>("../resources/pyramid.ply");
+    pointCloud = std::make_shared<PointCloud>("../resources/pyramid.ply");
     //pointCloud = std::make_shared<PointCloud>("../resources/pyramid-copy.ply");
     //pointCloud = std::make_shared<PointCloud>("../resources/boat.ply");
     //pointCloud = std::make_shared<PointCloud>("../resources/boat-copy.ply");
-    pointCloud = std::make_shared<PointCloud>("../resources/raptor.ply");
+    //pointCloud = std::make_shared<PointCloud>("../resources/raptor.ply");
     setupPointCloud(pointCloud);
 
     camera.transform.position = vec3(0, 0, -20);
@@ -126,6 +126,17 @@ void PointCloudRenderer::rotatePointCloudZ(float value)
 {
     if (pointCloud != nullptr)
         pointCloud->transform.rotation.z = value;
+}
+
+void PointCloudRenderer::updateMouseMovement(vec2 positionDiff)
+{
+    camera.move_camera(positionDiff);
+
+    std::cout << camera.transform.position.z << std::endl;
+
+    mat4 view = camera.get_view_matrix();
+    shader->bind();
+    shader->setUniformMat4f("view", view);
 }
 
 void PointCloudRenderer::updateBuffersCenter(vec3 center)

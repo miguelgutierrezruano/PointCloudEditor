@@ -5,9 +5,14 @@
 
 #pragma once
 
+#include <iostream>
+
+#include <qevent.h>
+
 #include <glad/glad.h>
 #include <qopenglwidget.h>
-#include "Renderer.hpp"
+
+#include "PointCloudRenderer.h"
 
 using namespace gli;
 
@@ -15,12 +20,13 @@ class OpenGLWidget : public QOpenGLWidget
 {
 private:
 
-    Renderer& renderer;
+    PointCloudRenderer& renderer;
+    vec2 mouseLastPosition;
 
 public:
 
     // OpenGL Context Creation
-    OpenGLWidget(QWidget* parent, Renderer& renderer);
+    OpenGLWidget(QWidget* parent, PointCloudRenderer& renderer);
 
     // Method used by Qt before doing any resizeGL or paintGL
     void initializeGL() override
@@ -40,4 +46,11 @@ public:
         renderer.resize(width, height);
     }
 
+protected:
+
+    // For rotation movement
+    void keyPressEvent(QKeyEvent* event) override;
+
+    // For left and middle clicks
+    void mouseMoveEvent(QMouseEvent* event) override;
 };
