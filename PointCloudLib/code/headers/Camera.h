@@ -29,6 +29,7 @@ namespace mpc
 
 		float movementSpeed;
 		float rotationSpeed;
+		float zoomSpeed;
 
 	public:
 
@@ -43,6 +44,8 @@ namespace mpc
 		glm::mat4 get_projection_matrix(float aspectRatio);
 
 		void set_fov(float fov);
+
+		void zoom(int value);
 
 		void move_camera  (glm::vec2 positionDifference);
 		void rotate_camera(glm::vec2 positionDifference);

@@ -48,6 +48,6 @@ public:
 
 protected:
 
-    // For left and middle clicks
     void mouseMoveEvent(QMouseEvent* event) override;
+    void wheelEvent    (QWheelEvent* event) override;
 };

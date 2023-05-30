@@ -131,19 +131,19 @@ void PointCloudRenderer::rotatePointCloudZ(float value)
 void PointCloudRenderer::updateMouseMovement(vec2 positionDiff)
 {
     camera.move_camera(positionDiff);
-
-    mat4 view = camera.get_view_matrix();
-    shader->bind();
-    shader->setUniformMat4f("view", view);
+    updateViewMatrix();
 }
 
 void PointCloudRenderer::updateMouseRotation(vec2 positionDiff)
 {
     camera.rotate_camera(positionDiff);
+    updateViewMatrix();
+}
 
-    mat4 view = camera.get_view_matrix();
-    shader->bind();
-    shader->setUniformMat4f("view", view);
+void PointCloudRenderer::zoom(int value)
+{
+    camera.zoom(value);
+    updateViewMatrix();
 }
 
 void PointCloudRenderer::updateBuffersCenter(vec3 center)
@@ -158,4 +158,11 @@ void PointCloudRenderer::updateBuffersCenter(vec3 center)
 
     // Update GPU buffer
     view->updateGPUBuffer();
+}
+
+void PointCloudRenderer::updateViewMatrix()
+{
+    mat4 view = camera.get_view_matrix();
+    shader->bind();
+    shader->setUniformMat4f("view", view);
 }

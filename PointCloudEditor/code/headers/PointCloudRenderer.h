@@ -54,6 +54,7 @@ public:
 	// Widget methods
 	void updateMouseMovement(vec2 positionDiff);
 	void updateMouseRotation(vec2 positionDiff);
+	void zoom(int value);
 
 	const std::shared_ptr<PointCloud> const getPointCloud()
 	{
@@ -63,4 +64,5 @@ public:
 private:
 
 	void updateBuffersCenter(vec3 center);
+	void updateViewMatrix();
 };

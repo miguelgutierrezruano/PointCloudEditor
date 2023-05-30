@@ -17,6 +17,7 @@ namespace mpc
 
 		movementSpeed = 0.2f;
 		rotationSpeed = 0.2f;
+		zoomSpeed = 10.f;
 	}
 
 	glm::mat4 Camera::get_view_matrix()
@@ -32,6 +33,11 @@ namespace mpc
 	void Camera::set_fov(float fov)
 	{
 		fieldOfView = fov;
+	}
+
+	void Camera::zoom(int value)
+	{
+		transform.position = transform.position + transform.get_forward() * zoomSpeed * (float)value;
 	}
 
 	void Camera::move_camera(glm::vec2 positionDifference)

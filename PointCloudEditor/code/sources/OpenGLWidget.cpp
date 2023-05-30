@@ -19,7 +19,6 @@ OpenGLWidget::OpenGLWidget(QWidget* parent, PointCloudRenderer& renderer) :
     setFormat(format);
 
     setMouseTracking(true);
-    setFocusPolicy(Qt::FocusPolicy::ClickFocus);
 }
 
 void OpenGLWidget::mouseMoveEvent(QMouseEvent* event)
@@ -38,6 +37,14 @@ void OpenGLWidget::mouseMoveEvent(QMouseEvent* event)
     // Update camera rotation
     else if (event->buttons() & Qt::RightButton)
         renderer.updateMouseRotation(positionDifference);
+
+    update();
+}
+
+void OpenGLWidget::wheelEvent(QWheelEvent* event)
+{
+    int zoomValue = event->angleDelta().y() > 0 ? 1 : -1;
+    renderer.zoom(zoomValue);
 
     update();
 }
