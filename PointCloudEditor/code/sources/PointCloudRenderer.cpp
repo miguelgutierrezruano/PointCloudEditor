@@ -10,10 +10,20 @@
 #include "PointCloudRenderer.h"
 
 PointCloudRenderer::PointCloudRenderer() :
-    view(nullptr), camera(45, 1.f, 400.f)
+    view(nullptr), camera(45, 1.f, 150.f)
 {
     widgetWidth  = 1920;
     widgetHeight = 1080;
+
+    cameraRadius = 20.f;
+    cameraAngle = 0;
+
+    cameraMovementSpeed = 0.5f;
+    modelRotationSpeed = 0.6f;
+    zoomSpeed = 0.3f;
+
+    cameraAngleLimits = vec2(  85,  -85);
+    zoomLimits        = vec2(0.5f, 70.f);
 }
 
 PointCloudRenderer::~PointCloudRenderer()
@@ -44,9 +54,9 @@ void PointCloudRenderer::initialize()
 
     shader = std::make_shared<Shader>("../code/shaders/PointCloudShader.shader");
 
-    pointCloud = std::make_shared<PointCloud>("../resources/pyramid.ply");
+    //pointCloud = std::make_shared<PointCloud>("../resources/pyramid.ply");
     //pointCloud = std::make_shared<PointCloud>("../resources/pyramid-copy.ply");
-    //pointCloud = std::make_shared<PointCloud>("../resources/boat.ply");
+    pointCloud = std::make_shared<PointCloud>("../resources/boat.ply");
     //pointCloud = std::make_shared<PointCloud>("../resources/boat-copy.ply");
     //pointCloud = std::make_shared<PointCloud>("../resources/raptor.ply");
     setupPointCloud(pointCloud);
@@ -110,40 +120,38 @@ void PointCloudRenderer::changePointSize(float pointSize)
         view->setPointSize(pointSize);
 }
 
-void PointCloudRenderer::rotatePointCloudX(float value)
+void PointCloudRenderer::rotateCamera(float value)
 {
-    if (pointCloud != nullptr)
-        pointCloud->transform.rotation.x = value;
+    cameraAngle += value * cameraMovementSpeed;
+    //cameraAngle = 90;
+
+    if (cameraAngle > cameraAngleLimits.x)
+        cameraAngle = cameraAngleLimits.x;
+    else if (cameraAngle < cameraAngleLimits.y)
+        cameraAngle = cameraAngleLimits.y;
+
+    float y = cameraRadius * sin(radians(cameraAngle));
+    float z = cameraRadius * cos(radians(cameraAngle));
+
+    camera.transform.position = vec3(0, y, -z);
+    updateViewMatrix();
 }
 
 void PointCloudRenderer::rotatePointCloudY(float value)
 {
-    if (pointCloud != nullptr)
-        pointCloud->transform.rotation.y = value;
-}
-
-void PointCloudRenderer::rotatePointCloudZ(float value)
-{
-    if (pointCloud != nullptr)
-        pointCloud->transform.rotation.z = value;
-}
-
-void PointCloudRenderer::updateMouseMovement(vec2 positionDiff)
-{
-    camera.move_camera(positionDiff);
-    updateViewMatrix();
-}
-
-void PointCloudRenderer::updateMouseRotation(vec2 positionDiff)
-{
-    camera.rotate_camera(positionDiff);
-    updateViewMatrix();
+    pointCloud->transform.rotation.y -= value * modelRotationSpeed;
 }
 
 void PointCloudRenderer::zoom(int value)
 {
-    camera.zoom(value);
-    updateViewMatrix();
+    cameraRadius -= value * zoomSpeed;
+
+    if (cameraRadius < zoomLimits.x)
+        cameraRadius = zoomLimits.x;
+    else if (cameraRadius > zoomLimits.y)
+        cameraRadius = zoomLimits.y;
+
+    rotateCamera(0);
 }
 
 void PointCloudRenderer::updateBuffersCenter(vec3 center)

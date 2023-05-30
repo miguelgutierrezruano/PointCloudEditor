@@ -44,7 +44,6 @@ public slots:
     void pointSizeSliderChanged(int newValue);
     void rotationXSliderChanged(int newValue);
     void rotationYSliderChanged(int newValue);
-    void rotationZSliderChanged(int newValue);
 
     void saveAs();
 

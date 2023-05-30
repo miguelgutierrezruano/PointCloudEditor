@@ -7,7 +7,7 @@
 OpenGLWidget::OpenGLWidget(QWidget* parent, PointCloudRenderer& renderer) :
     QOpenGLWidget    (parent  ),
     renderer         (renderer),
-    mouseLastPosition(0)
+    mouseLastPosition(0       )
 {
     // OpenGL Context initialization
     QSurfaceFormat format;
@@ -30,13 +30,10 @@ void OpenGLWidget::mouseMoveEvent(QMouseEvent* event)
     
     // Update camera movement
     if (event->buttons() & Qt::LeftButton)
-        renderer.updateMouseMovement(positionDifference);
-    // Update camera movement
-    else if (event->buttons() & Qt::MiddleButton)
-        renderer.updateMouseMovement(positionDifference);
-    // Update camera rotation
-    else if (event->buttons() & Qt::RightButton)
-        renderer.updateMouseRotation(positionDifference);
+    {
+        renderer.rotatePointCloudY(positionDifference.x);
+        renderer.rotateCamera(positionDifference.y);
+    }
 
     update();
 }

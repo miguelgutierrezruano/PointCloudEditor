@@ -20,9 +20,6 @@ PointCloudEditor::PointCloudEditor(QWidget *parent)
 
 	connect(fovSlider, &QSlider::valueChanged, this, &PointCloudEditor::fovSliderChanged);
 	connect(pointSizeSlider, &QSlider::valueChanged, this, &PointCloudEditor::pointSizeSliderChanged);
-	connect(rotationXSlider, &QSlider::valueChanged, this, &PointCloudEditor::rotationXSliderChanged);
-	connect(rotationYSlider, &QSlider::valueChanged, this, &PointCloudEditor::rotationYSliderChanged);
-	connect(rotationZSlider, &QSlider::valueChanged, this, &PointCloudEditor::rotationZSliderChanged);
 }
 
 PointCloudEditor::~PointCloudEditor()
@@ -57,19 +54,13 @@ void PointCloudEditor::pointSizeSliderChanged(int newValue)
 
 void PointCloudEditor::rotationXSliderChanged(int newValue)
 {
-	renderer.rotatePointCloudX((float)newValue);
+	renderer.rotateCamera((float)newValue);
 	openglWidget->update();
 }
 
 void PointCloudEditor::rotationYSliderChanged(int newValue)
 {
 	renderer.rotatePointCloudY((float)newValue);
-	openglWidget->update();
-}
-
-void PointCloudEditor::rotationZSliderChanged(int newValue)
-{
-	renderer.rotatePointCloudZ((float)newValue);
 	openglWidget->update();
 }
 

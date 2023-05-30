@@ -30,6 +30,16 @@ private:
 	Camera camera;
 	PointCloudView* view;
 
+	float cameraRadius;
+	float cameraAngle;
+
+	float zoomSpeed;
+	float cameraMovementSpeed;
+	float modelRotationSpeed;
+
+	vec2 cameraAngleLimits;
+	vec2 zoomLimits;
+
 public:
 
 	PointCloudRenderer();
@@ -47,14 +57,11 @@ public:
 	void centerPointCloud();
 	void changeFieldOfView (float fov);
 	void changePointSize   (float pointSize);
-	void rotatePointCloudX (float value);
-	void rotatePointCloudY (float value);
-	void rotatePointCloudZ (float value);
 
 	// Widget methods
-	void updateMouseMovement(vec2 positionDiff);
-	void updateMouseRotation(vec2 positionDiff);
 	void zoom(int value);
+	void rotateCamera     (float value);
+	void rotatePointCloudY(float value);
 
 	const std::shared_ptr<PointCloud> const getPointCloud()
 	{
