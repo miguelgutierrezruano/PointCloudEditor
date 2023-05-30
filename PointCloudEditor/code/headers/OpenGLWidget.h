@@ -48,9 +48,6 @@ public:
 
 protected:
 
-    // For rotation movement
-    void keyPressEvent(QKeyEvent* event) override;
-
     // For left and middle clicks
     void mouseMoveEvent(QMouseEvent* event) override;
 };

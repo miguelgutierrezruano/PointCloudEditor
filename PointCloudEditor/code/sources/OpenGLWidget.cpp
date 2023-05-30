@@ -22,11 +22,6 @@ OpenGLWidget::OpenGLWidget(QWidget* parent, PointCloudRenderer& renderer) :
     setFocusPolicy(Qt::FocusPolicy::ClickFocus);
 }
 
-void OpenGLWidget::keyPressEvent(QKeyEvent* event)
-{
-
-}
-
 void OpenGLWidget::mouseMoveEvent(QMouseEvent* event)
 {
     vec2 currentMousePosition = vec2(event->x(), event->y());
@@ -34,11 +29,15 @@ void OpenGLWidget::mouseMoveEvent(QMouseEvent* event)
 
     mouseLastPosition = currentMousePosition;
     
-    // Update camera if left or middle buttons are pressed
+    // Update camera movement
     if (event->buttons() & Qt::LeftButton)
         renderer.updateMouseMovement(positionDifference);
+    // Update camera movement
     else if (event->buttons() & Qt::MiddleButton)
         renderer.updateMouseMovement(positionDifference);
+    // Update camera rotation
+    else if (event->buttons() & Qt::RightButton)
+        renderer.updateMouseRotation(positionDifference);
 
     update();
 }

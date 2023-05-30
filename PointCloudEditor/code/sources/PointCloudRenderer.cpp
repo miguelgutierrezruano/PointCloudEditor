@@ -132,7 +132,14 @@ void PointCloudRenderer::updateMouseMovement(vec2 positionDiff)
 {
     camera.move_camera(positionDiff);
 
-    std::cout << camera.transform.position.z << std::endl;
+    mat4 view = camera.get_view_matrix();
+    shader->bind();
+    shader->setUniformMat4f("view", view);
+}
+
+void PointCloudRenderer::updateMouseRotation(vec2 positionDiff)
+{
+    camera.rotate_camera(positionDiff);
 
     mat4 view = camera.get_view_matrix();
     shader->bind();

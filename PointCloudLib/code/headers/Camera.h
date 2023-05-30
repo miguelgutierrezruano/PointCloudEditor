@@ -44,6 +44,7 @@ namespace mpc
 
 		void set_fov(float fov);
 
-		void move_camera(glm::vec2 positionDifference);
+		void move_camera  (glm::vec2 positionDifference);
+		void rotate_camera(glm::vec2 positionDifference);
 	};
 }

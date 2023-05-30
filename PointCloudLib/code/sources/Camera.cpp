@@ -16,12 +16,12 @@ namespace mpc
 		farPlane = far;
 
 		movementSpeed = 0.2f;
-		rotationSpeed = 0;
+		rotationSpeed = 0.2f;
 	}
 
 	glm::mat4 Camera::get_view_matrix()
 	{
-		return glm::lookAtLH(transform.position, vec3(0), transform.get_up());
+		return glm::lookAtLH(transform.position, transform.position + transform.get_forward(), transform.get_up());
 	}
 
 	glm::mat4 Camera::get_projection_matrix(float aspectRatio)
@@ -41,5 +41,24 @@ namespace mpc
 
 		// Update y axis
 		transform.position = transform.position + transform.get_up() * positionDifference.y * movementSpeed;
+	}
+
+	void Camera::rotate_camera(glm::vec2 positionDifference)
+	{
+		// Update x axis
+		transform.rotation = vec3
+		(
+			transform.rotation.x + positionDifference.y * rotationSpeed,
+			transform.rotation.y,
+			transform.rotation.z
+		);
+
+		// Update y axis
+		transform.rotation = vec3
+		(
+			transform.rotation.x,
+			transform.rotation.y + positionDifference.x * rotationSpeed,
+			transform.rotation.z
+		);
 	}
 }

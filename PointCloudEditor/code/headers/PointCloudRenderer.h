@@ -51,7 +51,9 @@ public:
 	void rotatePointCloudY (float value);
 	void rotatePointCloudZ (float value);
 
+	// Widget methods
 	void updateMouseMovement(vec2 positionDiff);
+	void updateMouseRotation(vec2 positionDiff);
 
 	const std::shared_ptr<PointCloud> const getPointCloud()
 	{
