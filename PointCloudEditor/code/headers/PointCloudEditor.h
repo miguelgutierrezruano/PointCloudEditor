@@ -44,7 +44,10 @@ public slots:
     void pointSizeSliderChanged(int newValue);
     void resetView();
 
+    // Tools
     void center();
+    void scale2();
+    void scaleHalf();
 
     void save();
     void saveCopy();

@@ -55,6 +55,8 @@ namespace mpc
 		destinationFile.clear();
 
 		plyOut.write(destinationFile, DataFormat::Binary);
+
+		std::cout << path << " saved successfully!" << std::endl;
 		destinationFile.close();
 	}
 

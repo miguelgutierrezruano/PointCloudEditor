@@ -310,41 +310,52 @@ background-color: rgb(51, 51, 51)</string>
               <enum>QLayout::SetDefaultConstraint</enum>
              </property>
              <item>
-              <widget class="QDoubleSpinBox" name="scaleSpinBox">
-               <property name="focusPolicy">
-                <enum>Qt::WheelFocus</enum>
+              <widget class="QPushButton" name="scalex05">
+               <property name="sizePolicy">
+                <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+                 <horstretch>0</horstretch>
+                 <verstretch>0</verstretch>
+                </sizepolicy>
                </property>
-               <property name="styleSheet">
-                <string notr="true">color: white;
-font-family: &quot;Tahoma&quot;;
-background-color: rgb(51, 51, 51)</string>
-               </property>
-               <property name="alignment">
-                <set>Qt::AlignCenter</set>
-               </property>
-               <property name="buttonSymbols">
-                <enum>QAbstractSpinBox::NoButtons</enum>
-               </property>
-               <property name="minimum">
-                <double>0.010000000000000</double>
-               </property>
-               <property name="maximum">
-                <double>10.000000000000000</double>
-               </property>
-               <property name="value">
-                <double>5.000000000000000</double>
-               </property>
-              </widget>
-             </item>
-             <item>
-              <widget class="QPushButton" name="scaleButton">
                <property name="styleSheet">
                 <string notr="true">color: white;
 font-family: &quot;Tahoma&quot;;
 background-color: rgb(51, 51, 51)</string>
                </property>
                <property name="text">
+                <string>x0.5</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QLabel" name="label_2">
+               <property name="sizePolicy">
+                <sizepolicy hsizetype="Expanding" vsizetype="Preferred">
+                 <horstretch>0</horstretch>
+                 <verstretch>0</verstretch>
+                </sizepolicy>
+               </property>
+               <property name="styleSheet">
+                <string notr="true">color: white;
+font-family: &quot;Tahoma&quot;</string>
+               </property>
+               <property name="text">
                 <string>Scale</string>
+               </property>
+               <property name="alignment">
+                <set>Qt::AlignCenter</set>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QPushButton" name="scalex2">
+               <property name="styleSheet">
+                <string notr="true">color: white;
+font-family: &quot;Tahoma&quot;;
+background-color: rgb(51, 51, 51)</string>
+               </property>
+               <property name="text">
+                <string>x2</string>
                </property>
               </widget>
              </item>
@@ -504,9 +515,7 @@ background-color: rgb(51, 51, 51)</string>
      <string>Edit</string>
     </property>
     <addaction name="actionCenter"/>
-    <addaction name="actionRotate_X_90"/>
-    <addaction name="actionRotate_90"/>
-    <addaction name="actionRotate_Z_90"/>
+    <addaction name="actionResetView"/>
    </widget>
    <widget class="QMenu" name="menuHelp">
     <property name="title">
@@ -548,9 +557,9 @@ background-color: rgb(51, 51, 51)</string>
     <string>Rotate Y 90º</string>
    </property>
   </action>
-  <action name="actionRotate_X_90">
+  <action name="actionResetView">
    <property name="text">
-    <string>Rotate X 90º</string>
+    <string>Reset View</string>
    </property>
   </action>
   <action name="actionRotate_Z_90">

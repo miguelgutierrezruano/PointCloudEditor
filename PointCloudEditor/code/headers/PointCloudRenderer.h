@@ -55,11 +55,14 @@ public:
 
 	void setupPointCloud(std::shared_ptr<PointCloud> newPointCloud);
 
-	// Editor methods
+	// View methods
 	void resetView();
-	void centerPointCloud();
 	void changeFieldOfView (float fov);
 	void changePointSize   (float pointSize);
+
+	// Editor methods
+	void centerPointCloud();
+	void  scalePointCloud(float scale);
 
 	// Widget methods
 	void zoom(int value);
@@ -73,6 +76,6 @@ public:
 
 private:
 
-	void updateBuffersCenter(vec3 center);
+	void updateCPUBufferCenter(vec3 center);
 	void updateViewMatrix();
 };

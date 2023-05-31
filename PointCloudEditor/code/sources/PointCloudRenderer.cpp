@@ -46,7 +46,7 @@ void PointCloudRenderer::initialize()
     glDepthFunc(GL_LESS);
 
     // Enable antialiasing
-    glEnable(GL_MULTISAMPLE);
+    //glEnable(GL_MULTISAMPLE);
 
     // Enable blending
     glEnable(GL_BLEND);
@@ -56,11 +56,11 @@ void PointCloudRenderer::initialize()
 
     shader = std::make_shared<Shader>("../code/shaders/PointCloudShader.shader");
 
-    pointCloud = std::make_shared<PointCloud>("../resources/pyramid.ply");
+    //pointCloud = std::make_shared<PointCloud>("../resources/pyramid.ply");
     //pointCloud = std::make_shared<PointCloud>("../resources/pyramid-copy.ply");
     //pointCloud = std::make_shared<PointCloud>("../resources/boat.ply");
     //pointCloud = std::make_shared<PointCloud>("../resources/boat-copy.ply");
-    //pointCloud = std::make_shared<PointCloud>("../resources/nebula.ply");
+    pointCloud = std::make_shared<PointCloud>("../resources/nebula.ply");
     setupPointCloud(pointCloud);
 
     camera.transform.position = cameraInitialPosition;
@@ -100,11 +100,7 @@ void PointCloudRenderer::setupPointCloud(std::shared_ptr<PointCloud> newPointClo
     view = new PointCloudView(pointCloud);
 }
 
-void PointCloudRenderer::centerPointCloud()
-{
-    if (pointCloud != nullptr)
-        updateBuffersCenter(pointCloud->getCenterBox());
-}
+#pragma region View methods
 
 void PointCloudRenderer::changeFieldOfView(float fov)
 {
@@ -121,6 +117,53 @@ void PointCloudRenderer::changePointSize(float pointSize)
     if (pointCloud != nullptr)
         view->setPointSize(pointSize);
 }
+
+void PointCloudRenderer::resetView()
+{
+    cameraAngle = 0;
+    rotateCamera(0);
+
+    pointCloud->transform.rotation = vec3(0);
+    updateViewMatrix();
+}
+
+#pragma endregion
+
+#pragma region Editor methods
+
+void PointCloudRenderer::centerPointCloud()
+{
+    updateCPUBufferCenter(pointCloud->getCenterBox());
+    view->updateGPUBuffer();
+}
+
+void PointCloudRenderer::scalePointCloud(float scale)
+{
+    vec3 center = pointCloud->getCenterBox();
+
+    // Center point cloud if its not centered
+    if (center != vec3(0))
+        updateCPUBufferCenter(center);
+   
+    // Scale every point from center
+    for (auto& point : pointCloud->getPoints())
+    {
+        vec3 pos = point.get_position();
+        pos *= scale;
+
+        point.set_position(pos);
+    }
+
+    // Return point cloud to original position
+    if (center != vec3(0))
+        updateCPUBufferCenter(-center);
+
+    view->updateGPUBuffer();
+}
+
+#pragma endregion
+
+#pragma region Widget methods
 
 void PointCloudRenderer::rotateCamera(float value)
 {
@@ -155,16 +198,9 @@ void PointCloudRenderer::zoom(int value)
     rotateCamera(0);
 }
 
-void PointCloudRenderer::resetView()
-{
-    cameraAngle = 0;
-    rotateCamera(0);
+#pragma endregion
 
-    pointCloud->transform.rotation = vec3(0);
-    updateViewMatrix();
-}
-
-void PointCloudRenderer::updateBuffersCenter(vec3 center)
+void PointCloudRenderer::updateCPUBufferCenter(vec3 center)
 {
     for (auto& point : pointCloud->getPoints())
     {
@@ -173,9 +209,6 @@ void PointCloudRenderer::updateBuffersCenter(vec3 center)
 
         point.set_position(pos);
     }
-
-    // Update GPU buffer
-    view->updateGPUBuffer();
 }
 
 void PointCloudRenderer::updateViewMatrix()

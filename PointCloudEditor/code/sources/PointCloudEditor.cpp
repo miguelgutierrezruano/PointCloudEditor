@@ -17,8 +17,14 @@ PointCloudEditor::PointCloudEditor(QWidget *parent)
 	connect(     actionExit,    &QAction::triggered, this, &PointCloudEditor::menuExitTriggered     );
 	connect(     actionSave,    &QAction::triggered, this, &PointCloudEditor::save                  );
 	connect( actionSaveCopy,    &QAction::triggered, this, &PointCloudEditor::saveCopy              );
-	connect(   centerButton,  &QPushButton::clicked, this, &PointCloudEditor::center                );
+
+	connect(   actionCenter,    &QAction::triggered, this, &PointCloudEditor::center                );
+	connect(actionResetView,    &QAction::triggered, this, &PointCloudEditor::resetView             );
+	
 	connect(resetViewButton,  &QPushButton::clicked, this, &PointCloudEditor::resetView             );
+	connect(   centerButton,  &QPushButton::clicked, this, &PointCloudEditor::center                );
+	connect(        scalex2,  &QPushButton::clicked, this, &PointCloudEditor::scale2                );
+	connect(       scalex05,  &QPushButton::clicked, this, &PointCloudEditor::scaleHalf             );
 
 	connect(      fovSlider, &QSlider::valueChanged, this, &PointCloudEditor::fovSliderChanged      );
 	connect(pointSizeSlider, &QSlider::valueChanged, this, &PointCloudEditor::pointSizeSliderChanged);
@@ -57,6 +63,18 @@ void PointCloudEditor::resetView()
 void PointCloudEditor::center()
 {
 	renderer.centerPointCloud();
+	openglWidget->update();
+}
+
+void PointCloudEditor::scale2()
+{
+	renderer.scalePointCloud(2.f);
+	openglWidget->update();
+}
+
+void PointCloudEditor::scaleHalf()
+{
+	renderer.scalePointCloud(0.5f);
 	openglWidget->update();
 }
 
