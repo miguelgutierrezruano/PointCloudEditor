@@ -22,11 +22,8 @@ namespace mpc
 {
 	void PointCloudLoader::loadBinaryPLYCloud(const std::string& path, std::vector<Point>& points)
 	{
-		PLYData plyIn(path.c_str());
-
+		PLYData plyIn(path.c_str(), true);
 		plyIn.validate();
-
-		std::cout << "Loading " << path << " please wait..." << std::endl;
 
 		points.resize(plyIn.getElement("vertex").count);
 
@@ -46,6 +43,8 @@ namespace mpc
 
 			points[i] = Point(pos, color);
 		}
+
+		int i = 0;
 	}
 
 	void PointCloudLoader::saveBinaryPLYCloud(const std::string& path, std::vector<Point>& points)

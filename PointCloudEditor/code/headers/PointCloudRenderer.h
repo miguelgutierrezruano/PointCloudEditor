@@ -40,6 +40,8 @@ private:
 	vec2 cameraAngleLimits;
 	vec2 zoomLimits;
 
+	vec3 cameraInitialPosition;
+
 public:
 
 	PointCloudRenderer();
@@ -54,6 +56,7 @@ public:
 	void setupPointCloud(std::shared_ptr<PointCloud> newPointCloud);
 
 	// Editor methods
+	void resetView();
 	void centerPointCloud();
 	void changeFieldOfView (float fov);
 	void changePointSize   (float pointSize);

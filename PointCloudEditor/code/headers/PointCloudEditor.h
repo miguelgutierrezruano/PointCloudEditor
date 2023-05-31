@@ -39,11 +39,12 @@ public slots:
         QApplication::quit();
     }
 
-    void center();
+    // View
     void fovSliderChanged      (int newValue);
     void pointSizeSliderChanged(int newValue);
-    void rotationXSliderChanged(int newValue);
-    void rotationYSliderChanged(int newValue);
+    void resetView();
+
+    void center();
 
     void save();
     void saveCopy();

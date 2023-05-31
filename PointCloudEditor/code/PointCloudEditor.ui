@@ -230,12 +230,24 @@ QSlider::handle:horizontal {
              </property>
             </spacer>
            </item>
+           <item>
+            <widget class="QPushButton" name="resetViewButton">
+             <property name="styleSheet">
+              <string notr="true">color: white;
+font-family: &quot;Tahoma&quot;;
+background-color: rgb(51, 51, 51)</string>
+             </property>
+             <property name="text">
+              <string>Reset</string>
+             </property>
+            </widget>
+           </item>
           </layout>
          </item>
          <item>
           <layout class="QVBoxLayout" name="ToolLayout">
            <property name="spacing">
-            <number>9</number>
+            <number>14</number>
            </property>
            <item>
             <widget class="QLabel" name="toolsLabel">
@@ -293,6 +305,102 @@ background-color: rgb(51, 51, 51)</string>
             </widget>
            </item>
            <item>
+            <layout class="QHBoxLayout" name="horizontalLayout_2">
+             <property name="sizeConstraint">
+              <enum>QLayout::SetDefaultConstraint</enum>
+             </property>
+             <item>
+              <widget class="QDoubleSpinBox" name="scaleSpinBox">
+               <property name="focusPolicy">
+                <enum>Qt::WheelFocus</enum>
+               </property>
+               <property name="styleSheet">
+                <string notr="true">color: white;
+font-family: &quot;Tahoma&quot;;
+background-color: rgb(51, 51, 51)</string>
+               </property>
+               <property name="alignment">
+                <set>Qt::AlignCenter</set>
+               </property>
+               <property name="buttonSymbols">
+                <enum>QAbstractSpinBox::NoButtons</enum>
+               </property>
+               <property name="minimum">
+                <double>0.010000000000000</double>
+               </property>
+               <property name="maximum">
+                <double>10.000000000000000</double>
+               </property>
+               <property name="value">
+                <double>5.000000000000000</double>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QPushButton" name="scaleButton">
+               <property name="styleSheet">
+                <string notr="true">color: white;
+font-family: &quot;Tahoma&quot;;
+background-color: rgb(51, 51, 51)</string>
+               </property>
+               <property name="text">
+                <string>Scale</string>
+               </property>
+              </widget>
+             </item>
+            </layout>
+           </item>
+           <item>
+            <widget class="QLabel" name="label">
+             <property name="sizePolicy">
+              <sizepolicy hsizetype="Preferred" vsizetype="Fixed">
+               <horstretch>0</horstretch>
+               <verstretch>0</verstretch>
+              </sizepolicy>
+             </property>
+             <property name="styleSheet">
+              <string notr="true">color: white;
+font-family: &quot;Tahoma&quot;</string>
+             </property>
+             <property name="text">
+              <string>Rotate Around</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QComboBox" name="axisComboBox">
+             <property name="styleSheet">
+              <string notr="true">color: white;
+font-family: &quot;Tahoma&quot;;
+background-color: rgb(51, 51, 51)</string>
+             </property>
+             <property name="currentIndex">
+              <number>0</number>
+             </property>
+             <property name="maxVisibleItems">
+              <number>3</number>
+             </property>
+             <property name="placeholderText">
+              <string>Angle Axis</string>
+             </property>
+             <item>
+              <property name="text">
+               <string>X Axis</string>
+              </property>
+             </item>
+             <item>
+              <property name="text">
+               <string>Y Axis</string>
+              </property>
+             </item>
+             <item>
+              <property name="text">
+               <string>Z Axis</string>
+              </property>
+             </item>
+            </widget>
+           </item>
+           <item>
             <widget class="QPushButton" name="RotateY">
              <property name="styleSheet">
               <string notr="true">color: white;
@@ -301,6 +409,30 @@ background-color: rgb(51, 51, 51)</string>
              </property>
              <property name="text">
               <string>Rotate 90º</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QPushButton" name="pushButton_2">
+             <property name="styleSheet">
+              <string notr="true">color: white;
+font-family: &quot;Tahoma&quot;;
+background-color: rgb(51, 51, 51)</string>
+             </property>
+             <property name="text">
+              <string>Rotate 180º</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QPushButton" name="pushButton_3">
+             <property name="styleSheet">
+              <string notr="true">color: white;
+font-family: &quot;Tahoma&quot;;
+background-color: rgb(51, 51, 51)</string>
+             </property>
+             <property name="text">
+              <string>Rotate 270º</string>
              </property>
             </widget>
            </item>

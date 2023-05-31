@@ -24,6 +24,8 @@ PointCloudRenderer::PointCloudRenderer() :
 
     cameraAngleLimits = vec2(  85,  -85);
     zoomLimits        = vec2(0.5f, 70.f);
+
+    cameraInitialPosition = vec3(0, 0, -20);
 }
 
 PointCloudRenderer::~PointCloudRenderer()
@@ -54,14 +56,14 @@ void PointCloudRenderer::initialize()
 
     shader = std::make_shared<Shader>("../code/shaders/PointCloudShader.shader");
 
-    //pointCloud = std::make_shared<PointCloud>("../resources/pyramid.ply");
+    pointCloud = std::make_shared<PointCloud>("../resources/pyramid.ply");
     //pointCloud = std::make_shared<PointCloud>("../resources/pyramid-copy.ply");
     //pointCloud = std::make_shared<PointCloud>("../resources/boat.ply");
     //pointCloud = std::make_shared<PointCloud>("../resources/boat-copy.ply");
-    pointCloud = std::make_shared<PointCloud>("../resources/creation.ply");
+    //pointCloud = std::make_shared<PointCloud>("../resources/nebula.ply");
     setupPointCloud(pointCloud);
 
-    camera.transform.position = vec3(0, 0, -20);
+    camera.transform.position = cameraInitialPosition;
 
     mat4 projection = camera.get_projection_matrix((float)widgetWidth / widgetHeight);
     mat4 view = camera.get_view_matrix();
@@ -151,6 +153,15 @@ void PointCloudRenderer::zoom(int value)
         cameraRadius = zoomLimits.y;
 
     rotateCamera(0);
+}
+
+void PointCloudRenderer::resetView()
+{
+    cameraAngle = 0;
+    rotateCamera(0);
+
+    pointCloud->transform.rotation = vec3(0);
+    updateViewMatrix();
 }
 
 void PointCloudRenderer::updateBuffersCenter(vec3 center)
