@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1128</width>
+    <width>1151</width>
     <height>636</height>
    </rect>
   </property>
@@ -412,7 +412,7 @@ background-color: rgb(51, 51, 51)</string>
             </widget>
            </item>
            <item>
-            <widget class="QPushButton" name="RotateY">
+            <widget class="QPushButton" name="rotate90">
              <property name="styleSheet">
               <string notr="true">color: white;
 font-family: &quot;Tahoma&quot;;
@@ -424,7 +424,7 @@ background-color: rgb(51, 51, 51)</string>
             </widget>
            </item>
            <item>
-            <widget class="QPushButton" name="pushButton_2">
+            <widget class="QPushButton" name="rotate180">
              <property name="styleSheet">
               <string notr="true">color: white;
 font-family: &quot;Tahoma&quot;;
@@ -436,7 +436,7 @@ background-color: rgb(51, 51, 51)</string>
             </widget>
            </item>
            <item>
-            <widget class="QPushButton" name="pushButton_3">
+            <widget class="QPushButton" name="rotate270">
              <property name="styleSheet">
               <string notr="true">color: white;
 font-family: &quot;Tahoma&quot;;
@@ -497,7 +497,7 @@ background-color: rgb(51, 51, 51)</string>
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>1128</width>
+     <width>1151</width>
      <height>22</height>
     </rect>
    </property>

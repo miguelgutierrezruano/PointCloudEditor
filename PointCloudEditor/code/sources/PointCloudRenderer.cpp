@@ -6,7 +6,10 @@
 #include <iostream>
 #include <glad/glad.h>
 
+#include <glm/gtx/rotate_vector.hpp>
+
 #include "Point.h"
+#include "PointCloudTransformation.h"
 #include "PointCloudRenderer.h"
 
 PointCloudRenderer::PointCloudRenderer() :
@@ -58,9 +61,9 @@ void PointCloudRenderer::initialize()
 
     //pointCloud = std::make_shared<PointCloud>("../resources/pyramid.ply");
     //pointCloud = std::make_shared<PointCloud>("../resources/pyramid-copy.ply");
-    //pointCloud = std::make_shared<PointCloud>("../resources/boat.ply");
+    pointCloud = std::make_shared<PointCloud>("../resources/boat.ply");
     //pointCloud = std::make_shared<PointCloud>("../resources/boat-copy.ply");
-    pointCloud = std::make_shared<PointCloud>("../resources/nebula.ply");
+    //pointCloud = std::make_shared<PointCloud>("../resources/nebula.ply");
     setupPointCloud(pointCloud);
 
     camera.transform.position = cameraInitialPosition;
@@ -150,6 +153,29 @@ void PointCloudRenderer::scalePointCloud(float scale)
     {
         vec3 pos = point.get_position();
         pos *= scale;
+
+        point.set_position(pos);
+    }
+
+    // Return point cloud to original position
+    if (center != vec3(0))
+        updateCPUBufferCenter(-center);
+
+    view->updateGPUBuffer();
+}
+
+void PointCloudRenderer::rotateAroundX(float value)
+{
+    vec3 center = pointCloud->getCenterBox();
+
+    // Center point cloud if its not centered
+    if (center != vec3(0))
+        updateCPUBufferCenter(center);
+
+    for (auto& point : pointCloud->getPoints())
+    {
+        vec3 pos = point.get_position();
+        pos = rotateX(pos, radians(value));
 
         point.set_position(pos);
     }

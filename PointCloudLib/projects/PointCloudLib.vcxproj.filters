@@ -39,6 +39,9 @@
     <ClInclude Include="..\libraries\happly\happly.h">
       <Filter>headers\other</Filter>
     </ClInclude>
+    <ClInclude Include="..\code\headers\PointCloudTransformation.h">
+      <Filter>headers</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\code\sources\Camera.cpp">
@@ -51,6 +54,9 @@
       <Filter>sources</Filter>
     </ClCompile>
     <ClCompile Include="..\code\sources\Transform.cpp">
+      <Filter>sources</Filter>
+    </ClCompile>
+    <ClCompile Include="..\code\sources\PointCloudTransformation.cpp">
       <Filter>sources</Filter>
     </ClCompile>
   </ItemGroup>

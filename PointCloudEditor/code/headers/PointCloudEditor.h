@@ -23,9 +23,15 @@ class PointCloudEditor : public QMainWindow, public Ui::PointCloudEditorClass
 
 private:
 
-    OpenGLWidget* openglWidget;
+    enum RotationAxis
+    {
+        X, Y, Z
+    };
 
+    OpenGLWidget* openglWidget;
     PointCloudRenderer renderer;
+
+    RotationAxis rotationAxis;
 
 public:
 
@@ -48,6 +54,7 @@ public slots:
     void center();
     void scale2();
     void scaleHalf();
+    void rotate(float value);
 
     void save();
     void saveCopy();

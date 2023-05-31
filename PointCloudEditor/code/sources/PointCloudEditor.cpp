@@ -13,6 +13,8 @@ PointCloudEditor::PointCloudEditor(QWidget *parent)
 {
     setupUi(this);
 	setupOpenGLWidget();
+
+	rotationAxis = RotationAxis::X;
 	
 	connect(     actionExit,    &QAction::triggered, this, &PointCloudEditor::menuExitTriggered     );
 	connect(     actionSave,    &QAction::triggered, this, &PointCloudEditor::save                  );
@@ -25,6 +27,10 @@ PointCloudEditor::PointCloudEditor(QWidget *parent)
 	connect(   centerButton,  &QPushButton::clicked, this, &PointCloudEditor::center                );
 	connect(        scalex2,  &QPushButton::clicked, this, &PointCloudEditor::scale2                );
 	connect(       scalex05,  &QPushButton::clicked, this, &PointCloudEditor::scaleHalf             );
+
+	connect( rotate90, &QPushButton::clicked, this, [this]() { rotate( 90); });
+	connect(rotate180, &QPushButton::clicked, this, [this]() { rotate(180); });
+	connect(rotate270, &QPushButton::clicked, this, [this]() { rotate(270); });
 
 	connect(      fovSlider, &QSlider::valueChanged, this, &PointCloudEditor::fovSliderChanged      );
 	connect(pointSizeSlider, &QSlider::valueChanged, this, &PointCloudEditor::pointSizeSliderChanged);
@@ -75,6 +81,13 @@ void PointCloudEditor::scale2()
 void PointCloudEditor::scaleHalf()
 {
 	renderer.scalePointCloud(0.5f);
+	openglWidget->update();
+}
+
+void PointCloudEditor::rotate(float value)
+{
+	std::cout << value << std::endl;
+	renderer.rotateAroundX(value);
 	openglWidget->update();
 }
 

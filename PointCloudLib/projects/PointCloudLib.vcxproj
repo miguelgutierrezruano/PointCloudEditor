@@ -16,6 +16,7 @@
     <ClInclude Include="..\code\headers\Point.h" />
     <ClInclude Include="..\code\headers\PointCloud.h" />
     <ClInclude Include="..\code\headers\PointCloudLoader.h" />
+    <ClInclude Include="..\code\headers\PointCloudTransformation.h" />
     <ClInclude Include="..\code\headers\Transform.h" />
     <ClInclude Include="..\libraries\happly\happly.h" />
   </ItemGroup>
@@ -23,6 +24,7 @@
     <ClCompile Include="..\code\sources\Camera.cpp" />
     <ClCompile Include="..\code\sources\PointCloud.cpp" />
     <ClCompile Include="..\code\sources\PointCloudLoader.cpp" />
+    <ClCompile Include="..\code\sources\PointCloudTransformation.cpp" />
     <ClCompile Include="..\code\sources\Transform.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">

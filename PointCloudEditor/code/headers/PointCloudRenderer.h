@@ -62,7 +62,8 @@ public:
 
 	// Editor methods
 	void centerPointCloud();
-	void  scalePointCloud(float scale);
+	void scalePointCloud(float scale);
+	void rotateAroundX(float value);
 
 	// Widget methods
 	void zoom(int value);
