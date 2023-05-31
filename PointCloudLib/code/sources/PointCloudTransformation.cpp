@@ -15,7 +15,7 @@ namespace mpc
         invertPosition(center, cloud);
 	}
 
-    void PointCloudTransformation::rotateX(float value, PointCloud& cloud)
+    void PointCloudTransformation::rotate(float value, PointCloud& cloud, int axis)
     {
         vec3 center = getCenterBox(cloud);
 
@@ -26,7 +26,21 @@ namespace mpc
         for (auto& point : cloud.points)
         {
             vec3 pos = point.get_position();
-            pos = glm::rotateX(pos, radians(value));
+
+            switch (axis)
+            {
+                case 0:
+                    pos = glm::rotateX(pos, radians(value));
+                    break;
+
+                case 1:
+                    pos = glm::rotateY(pos, radians(value));
+                    break;
+
+                case 2:
+                    pos = glm::rotateZ(pos, radians(value));
+                    break;
+            }
 
             point.set_position(pos);
         }

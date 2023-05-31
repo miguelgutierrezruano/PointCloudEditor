@@ -379,71 +379,69 @@ font-family: &quot;Tahoma&quot;</string>
             </widget>
            </item>
            <item>
-            <widget class="QComboBox" name="axisComboBox">
-             <property name="styleSheet">
-              <string notr="true">color: white;
+            <layout class="QHBoxLayout" name="horizontalLayout_3">
+             <item>
+              <widget class="QComboBox" name="axisComboBox">
+               <property name="styleSheet">
+                <string notr="true">color: white;
 font-family: &quot;Tahoma&quot;;
 background-color: rgb(51, 51, 51)</string>
-             </property>
-             <property name="currentIndex">
-              <number>0</number>
-             </property>
-             <property name="maxVisibleItems">
-              <number>3</number>
-             </property>
-             <property name="placeholderText">
-              <string>Angle Axis</string>
-             </property>
-             <item>
-              <property name="text">
-               <string>X Axis</string>
-              </property>
+               </property>
+               <property name="currentIndex">
+                <number>0</number>
+               </property>
+               <property name="maxVisibleItems">
+                <number>3</number>
+               </property>
+               <property name="placeholderText">
+                <string>Angle Axis</string>
+               </property>
+               <item>
+                <property name="text">
+                 <string>X Axis</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>Y Axis</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>Z Axis</string>
+                </property>
+               </item>
+              </widget>
              </item>
              <item>
-              <property name="text">
-               <string>Y Axis</string>
-              </property>
+              <widget class="QSpinBox" name="rotationSpinBox">
+               <property name="styleSheet">
+                <string notr="true">color: white;
+font-family: &quot;Tahoma&quot;;
+background-color: rgb(51, 51, 51)</string>
+               </property>
+               <property name="alignment">
+                <set>Qt::AlignCenter</set>
+               </property>
+               <property name="buttonSymbols">
+                <enum>QAbstractSpinBox::NoButtons</enum>
+               </property>
+               <property name="maximum">
+                <number>360</number>
+               </property>
+              </widget>
              </item>
-             <item>
-              <property name="text">
-               <string>Z Axis</string>
-              </property>
-             </item>
-            </widget>
+            </layout>
            </item>
            <item>
-            <widget class="QPushButton" name="rotate90">
+            <widget class="QPushButton" name="rotateButton">
              <property name="styleSheet">
               <string notr="true">color: white;
 font-family: &quot;Tahoma&quot;;
 background-color: rgb(51, 51, 51)</string>
              </property>
              <property name="text">
-              <string>Rotate 90º</string>
-             </property>
-            </widget>
-           </item>
-           <item>
-            <widget class="QPushButton" name="rotate180">
-             <property name="styleSheet">
-              <string notr="true">color: white;
-font-family: &quot;Tahoma&quot;;
-background-color: rgb(51, 51, 51)</string>
-             </property>
-             <property name="text">
-              <string>Rotate 180º</string>
-             </property>
-            </widget>
-           </item>
-           <item>
-            <widget class="QPushButton" name="rotate270">
-             <property name="styleSheet">
-              <string notr="true">color: white;
-font-family: &quot;Tahoma&quot;;
-background-color: rgb(51, 51, 51)</string>
-             </property>
-             <property name="text">
-              <string>Rotate 270º</string>
+              <string>Rotate</string>
              </property>
             </widget>
            </item>

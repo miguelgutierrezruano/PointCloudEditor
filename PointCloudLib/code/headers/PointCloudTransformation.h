@@ -23,9 +23,7 @@ namespace mpc
 	public:
 
 		static void center (PointCloud& cloud);
-		static void rotateX(float value, PointCloud& cloud);
-		static void rotateY(float value, std::vector<Point>& points);
-		static void rotateZ(float value, std::vector<Point>& points);
+		static void rotate (float value, PointCloud& cloud, int axis); // 0 x 1 y 2 z
 		static void scale  (float value, PointCloud& cloud);
 
 	private:

@@ -32,6 +32,7 @@ private:
     PointCloudRenderer renderer;
 
     RotationAxis rotationAxis;
+    int rotationValue;
 
 public:
 
@@ -54,7 +55,9 @@ public slots:
     void center();
     void scale2();
     void scaleHalf();
-    void rotate(float value);
+    void rotate();
+    void changeRotationAxis (int index);
+    void changeRotationValue(int value);
 
     void save();
     void saveCopy();

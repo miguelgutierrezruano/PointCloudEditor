@@ -60,8 +60,9 @@ void PointCloudRenderer::initialize()
     //pointCloud = std::make_shared<PointCloud>("../resources/pyramid.ply");
     //pointCloud = std::make_shared<PointCloud>("../resources/pyramid-copy.ply");
     //pointCloud = std::make_shared<PointCloud>("../resources/boat.ply");
-    pointCloud = std::make_shared<PointCloud>("../resources/boat-copy.ply");
+    //pointCloud = std::make_shared<PointCloud>("../resources/boat-copy.ply");
     //pointCloud = std::make_shared<PointCloud>("../resources/nebula.ply");
+    pointCloud = std::make_shared<PointCloud>("../resources/creation.ply");
     setupPointCloud(pointCloud);
 
     camera.transform.position = cameraInitialPosition;
@@ -144,9 +145,9 @@ void PointCloudRenderer::scalePointCloud(float scale)
     view->updateGPUBuffer();
 }
 
-void PointCloudRenderer::rotateAroundX(float value)
+void PointCloudRenderer::rotateAround(float value, int axis)
 {
-    PointCloudTransformation::rotateX(value, *pointCloud);
+    PointCloudTransformation::rotate(value, *pointCloud, axis);
     view->updateGPUBuffer();
 }
 
