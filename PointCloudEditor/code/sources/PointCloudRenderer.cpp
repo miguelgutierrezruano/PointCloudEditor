@@ -6,8 +6,6 @@
 #include <iostream>
 #include <glad/glad.h>
 
-#include <glm/gtx/rotate_vector.hpp>
-
 #include "Point.h"
 #include "PointCloudTransformation.h"
 #include "PointCloudRenderer.h"
@@ -136,54 +134,19 @@ void PointCloudRenderer::resetView()
 
 void PointCloudRenderer::centerPointCloud()
 {
-    updateCPUBufferCenter(pointCloud->getCenterBox());
+    PointCloudTransformation::center(pointCloud->getPoints());
     view->updateGPUBuffer();
 }
 
 void PointCloudRenderer::scalePointCloud(float scale)
 {
-    vec3 center = pointCloud->getCenterBox();
-
-    // Center point cloud if its not centered
-    if (center != vec3(0))
-        updateCPUBufferCenter(center);
-   
-    // Scale every point from center
-    for (auto& point : pointCloud->getPoints())
-    {
-        vec3 pos = point.get_position();
-        pos *= scale;
-
-        point.set_position(pos);
-    }
-
-    // Return point cloud to original position
-    if (center != vec3(0))
-        updateCPUBufferCenter(-center);
-
+    PointCloudTransformation::scale(scale, pointCloud->getPoints());
     view->updateGPUBuffer();
 }
 
 void PointCloudRenderer::rotateAroundX(float value)
 {
-    vec3 center = pointCloud->getCenterBox();
-
-    // Center point cloud if its not centered
-    if (center != vec3(0))
-        updateCPUBufferCenter(center);
-
-    for (auto& point : pointCloud->getPoints())
-    {
-        vec3 pos = point.get_position();
-        pos = rotateX(pos, radians(value));
-
-        point.set_position(pos);
-    }
-
-    // Return point cloud to original position
-    if (center != vec3(0))
-        updateCPUBufferCenter(-center);
-
+    PointCloudTransformation::rotateX(value, pointCloud->getPoints());
     view->updateGPUBuffer();
 }
 

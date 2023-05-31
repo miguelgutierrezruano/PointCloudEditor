@@ -29,7 +29,10 @@ namespace mpc
 
 	private:
 
+		static void invertPosition(vec3 center, std::vector<Point>& points);
+
 		static vec3 getCenterBox (std::vector<Point>& points);
 		static vec3 getCenterMean(std::vector<Point>& points);
+		static void calculateLimit(Point& point, vec2& xLimits, vec2& yLimits, vec2& zLimits);
 	};
 }

@@ -86,7 +86,7 @@ void PointCloudEditor::scaleHalf()
 
 void PointCloudEditor::rotate(float value)
 {
-	std::cout << value << std::endl;
+	// Switch between axis
 	renderer.rotateAroundX(value);
 	openglWidget->update();
 }
