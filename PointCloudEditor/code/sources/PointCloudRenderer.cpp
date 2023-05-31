@@ -59,8 +59,8 @@ void PointCloudRenderer::initialize()
 
     //pointCloud = std::make_shared<PointCloud>("../resources/pyramid.ply");
     //pointCloud = std::make_shared<PointCloud>("../resources/pyramid-copy.ply");
-    pointCloud = std::make_shared<PointCloud>("../resources/boat.ply");
-    //pointCloud = std::make_shared<PointCloud>("../resources/boat-copy.ply");
+    //pointCloud = std::make_shared<PointCloud>("../resources/boat.ply");
+    pointCloud = std::make_shared<PointCloud>("../resources/boat-copy.ply");
     //pointCloud = std::make_shared<PointCloud>("../resources/nebula.ply");
     setupPointCloud(pointCloud);
 
@@ -134,19 +134,19 @@ void PointCloudRenderer::resetView()
 
 void PointCloudRenderer::centerPointCloud()
 {
-    PointCloudTransformation::center(pointCloud->getPoints());
+    PointCloudTransformation::center(*pointCloud);
     view->updateGPUBuffer();
 }
 
 void PointCloudRenderer::scalePointCloud(float scale)
 {
-    PointCloudTransformation::scale(scale, pointCloud->getPoints());
+    PointCloudTransformation::scale(scale, *pointCloud);
     view->updateGPUBuffer();
 }
 
 void PointCloudRenderer::rotateAroundX(float value)
 {
-    PointCloudTransformation::rotateX(value, pointCloud->getPoints());
+    PointCloudTransformation::rotateX(value, *pointCloud);
     view->updateGPUBuffer();
 }
 
@@ -188,17 +188,6 @@ void PointCloudRenderer::zoom(int value)
 }
 
 #pragma endregion
-
-void PointCloudRenderer::updateCPUBufferCenter(vec3 center)
-{
-    for (auto& point : pointCloud->getPoints())
-    {
-        vec3 pos = point.get_position();
-        pos -= center;
-
-        point.set_position(pos);
-    }
-}
 
 void PointCloudRenderer::updateViewMatrix()
 {

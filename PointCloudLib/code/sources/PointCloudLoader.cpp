@@ -20,12 +20,12 @@ using namespace happly;
 
 namespace mpc
 {
-	void PointCloudLoader::loadBinaryPLYCloud(const std::string& path, std::vector<Point>& points)
+	void PointCloudLoader::loadBinaryPLYCloud(const std::string& path, PointCloud& cloud)
 	{
 		PLYData plyIn(path.c_str(), true);
 		plyIn.validate();
 
-		points.resize(plyIn.getElement("vertex").count);
+		cloud.points.resize(plyIn.getElement("vertex").count);
 
 		vector<float> vertexPosX = plyIn.getElement("vertex").getProperty<float>("x");
 		vector<float> vertexPosY = plyIn.getElement("vertex").getProperty<float>("y");
@@ -35,21 +35,21 @@ namespace mpc
 		vector<unsigned char> vertexColorY = plyIn.getElement("vertex").getProperty<unsigned char>("green");
 		vector<unsigned char> vertexColorZ = plyIn.getElement("vertex").getProperty<unsigned char>("blue");
 
-		for (int i = 0; i < points.size(); i++)
+		for (int i = 0; i < cloud.points.size(); i++)
 		{
 			vec3 pos(vertexPosX[i], vertexPosY[i], vertexPosZ[i]);
 			vec3 color(vertexColorX[i], vertexColorY[i], vertexColorZ[i]);
 			color /= 255.f;
 
-			points[i] = Point(pos, color);
+			cloud.points[i] = Point(pos, color);
 		}
 
 		int i = 0;
 	}
 
-	void PointCloudLoader::saveBinaryPLYCloud(const std::string& path, std::vector<Point>& points)
+	void PointCloudLoader::saveBinaryPLYCloud(const std::string& path, PointCloud& cloud)
 	{
-		PLYData plyOut = getPLYDataFromPoints(points);
+		PLYData plyOut = getPLYDataFromPoints(cloud.points);
 
 		std::ofstream destinationFile(path, std::ios::binary);
 		destinationFile.clear();
@@ -60,9 +60,9 @@ namespace mpc
 		destinationFile.close();
 	}
 
-	bool PointCloudLoader::generateBinaryPLYCopy(const std::string& path, std::vector<Point>& points)
+	bool PointCloudLoader::generateBinaryPLYCopy(const std::string& path, PointCloud& cloud)
 	{
-		PLYData plyOut = getPLYDataFromPoints(points);
+		PLYData plyOut = getPLYDataFromPoints(cloud.points);
 
 		// Full path
 		std::string destinationName = getCopyName(path);

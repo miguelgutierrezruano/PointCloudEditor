@@ -18,6 +18,9 @@ namespace mpc
 	class API PointCloud
 	{
 
+		friend class PointCloudTransformation;
+		friend class PointCloudLoader;
+
 	public:
 
 		Transform transform;
@@ -33,8 +36,8 @@ namespace mpc
 
 	public:
 
-		vector<Point>& getPoints() { return points; }
-		std::string&   getPath  () { return   path; }
+		const vector<Point>& getPoints() const { return points; }
+		std::string&         getPath  ()       { return   path; }
 
 	private:
 

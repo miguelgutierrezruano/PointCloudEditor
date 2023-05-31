@@ -5,26 +5,25 @@
 
 #include <glm/gtx/rotate_vector.hpp>
 
-#include "Point.h"
 #include "PointCloudTransformation.h"
 
 namespace mpc
 {
-	void PointCloudTransformation::center(std::vector<Point>& points)
+	void PointCloudTransformation::center(PointCloud& cloud)
 	{
-        vec3 center = getCenterBox(points);
-        invertPosition(center, points);
+        vec3 center = getCenterBox(cloud);
+        invertPosition(center, cloud);
 	}
 
-    void PointCloudTransformation::rotateX(float value, std::vector<Point>& points)
+    void PointCloudTransformation::rotateX(float value, PointCloud& cloud)
     {
-        vec3 center = getCenterBox(points);
+        vec3 center = getCenterBox(cloud);
 
         // Center point cloud if its not centered
         if (center != vec3(0))
-            invertPosition(center, points);
+            invertPosition(center, cloud);
 
-        for (auto& point : points)
+        for (auto& point : cloud.points)
         {
             vec3 pos = point.get_position();
             pos = glm::rotateX(pos, radians(value));
@@ -34,19 +33,19 @@ namespace mpc
 
         // Return point cloud to original position
         if (center != vec3(0))
-            invertPosition(-center, points);
+            invertPosition(-center, cloud);
     }
 
-    void PointCloudTransformation::scale(float value, std::vector<Point>& points)
+    void PointCloudTransformation::scale(float value, PointCloud& cloud)
     {
-        vec3 center = getCenterBox(points);
+        vec3 center = getCenterBox(cloud);
 
         // Center point cloud if its not centered
         if (center != vec3(0))
-            invertPosition(center, points);
+            invertPosition(center, cloud);
 
         // Scale every point from center
-        for (auto& point : points)
+        for (auto& point : cloud.points)
         {
             vec3 pos = point.get_position();
             pos *= value;
@@ -56,12 +55,12 @@ namespace mpc
 
         // Return point cloud to original position
         if (center != vec3(0))
-            invertPosition(-center, points);
+            invertPosition(-center, cloud);
     }
 
-    void PointCloudTransformation::invertPosition(vec3 center, std::vector<Point>& points)
+    void PointCloudTransformation::invertPosition(vec3 center, PointCloud& cloud)
     {
-        for (auto& point : points)
+        for (auto& point : cloud.points)
         {
             vec3 pos = point.get_position();
             pos -= center;
@@ -70,7 +69,7 @@ namespace mpc
         }
     }
 
-    vec3 PointCloudTransformation::getCenterBox(std::vector<Point>& points)
+    vec3 PointCloudTransformation::getCenterBox(PointCloud& cloud)
     {
         // Center of box containing the point cloud
         constexpr float min = std::numeric_limits<float>::min();
@@ -80,7 +79,7 @@ namespace mpc
         vec2 yLimits = vec2(max, min);
         vec2 zLimits = vec2(max, min);
 
-        for (auto point : points)
+        for (auto point : cloud.points)
             calculateLimit(point, xLimits, yLimits, zLimits);
 
         float meanX = (xLimits.x + xLimits.y) / 2;
@@ -90,12 +89,12 @@ namespace mpc
         return vec3(meanX, meanY, meanZ);
     }
 
-    vec3 PointCloudTransformation::getCenterMean(std::vector<Point>& points)
+    vec3 PointCloudTransformation::getCenterMean(PointCloud& cloud)
     {
         // Mean of vertices
         float xCount = 0, yCount = 0, zCount = 0;
 
-        for (auto point : points)
+        for (auto point : cloud.points)
         {
             vec3 pos = point.get_position();
             xCount += pos.x;
@@ -103,7 +102,7 @@ namespace mpc
             zCount += pos.z;
         }
 
-        int size = (int)points.size();
+        int size = (int)cloud.points.size();
         return vec3(xCount / size, yCount / size, zCount / size);
     }
 

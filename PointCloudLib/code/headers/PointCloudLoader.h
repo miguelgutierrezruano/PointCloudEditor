@@ -8,6 +8,7 @@
 #include <vector>
 #include <string>
 
+#include "PointCloud.h"
 #include "API.h"
 
 namespace happly
@@ -24,9 +25,9 @@ namespace mpc
 
 	public:
 
-		static void loadBinaryPLYCloud    (const std::string& path, std::vector<Point>& points);
-		static void saveBinaryPLYCloud    (const std::string& path, std::vector<Point>& points);
-		static bool generateBinaryPLYCopy (const std::string& path, std::vector<Point>& points);
+		static void loadBinaryPLYCloud    (const std::string& path, PointCloud& cloud);
+		static void saveBinaryPLYCloud    (const std::string& path, PointCloud& cloud);
+		static bool generateBinaryPLYCopy (const std::string& path, PointCloud& cloud);
 
 	private:
 

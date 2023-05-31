@@ -96,7 +96,7 @@ void PointCloudEditor::save()
 	PointCloudLoader::saveBinaryPLYCloud
 	(
 		renderer.getPointCloud()->getPath(),
-		renderer.getPointCloud()->getPoints()
+		*renderer.getPointCloud()
 	);
 }
 
@@ -105,6 +105,6 @@ void PointCloudEditor::saveCopy()
 	PointCloudLoader::generateBinaryPLYCopy
 	(
 		renderer.getPointCloud()->getPath(),
-		renderer.getPointCloud()->getPoints()
+		*renderer.getPointCloud()
 	);
 }

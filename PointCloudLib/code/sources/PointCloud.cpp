@@ -21,6 +21,6 @@ namespace mpc
 
 	void PointCloud::loadPointCloud(const char* filePath)
 	{
-		PointCloudLoader::loadBinaryPLYCloud(filePath, points);
+		PointCloudLoader::loadBinaryPLYCloud(filePath, *this);
 	}
 }

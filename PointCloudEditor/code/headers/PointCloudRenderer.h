@@ -77,6 +77,5 @@ public:
 
 private:
 
-	void updateCPUBufferCenter(vec3 center);
 	void updateViewMatrix();
 };
