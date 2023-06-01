@@ -31,6 +31,10 @@ namespace gli
 
 	void VertexBuffer::upload_to_gpu(const void* data, unsigned int size)
 	{
+		// Delete current buffer if there is data
+		if (id != 0)
+			glDeleteBuffers(1, &id);
+
 		glGenBuffers(1, &id);
 		glBindBuffer(GL_ARRAY_BUFFER, id);
 		glBufferData(GL_ARRAY_BUFFER, size, data, GL_STATIC_DRAW);

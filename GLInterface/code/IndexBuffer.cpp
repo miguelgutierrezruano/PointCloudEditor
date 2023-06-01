@@ -31,6 +31,10 @@ namespace gli
 
 	void IndexBuffer::upload_to_gpu(const unsigned int* data, unsigned int bufferCount)
 	{
+		// Delete current buffer if there is data
+		if (id != 0)
+			glDeleteBuffers(1, &id);
+
 		count = bufferCount;
 
 		glGenBuffers(1, &id);

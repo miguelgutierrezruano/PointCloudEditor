@@ -39,6 +39,9 @@ namespace gli
 		}
 	};
 
+	/// <summary>
+	/// Vertex buffer element handler
+	/// </summary>
 	class VertexBufferLayout
 	{
 
@@ -50,6 +53,9 @@ namespace gli
 
 	public:
 
+		/// <summary>
+		/// Create empty VertexBufferLayout, use push template to add elements
+		/// </summary>
 		VertexBufferLayout() : stride(0)
 		{ }
 
@@ -64,7 +70,6 @@ namespace gli
 			assert(false);
 		}
 
-		// Template specializations
 		template<>
 		void push<float>(unsigned int count)
 		{

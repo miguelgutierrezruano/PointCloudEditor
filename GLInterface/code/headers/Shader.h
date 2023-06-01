@@ -17,6 +17,9 @@ namespace gli
 		std::string fragmentSource;
 	};
 
+	/// <summary>
+	/// OpenGL Shader handler
+	/// </summary>
 	class Shader
 	{
 
@@ -29,19 +32,34 @@ namespace gli
 
 	public:
 
+		/// <summary>
+		/// Create and compile a shader on GPU
+		/// </summary>
+		/// <param name="shaderPath">Path of the shader file</param>
 		Shader(const std::string& shaderPath);
 	   ~Shader();
 
 	public:
 
+		/// <summary>
+		/// Bind shader
+		/// </summary>
 		void bind() const;
+
+		/// <summary>
+		/// Unbind shader
+		/// </summary>
 		void unbind() const;
 
-		// Set uniforms
+		// Set int uniform variable
 		void setUniform1i(const std::string& name, int value);
+		// Set float uniform variable
 		void setUniform1f(const std::string& name, float value);
+		// Set vec3 uniform variable
 		void setUniform3f(const std::string& name, glm::vec3 vec);
+		// Set vec4 uniform variable
 		void setUniform4f(const std::string& name, glm::vec4 vec);
+		// Set mat4 uniform variable
 		void setUniformMat4f(const std::string& name, glm::mat4& mat);
 
 	private:
