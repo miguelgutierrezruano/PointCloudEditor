@@ -13,6 +13,9 @@
 
 namespace mpc
 {
+	/// <summary>
+	/// Point definition
+	/// </summary>
 	class API Point
 	{
 		glm::vec3 position;

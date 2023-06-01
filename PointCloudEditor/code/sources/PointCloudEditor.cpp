@@ -17,6 +17,7 @@ PointCloudEditor::PointCloudEditor(QWidget *parent)
 	rotationAxis = RotationAxis::X;
 	rotationValue = 0;
 	
+	// Connect UI elements with their slot
 	connect(     actionExit,    &QAction::triggered, this, &PointCloudEditor::menuExitTriggered     );
 	connect(     actionSave,    &QAction::triggered, this, &PointCloudEditor::save                  );
 	connect( actionSaveCopy,    &QAction::triggered, this, &PointCloudEditor::saveCopy              );
@@ -44,6 +45,7 @@ PointCloudEditor::~PointCloudEditor()
 
 void PointCloudEditor::setupOpenGLWidget()
 {
+	// Add OpenGLWidget to QtApplication 
 	openglWidget = new OpenGLWidget(placeholder, renderer);
 	openglWidget->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
 	placeholder->layout()->addWidget(openglWidget);

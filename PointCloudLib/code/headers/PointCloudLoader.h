@@ -25,8 +25,26 @@ namespace mpc
 
 	public:
 
+		/// <summary>
+		/// Load PLY files as point clouds
+		/// </summary>
+		/// <param name="path">Path to point cloud file</param>
+		/// <param name="cloud">Point cloud where to save loaded data</param>
 		static void loadBinaryPLYCloud    (const std::string& path, PointCloud& cloud);
+
+		/// <summary>
+		/// Save PointCloud in PLY file
+		/// </summary>
+		/// <param name="path">Path to the PLY file</param>
+		/// <param name="cloud">Cloud to save</param>
 		static void saveBinaryPLYCloud    (const std::string& path, PointCloud& cloud);
+
+		/// <summary>
+		/// Generate copy of selected PointCloud
+		/// </summary>
+		/// <param name="path">Path where the current point cloud is</param>
+		/// <param name="cloud">Cloud to save</param>
+		/// <returns></returns>
 		static bool generateBinaryPLYCopy (const std::string& path, PointCloud& cloud);
 
 	private:

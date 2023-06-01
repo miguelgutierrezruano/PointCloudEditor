@@ -18,7 +18,7 @@ namespace mpc
 
 	glm::mat4 Camera::get_view_matrix()
 	{
-		//return glm::lookAtLH(transform.position, transform.position + transform.get_forward(), transform.get_up());
+		// Always look at 0, 0, 0
 		return glm::lookAtLH(transform.position, vec3(0), transform.get_up());
 	}
 

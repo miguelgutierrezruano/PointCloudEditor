@@ -56,9 +56,10 @@ void PointCloudRenderer::initialize()
 
     //pointCloud = std::make_shared<PointCloud>("../resources/pyramid.ply");
     //pointCloud = std::make_shared<PointCloud>("../resources/pyramid-copy.ply");
-    pointCloud = std::make_shared<PointCloud>("../resources/boat.ply");
+    //pointCloud = std::make_shared<PointCloud>("../resources/boat.ply");
     //pointCloud = std::make_shared<PointCloud>("../resources/boat-copy.ply");
-    //pointCloud = std::make_shared<PointCloud>("../resources/nebula.ply");
+    pointCloud = std::make_shared<PointCloud>("../resources/nebula.ply");
+    //pointCloud = std::make_shared<PointCloud>("../resources/nebula-copy.ply");
     //pointCloud = std::make_shared<PointCloud>("../resources/creation.ply");
     setupPointCloud(pointCloud);
 
@@ -74,6 +75,7 @@ void PointCloudRenderer::initialize()
 
 void PointCloudRenderer::resize(int newWidth, int newHeight)
 {
+    // Reset viewport and projection matrix to fit new size
     widgetWidth  =  newWidth;
     widgetHeight = newHeight;
 
@@ -87,6 +89,7 @@ void PointCloudRenderer::resize(int newWidth, int newHeight)
 
 void PointCloudRenderer::render()
 {
+    // Clear and render point cloud
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
     if (view != nullptr)
@@ -161,6 +164,7 @@ void PointCloudRenderer::rotateCamera(float value)
     else if (cameraAngle < cameraAngleLimits.y)
         cameraAngle = cameraAngleLimits.y;
 
+    // Rotate camera around the x Axis
     float y = cameraRadius * sin(radians(cameraAngle));
     float z = cameraRadius * cos(radians(cameraAngle));
 

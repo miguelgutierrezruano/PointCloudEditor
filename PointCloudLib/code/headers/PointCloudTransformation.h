@@ -22,8 +22,25 @@ namespace mpc
 
 	public:
 
+		/// <summary>
+		/// Center point cloud in coordinates system origin
+		/// </summary>
+		/// <param name="cloud">Cloud to center</param>
 		static void center (PointCloud& cloud);
-		static void rotate (float value, PointCloud& cloud, int axis); // 0 x 1 y 2 z
+
+		/// <summary>
+		/// Rotate point cloud around a given axis
+		/// </summary>
+		/// <param name="value">Degrees to rotate</param>
+		/// <param name="cloud">Cloud to rotate</param>
+		/// <param name="axis">Axis to rotate around. 0x, 1y, 2z</param>
+		static void rotate (float value, PointCloud& cloud, int axis);
+
+		/// <summary>
+		/// Scale point cloud
+		/// </summary>
+		/// <param name="value">Scale value</param>
+		/// <param name="cloud">Cloud to scale</param>
 		static void scale  (float value, PointCloud& cloud);
 
 	private:

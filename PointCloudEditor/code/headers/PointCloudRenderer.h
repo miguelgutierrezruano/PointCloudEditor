@@ -49,19 +49,41 @@ public:
 
 public:
 
+	/// <summary>
+	/// Override initialize method called before any OpenGL render
+	/// </summary>
 	void initialize() override;
+
+	/// <summary>
+	/// Override resize method called when QApplication size changes
+	/// </summary>
 	void resize(int newWidth, int newHeight) override;
+
+	/// <summary>
+	/// Render PointCloud in GLContext
+	/// </summary>
 	void render() override;
 
+	// Set up point cloud smart pointer and create view
 	void setupPointCloud(std::shared_ptr<PointCloud> newPointCloud);
 
-	// View methods
+	// View
+
+	// Reset camera to its initial position
 	void resetView();
+
+	// Change field of view
 	void changeFieldOfView (float fov);
+
+	// Change point size of renderer
 	void changePointSize   (float pointSize);
 
 	// Editor methods
+
+	// Center point cloud in coordinates origin and upload data
 	void centerPointCloud();
+
+	// 
 	void scalePointCloud(float scale);
 	void rotateAround(float value, int axis);
 

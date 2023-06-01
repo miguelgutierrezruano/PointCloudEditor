@@ -33,10 +33,17 @@ namespace mpc
 
 	public:
 
-		// Inverse camera transform
+		/// <summary>
+		/// Inverse camera transform
+		/// </summary>
+		/// <returns>View matrix</returns>
 		glm::mat4 get_view_matrix();
 
-		// Get projection matrix given by values
+		/// <summary>
+		/// Projection matrix given camera attributes
+		/// </summary>
+		/// <param name="aspectRatio">Aspect ratio of display</param>
+		/// <returns></returns>
 		glm::mat4 get_projection_matrix(float aspectRatio);
 
 		void set_fov(float fov);

@@ -16,6 +16,9 @@
 
 using namespace gli;
 
+/// <summary>
+/// PointCloudEditor implementation of QOpenGLWidget
+/// </summary>
 class OpenGLWidget : public QOpenGLWidget
 {
 private:
@@ -48,6 +51,9 @@ public:
 
 protected:
 
+    // Process mouse movement events
     void mouseMoveEvent(QMouseEvent* event) override;
+
+    // Process mouse wheel events
     void wheelEvent    (QWheelEvent* event) override;
 };

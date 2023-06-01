@@ -18,6 +18,7 @@ OpenGLWidget::OpenGLWidget(QWidget* parent, PointCloudRenderer& renderer) :
 
     setFormat(format);
 
+    // Activate mouse tracking on widget
     setMouseTracking(true);
 }
 
