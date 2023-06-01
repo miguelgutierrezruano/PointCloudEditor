@@ -46,9 +46,6 @@ void PointCloudRenderer::initialize()
     glEnable(GL_DEPTH_TEST);
     glDepthFunc(GL_LESS);
 
-    // Enable antialiasing
-    //glEnable(GL_MULTISAMPLE);
-
     // Enable blending
     glEnable(GL_BLEND);
     glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
@@ -59,10 +56,10 @@ void PointCloudRenderer::initialize()
 
     //pointCloud = std::make_shared<PointCloud>("../resources/pyramid.ply");
     //pointCloud = std::make_shared<PointCloud>("../resources/pyramid-copy.ply");
-    //pointCloud = std::make_shared<PointCloud>("../resources/boat.ply");
+    pointCloud = std::make_shared<PointCloud>("../resources/boat.ply");
     //pointCloud = std::make_shared<PointCloud>("../resources/boat-copy.ply");
     //pointCloud = std::make_shared<PointCloud>("../resources/nebula.ply");
-    pointCloud = std::make_shared<PointCloud>("../resources/creation.ply");
+    //pointCloud = std::make_shared<PointCloud>("../resources/creation.ply");
     setupPointCloud(pointCloud);
 
     camera.transform.position = cameraInitialPosition;
