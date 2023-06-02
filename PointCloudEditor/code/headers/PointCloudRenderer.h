@@ -49,10 +49,25 @@ public:
 
 public:
 
+	/// <summary>
+	/// Override initialize method called before any OpenGL render
+	/// </summary>
 	void initialize() override;
+
+	/// <summary>
+	/// Override resize method called when QApplication size changes
+	/// </summary>
 	void resize(int newWidth, int newHeight) override;
+
+	/// <summary>
+	/// Render PointCloud in GLContext
+	/// </summary>
 	void render() override;
 
+	/// <summary>
+	/// Change active point cloud
+	/// </summary>
+	/// <param name="path">Path to desired point cloud</param>
 	void changePointCloud(const char* path);
 
 	// View methods

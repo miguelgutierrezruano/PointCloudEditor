@@ -60,8 +60,8 @@ void PointCloudRenderer::initialize()
     //pointCloud = std::make_shared<PointCloud>("../resources/pyramid-copy.ply");
     //pointCloud = std::make_shared<PointCloud>("../resources/boat.ply");
     //pointCloud = std::make_shared<PointCloud>("../resources/boat-copy.ply");
-    //pointCloud = std::make_shared<PointCloud>("../resources/nebula.ply");
-    pointCloud = std::make_shared<PointCloud>("../resources/creation.ply");
+    pointCloud = std::make_shared<PointCloud>("../resources/nebula.ply");
+    //pointCloud = std::make_shared<PointCloud>("../resources/creation.ply");
     view = new PointCloudView(pointCloud);
 
     camera.transform.position = cameraInitialPosition;
