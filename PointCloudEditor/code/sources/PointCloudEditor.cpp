@@ -5,7 +5,6 @@
 
 #include <glm/glm.hpp>
 
-#include <qopenglcontext.h>
 #include <qfiledialog.h>
 #include <qfile.h>
 #include <qtextstream.h>
