@@ -6,6 +6,8 @@
 #include <iostream>
 #include <glad/glad.h>
 
+#include "OpenGLDebugger.h"
+
 #include "Point.h"
 #include "PointCloudTransformation.h"
 #include "PointCloudRenderer.h"
@@ -58,10 +60,9 @@ void PointCloudRenderer::initialize()
     //pointCloud = std::make_shared<PointCloud>("../resources/pyramid-copy.ply");
     //pointCloud = std::make_shared<PointCloud>("../resources/boat.ply");
     //pointCloud = std::make_shared<PointCloud>("../resources/boat-copy.ply");
-    pointCloud = std::make_shared<PointCloud>("../resources/nebula.ply");
-    //pointCloud = std::make_shared<PointCloud>("../resources/nebula-copy.ply");
-    //pointCloud = std::make_shared<PointCloud>("../resources/creation.ply");
-    setupPointCloud(pointCloud);
+    //pointCloud = std::make_shared<PointCloud>("../resources/nebula.ply");
+    pointCloud = std::make_shared<PointCloud>("../resources/creation.ply");
+    view = new PointCloudView(pointCloud);
 
     camera.transform.position = cameraInitialPosition;
 
@@ -75,7 +76,6 @@ void PointCloudRenderer::initialize()
 
 void PointCloudRenderer::resize(int newWidth, int newHeight)
 {
-    // Reset viewport and projection matrix to fit new size
     widgetWidth  =  newWidth;
     widgetHeight = newHeight;
 
@@ -89,16 +89,17 @@ void PointCloudRenderer::resize(int newWidth, int newHeight)
 
 void PointCloudRenderer::render()
 {
-    // Clear and render point cloud
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
     if (view != nullptr)
         view->render(shader);
 }
 
-void PointCloudRenderer::setupPointCloud(std::shared_ptr<PointCloud> newPointCloud)
+void PointCloudRenderer::changePointCloud(const char* path)
 {
-    pointCloud = newPointCloud;
+    pointCloud.reset(new PointCloud(path));
+    
+    delete view;
     view = new PointCloudView(pointCloud);
 }
 
@@ -164,7 +165,6 @@ void PointCloudRenderer::rotateCamera(float value)
     else if (cameraAngle < cameraAngleLimits.y)
         cameraAngle = cameraAngleLimits.y;
 
-    // Rotate camera around the x Axis
     float y = cameraRadius * sin(radians(cameraAngle));
     float z = cameraRadius * cos(radians(cameraAngle));
 
