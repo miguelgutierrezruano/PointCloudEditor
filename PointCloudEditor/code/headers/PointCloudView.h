@@ -33,15 +33,12 @@ class PointCloudView
 	
 public:
 
-	PointCloudView();
-
 	PointCloudView(shared_ptr< PointCloud > viewPointCloud);
 
 public:
 
 	void render(shared_ptr< Shader > shader);
 
-	void setView(shared_ptr< PointCloud > viewPointCloud);
 	void setPointSize(float newPointSize);
 
 	void updateGPUBuffer();

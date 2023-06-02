@@ -59,6 +59,7 @@ public slots:
     void changeRotationAxis (int index);
     void changeRotationValue(int value);
 
+    void open();
     void save();
     void saveCopy();
 

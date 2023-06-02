@@ -53,7 +53,7 @@ public:
 	void resize(int newWidth, int newHeight) override;
 	void render() override;
 
-	void setupPointCloud(std::shared_ptr<PointCloud> newPointCloud);
+	void changePointCloud(const char* path);
 
 	// View methods
 	void resetView();

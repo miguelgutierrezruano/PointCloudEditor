@@ -6,6 +6,8 @@
 #include <iostream>
 #include <glad/glad.h>
 
+#include "OpenGLDebugger.h"
+
 #include "Point.h"
 #include "PointCloudTransformation.h"
 #include "PointCloudRenderer.h"
@@ -56,11 +58,11 @@ void PointCloudRenderer::initialize()
 
     //pointCloud = std::make_shared<PointCloud>("../resources/pyramid.ply");
     //pointCloud = std::make_shared<PointCloud>("../resources/pyramid-copy.ply");
-    pointCloud = std::make_shared<PointCloud>("../resources/boat.ply");
+    //pointCloud = std::make_shared<PointCloud>("../resources/boat.ply");
     //pointCloud = std::make_shared<PointCloud>("../resources/boat-copy.ply");
     //pointCloud = std::make_shared<PointCloud>("../resources/nebula.ply");
-    //pointCloud = std::make_shared<PointCloud>("../resources/creation.ply");
-    setupPointCloud(pointCloud);
+    pointCloud = std::make_shared<PointCloud>("../resources/creation.ply");
+    view = new PointCloudView(pointCloud);
 
     camera.transform.position = cameraInitialPosition;
 
@@ -93,9 +95,11 @@ void PointCloudRenderer::render()
         view->render(shader);
 }
 
-void PointCloudRenderer::setupPointCloud(std::shared_ptr<PointCloud> newPointCloud)
+void PointCloudRenderer::changePointCloud(const char* path)
 {
-    pointCloud = newPointCloud;
+    pointCloud.reset(new PointCloud(path));
+    
+    delete view;
     view = new PointCloudView(pointCloud);
 }
 

@@ -5,6 +5,11 @@
 
 #include <glm/glm.hpp>
 
+#include <qopenglcontext.h>
+#include <qfiledialog.h>
+#include <qfile.h>
+#include <qtextstream.h>
+
 #include "PointCloudLoader.h"
 #include "PointCloudEditor.h"
 
@@ -18,6 +23,7 @@ PointCloudEditor::PointCloudEditor(QWidget *parent)
 	rotationValue = 0;
 	
 	connect(     actionExit,    &QAction::triggered, this, &PointCloudEditor::menuExitTriggered     );
+	connect(     actionOpen,    &QAction::triggered, this, &PointCloudEditor::open                  );
 	connect(     actionSave,    &QAction::triggered, this, &PointCloudEditor::save                  );
 	connect( actionSaveCopy,    &QAction::triggered, this, &PointCloudEditor::saveCopy              );
 
@@ -100,6 +106,18 @@ void PointCloudEditor::changeRotationAxis(int index)
 void PointCloudEditor::changeRotationValue(int value)
 {
 	rotationValue = value;
+}
+
+void PointCloudEditor::open()
+{
+	QString filename = QFileDialog::getOpenFileName(this, "Select .ply file", "../resources", "PLY files (*.ply)");
+
+	if (!filename.isEmpty())
+	{
+		renderer.changePointCloud(filename.toStdString().c_str());
+	}
+
+	openglWidget->update();
 }
 
 void PointCloudEditor::save()

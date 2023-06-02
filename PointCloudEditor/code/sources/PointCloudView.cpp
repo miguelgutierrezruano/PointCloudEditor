@@ -8,17 +8,7 @@
 
 #include "PointCloudView.h"
 
-PointCloudView::PointCloudView() : pointSize(1)
-{
-	
-}
-
 PointCloudView::PointCloudView(shared_ptr<PointCloud> viewPointCloud) : pointSize(1)
-{
-	setView(viewPointCloud);
-}
-
-void PointCloudView::setView(shared_ptr<PointCloud> viewPointCloud)
 {
 	pointCloud = viewPointCloud;
 
@@ -57,6 +47,10 @@ void PointCloudView::render(shared_ptr<Shader> shader)
 	glPointSize(pointSize);
 
 	GLClearError();
+
+	// TODO: Find a better way to call OpenGL methods
+	glBufferData(GL_ARRAY_BUFFER, (unsigned int)pointCloud->getPoints().size() * sizeof(Point), pointCloud->getPoints().data(), GL_STATIC_DRAW);
+
 	glDrawArrays(GL_POINTS, 0, pointCloud->getPoints().size());
 	GLLogCall();
 }
