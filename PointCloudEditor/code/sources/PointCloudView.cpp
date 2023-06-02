@@ -8,7 +8,7 @@
 
 #include "PointCloudView.h"
 
-PointCloudView::PointCloudView(shared_ptr<PointCloud> viewPointCloud) : pointSize(1)
+PointCloudView::PointCloudView(shared_ptr<PointCloud> viewPointCloud) : pointSize(1), changeGPUBuffer(true)
 {
 	pointCloud = viewPointCloud;
 
@@ -32,8 +32,10 @@ void PointCloudView::updateGPUBuffer()
 {
 	vbo.bind();
 
+	changeGPUBuffer = true;
+
 	// Update point data
-	glBufferSubData(GL_ARRAY_BUFFER, 0, (unsigned int)pointCloud->getPoints().size() * sizeof(Point), pointCloud->getPoints().data());
+	//glBufferSubData(GL_ARRAY_BUFFER, 0, (unsigned int)pointCloud->getPoints().size() * sizeof(Point), pointCloud->getPoints().data());
 }
 
 void PointCloudView::render(shared_ptr<Shader> shader)
@@ -48,8 +50,11 @@ void PointCloudView::render(shared_ptr<Shader> shader)
 
 	GLClearError();
 
-	// TODO: Find a better way to call OpenGL methods
-	glBufferData(GL_ARRAY_BUFFER, (unsigned int)pointCloud->getPoints().size() * sizeof(Point), pointCloud->getPoints().data(), GL_STATIC_DRAW);
+	if (changeGPUBuffer)
+	{
+		glBufferData(GL_ARRAY_BUFFER, (unsigned int)pointCloud->getPoints().size() * sizeof(Point), pointCloud->getPoints().data(), GL_STATIC_DRAW);
+		changeGPUBuffer = false;
+	}
 
 	glDrawArrays(GL_POINTS, 0, pointCloud->getPoints().size());
 	GLLogCall();

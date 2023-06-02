@@ -30,6 +30,8 @@ class PointCloudView
 	VertexBuffer vbo;
 
 	float pointSize;
+
+	bool changeGPUBuffer;
 	
 public:
 
